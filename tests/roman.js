@@ -37,4 +37,11 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
 	});
+
+	QUnit.test('roman возвращает NaN при некорректных входных данных', function (assert) {
+		assert.ok(isNaN(roman('-15')));
+		assert.ok(isNaN(roman(4000)));
+		assert.ok(isNaN(roman('BMVII')));
+		assert.ok(isNaN(roman('CMTXL')));
+	});
 });

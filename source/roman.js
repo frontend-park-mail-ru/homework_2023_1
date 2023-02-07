@@ -7,13 +7,14 @@ function roman(input) {
             L: 50, C: 100, D: 500, M: 1000 
         };
 
-        
-        return str.toUpperCase().split('').reduce((res, cur, ind, arr) => {
-            let currentArabic = arabic[cur];
+        const processed_input = str.toUpperCase().split('');
 
-            if (!arr.includes(cur)) {
-                return NaN;
-            }
+        if (!processed_input.every((elem) => Object.keys(arabic).includes(elem))) {
+            return NaN;
+        }
+
+        return processed_input.reduce((res, cur, ind, arr) => {
+            let currentArabic = arabic[cur];
 
             if (ind + 1 < arr.length && arabic[arr[ind + 1]] > currentArabic) {
                 return res - currentArabic;
