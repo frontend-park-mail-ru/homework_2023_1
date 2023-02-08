@@ -68,10 +68,37 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.deepEqual(zip({answer: 42}, {answer: false}), {answer: 42}, 'Значение должно браться из первого встретившегося поля');
 		assert.deepEqual(zip({age: 5}, {}, {age: 4}, {age: 72}), {age: 5});
 
-		const obj = {
+		const obj1 = {
 			name: 'age',
 			value: 42
 		};
-		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
+		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj1);
+		const obj2 = {
+			name: null,
+			value: 42
+		};
+		assert.deepEqual(zip({name: null}, {value: 42}, {name: 'cost'}, {value: 90}), obj2);
+
+		const obj3 = {
+			name : 'Alice',
+			age : 18,
+		}
+
+		const obj4 = {
+			name : 'Kristina',
+			age : 19,
+			height : 172,
+			room : 725
+		}
+
+		const obj5 = {
+			name : 'Alice',
+			age : 18,
+			height : 172,
+			room : 725
+		}
+
+		assert.deepEqual(zip(obj3, obj4), obj5);
+		
 	});
 });
