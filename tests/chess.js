@@ -16,6 +16,10 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('-1'), null);
 	});
 
+	QUnit.test('Шахматной доски qwerty на qwerty не бывает', function (assert) {
+		assert.strictEqual(chess('qwerty'), null);
+	});
+
 	QUnit.test('Шахматная доска 2 на 2', function (assert) {
 		const expected =
 			'* \n' +
