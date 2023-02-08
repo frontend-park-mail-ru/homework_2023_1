@@ -32,4 +32,12 @@ QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax игнорирует обычный текст', function (assert) {
 		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [ -5.8, 73 ]);
 	});
+
+	QUnit.test('minmax правильно парсит Infinity с числами и игнорирует обычный текст', function (assert) {
+		assert.deepEqual(minmax('1, -5.8 или 10, Infinity хотя 34 + -5.3 и 73'), [ -5.8, Infinity ]);
+	});
+
+	QUnit.test('minmax игнорирует обычный текст, слипшийся справа от числа или Infinity', function (assert) {
+		assert.deepEqual(minmax('1, -5.8gb или 10, Infinity хотя 34 + -5.3 и 73'), [ -5.8, Infinity ]);
+	});
 });
