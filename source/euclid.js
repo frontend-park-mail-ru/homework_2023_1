@@ -1,6 +1,6 @@
 'use strict';
 
-const gcd = function (a, b){
+const gcd = function(a, b) {
     while (a && b) {
         if (a > b) {
             a %= b;
@@ -12,7 +12,7 @@ const gcd = function (a, b){
     return a + b;
 }
 
-const euclid = function () {
+const euclid = function() {
     if (arguments.length === 0){
         return undefined;
     }
