@@ -53,4 +53,30 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
+
+	QUnit.test('Удаляет несколько повторяющихся символов', function (assert) {
+		assert.strictEqual(letters('111222333', true), '123');
+		assert.strictEqual(letters('РРРААА   ', true), 'РА ');
+		assert.strictEqual(letters('     ', true), ' ');
+
+		assert.strictEqual(letters('111222333', false), '123');
+		assert.strictEqual(letters('РРРААА   ', false), 'РА ');
+		assert.strictEqual(letters('     ', false), ' ');
+
+		assert.strictEqual(letters('111222333'), '');
+		assert.strictEqual(letters('РРРААА   '), '');
+		assert.strictEqual(letters('     '), '');
+	});
+
+	QUnit.test('Удаляет повторяющийся символ между уникальными', function (assert) {
+		assert.strictEqual(letters('АБВ ГДЖ ИКЛМН ', true), 'АБВ ГДЖИКЛМН');
+		assert.strictEqual(letters('АБВ ГДЖ ИКЛМН ', false), 'АБВГДЖИКЛМН ');
+		assert.strictEqual(letters('АБВ ГДЖ ИКЛМН '), 'АБВГДЖИКЛМН');
+	});
+
+	QUnit.test('Корректно работает с пустой строкой', function (assert) {
+		assert.strictEqual(letters('', true), '');
+		assert.strictEqual(letters('', false), '');
+		assert.strictEqual(letters(''), '');
+	});
 });

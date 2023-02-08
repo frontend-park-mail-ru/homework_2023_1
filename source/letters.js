@@ -1,10 +1,10 @@
 "use strict";
 
-function letters (string, flag = true) {
+function letters (string, flag) {
     return string.split('').filter((element, idx, array) => {
-        return (flag) ? array.indexOf(element) === idx
-                      : array.lastIndexOf(element) === idx
+        if (flag === undefined) {
+            return array.lastIndexOf(element) === array.indexOf(element)
+        } else return  (flag) ? array.indexOf(element) === idx
+                              : array.lastIndexOf(element) === idx
     }).join('')
 }
-
-console.log(letters("aaabbo1bbaa2", true));
