@@ -31,4 +31,12 @@ QUnit.module('Тестируем функцию rle', function () {
   QUnit.test('rle отрабатывает верно на пустой строке', function (assert) {
     assert.strictEqual(rle(''), '', 'rle() === ');
   });
+
+  QUnit.test('rle отрабатывает верно без аргументов', function (assert) {
+    assert.strictEqual(rle(), null, 'rle() === null');
+  });
+
+  QUnit.test('rle отрабатывает верно на неправильных аргументах', function (assert) {
+    assert.strictEqual(rle(123), null, 'rle(123) === null');
+  });
 });
