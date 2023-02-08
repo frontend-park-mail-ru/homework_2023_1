@@ -8,6 +8,13 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.strictEqual(euclid(6006), 6006, 'euclid(6006) === 6006');
 	});
 
+	QUnit.test('На входе два числа', function (assert) {
+		assert.strictEqual(euclid(1, 1), 1, 'euclid(1, 1) === 1');
+		assert.strictEqual(euclid(2, 4), 2, 'euclid(2, 4) === 2');
+		assert.strictEqual(euclid(7, 8), 1, 'euclid(7, 8) === 1');
+		assert.strictEqual(euclid(60, 90), 30, 'euclid(60, 90) === 30');
+	});
+
 	QUnit.test('Функция должна правильно находить НОД трёх натуральных чисел', function (assert) {
 		assert.strictEqual(euclid(1, 1, 1), 1, 'euclid(1, 1, 1) === 1');
 		assert.strictEqual(euclid(2, 2, 2), 2, 'euclid(2, 2, 2) === 2');
@@ -20,6 +27,8 @@ QUnit.module('Тестируем функцию euclid', function () {
 	});
 
 	QUnit.test('Функция должна правильно работать с любым количеством аргументов', function (assert) {
+		assert.strictEqual(euclid(), undefined);
+
 		assert.strictEqual(euclid(1, 1, 1, 1, 1, 1, 1), 1);
 
 		const n = 17;
