@@ -53,4 +53,15 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
+
+	QUnit.test('Дополнительная проверка различных случаев', function (assert) {
+		assert.strictEqual(letters('irys    ssd'), 'iryd', "letters('irys    ssd') === 'iryd'");
+		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjd'), 'd', "letters('irys    ssd') === 'iryd'");
+		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj', true), 'jd', "letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj') === 'jd'");
+		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj', false), 'dj', "letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj') === 'dj'");
+	});
+
+	QUnit.test('Дополнительная проверка удаления дублированных букв в предложении заикающегося', function (assert) {
+		assert.strictEqual(letters('Хээй пппприветт', true), 'Хэй привет', "letters('Хээй пппприветт') === 'Хэй привет'");
+	});
 });
