@@ -94,5 +94,29 @@ QUnit.module('Тестируем функцию set', function () {
 		};
 
 		assert.deepEqual(set({}, '.deep.nested.field', null), object);
+		assert.deepEqual(set({}, '.1', "foo")[1], "foo");
 	});
+
+    QUnit.test('set работает правильно со значениями в виде объектов', function (assert) {
+        const object = {
+            foo: {
+                baz: 'bar',
+                bar: 'baz',
+            },
+        }
+
+        assert.deepEqual(
+            set({}, '.foo', {
+                baz: 'bar',
+                bar: 'baz',
+            }),
+            object
+        )
+    })
+
+    QUnit.test('set работает правильно на этом загадочном тесте с рекурсией', function (assert) {
+        const obj = { foo: 1 }
+
+        assert.deepEqual(set(obj, '.obj', obj), obj)
+    })
 });
