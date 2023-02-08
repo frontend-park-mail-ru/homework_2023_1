@@ -1,5 +1,6 @@
 'use strict';
 
+
 QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция работает с единственным объектом', function (assert) {
 		assert.deepEqual(zip({}), {});
@@ -10,6 +11,9 @@ QUnit.module('Тестируем функцию zip', function () {
 			cost: '120$'
 		};
 		assert.deepEqual(zip(obj), obj);
+    assert.deepEqual(
+      zip({nickname: "Test", name: "Kirill"}), 
+      {nickname: "Test", name: "Kirill"})
 	});
 
 	QUnit.test('Функция работает с объектами среди которых есть объекты без свойств', function (assert) {
@@ -23,9 +27,14 @@ QUnit.module('Тестируем функцию zip', function () {
 			count: 0,
 			cost: '120$'
 		};
-
+    
 		assert.deepEqual(zip({}, {}, {}, obj, {}, {}), obj);
+    assert.deepEqual(
+      zip({}, {}, {name: "Test"}, {}, {nickname: "Test"}),
+      {name: "Test", nickname: "Test"}
+    )
 	});
+
 
 	QUnit.test('Функция работает с объектами со свойствами с разными именами', function (assert) {
 		const obj = {
@@ -62,6 +71,10 @@ QUnit.module('Тестируем функцию zip', function () {
 		};
 
 		assert.deepEqual(zip(obj3, obj4), obj5);
+    assert.deepEqual(
+      zip({value1: 1, value2: 2}, {prop1: true, prop2: false}),
+      {value1: 1, value2: 2, prop1: true, prop2: false,}
+    )
 	});
 
 	QUnit.test('Функция правильно работает со свойствами, которые встречаются в нескольких объектах', function (assert) {
@@ -73,5 +86,8 @@ QUnit.module('Тестируем функцию zip', function () {
 			value: 42
 		};
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
+    assert.deepEqual(zip({value: true}, {value: false}, {value: 12}), {value: true})
 	});
+
+
 });
