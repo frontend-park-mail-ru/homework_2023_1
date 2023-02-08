@@ -120,4 +120,59 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		assert.deepEqual(actual, expected);
 	});
+
+	QUnit.test('sorting сортирует при отстутсвие значений в полях', function (assert) {
+		const initial = [
+			{prop1: 3, id: '1', name: "Daniil"},
+			{prop1: 3, id: '2', name: null},
+			{prop1: 1, id: '1', name: null},
+			{prop1: 1, id: '2', name: null},
+			{prop1: 4, id: '1', name: "Alexa"},
+			{prop1: 4, id: '2', name: null},
+			{prop1: 2, id: '1', name: "Roma"},
+			{prop1: 2, id: '2', name: null}
+		];
+		const actual = sorting(initial, [ 'id', 'prop1', 'name' ]);
+
+		const expected = [
+			{ prop1: 1, id: '1', name: null },
+			{ prop1: 2, id: '1', name: 'Roma' },
+			{ prop1: 3, id: '1', name: 'Daniil' },
+			{ prop1: 4, id: '1', name: 'Alexa' },
+			{ prop1: 1, id: '2', name: null },
+			{ prop1: 2, id: '2', name: null },
+			{ prop1: 3, id: '2', name: null },
+			{ prop1: 4, id: '2', name: null }
+		];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting возвращает исходный массив при отсутствии полей для сортировки в массиве свойств', function (assert) {
+		const initial = [
+			{prop1: 3, id: '1', name: "Daniil"},
+			{prop1: 3, id: '2'},
+			{prop1: 1, id: '1'},
+			{prop1: 1, id: '2'},
+			{prop1: 4, id: '1', name: "Alexa"},
+			{prop1: 4, id: '2', name: null},
+			{prop1: 2, id: '1', name: "Roma"},
+			{prop1: 2, id: '2'}
+		];
+
+		const actual = sorting(initial, [ 'opa', 'popa', 'lupa' ]);
+
+		const expected = [
+			{prop1: 3, id: '1', name: "Daniil"},
+			{prop1: 3, id: '2'},
+			{prop1: 1, id: '1'},
+			{prop1: 1, id: '2'},
+			{prop1: 4, id: '1', name: "Alexa"},
+			{prop1: 4, id: '2', name: null},
+			{prop1: 2, id: '1', name: "Roma"},
+			{prop1: 2, id: '2'}
+		]
+
+		assert.deepEqual(actual, expected);
+	});
 });
