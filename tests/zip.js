@@ -1,5 +1,3 @@
-'use strict';
-
 QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция работает с единственным объектом', function (assert) {
 		assert.deepEqual(zip({}), {});
@@ -73,5 +71,16 @@ QUnit.module('Тестируем функцию zip', function () {
 			value: 42
 		};
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
+	});
+
+	QUnit.test('Функция правильно работает с одинаковыми объектами', function (assert) {
+		assert.deepEqual(zip({answer: 42}, {answer: 42}), {answer: 42}, 'Объект не должен был измениться');
+		assert.deepEqual(zip({age: 5}, {age: 5}, {age: 5}), {age: 5}, 'Объект не должен был измениться');
+
+		const obj = {
+			name: 'age',
+			value: 42
+		};
+		assert.deepEqual(zip(obj, obj, obj), obj);
 	});
 });
