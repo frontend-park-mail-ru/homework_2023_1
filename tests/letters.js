@@ -79,4 +79,12 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('', false), '');
 		assert.strictEqual(letters(''), '');
 	});
+
+	QUnit.test('Некорретные типы аргументов', function (assert) {
+		assert.throws(() => letters(213, true), new TypeError("Expected string as first argument"));
+		assert.throws(() => letters(null, true), new TypeError("Expected string as first argument"));
+		assert.throws(() => letters(undefined, true), new TypeError("Expected string as first argument"));
+		assert.throws(() => letters('', 8), new TypeError("Expected boolean or nothing as second argument"));
+		assert.throws(() => letters('', null),new TypeError("Expected boolean or nothing as second argument"));
+	});
 });
