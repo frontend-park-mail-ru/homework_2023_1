@@ -1,6 +1,10 @@
 'use strict';
 
 QUnit.module('Тестируем функцию tree', function () {
+	QUnit.test('Ёлочек неопределенной высоты не бывает', function (assert) {
+		assert.strictEqual(tree(undefined), null);
+	});
+
 	QUnit.test('Ёлочек высотой ниже трёх не бывает', function (assert) {
 		assert.strictEqual(tree(0), null);
 		assert.strictEqual(tree(1), null);
@@ -40,6 +44,31 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree('5'), expected);
 	});
 
+	QUnit.test('Ёлочка высотой 6', function (assert) {
+		const expected =
+			'    *    \n' +
+			'   ***   \n' +
+			'  *****  \n' +
+			' ******* \n' +
+			'*********\n' +
+			'    |    \n';
+		assert.strictEqual(tree(6), expected);
+		assert.strictEqual(tree('6'), expected);
+	});
+
+	QUnit.test('Ёлочка высотой 7', function (assert) {
+		const expected =
+			'     *     \n' +
+			'    ***    \n' +
+			'   *****   \n' +
+			'  *******  \n' +
+			' ********* \n' +
+			'***********\n' +
+			'     |     \n';
+		assert.strictEqual(tree(7), expected);
+		assert.strictEqual(tree('7'), expected);
+	});
+
 	QUnit.test('Ёлочка высотой 8', function (assert) {
 		const expected =
 			'      *      \n' +
@@ -52,5 +81,21 @@ QUnit.module('Тестируем функцию tree', function () {
 			'      |      \n';
 		assert.strictEqual(tree(8), expected);
 		assert.strictEqual(tree('8'), expected);
+	});
+
+	QUnit.test('Ёлочка высотой 10', function (assert) {
+		const expected =
+			'        *        \n' +
+			'       ***       \n' +
+			'      *****      \n' +
+			'     *******     \n' +
+			'    *********    \n' +
+			'   ***********   \n' +
+			'  *************  \n' +
+			' *************** \n' +
+			'*****************\n' +
+			'        |        \n';
+		assert.strictEqual(tree(10), expected);
+		assert.strictEqual(tree('10'), expected);
 	});
 });
