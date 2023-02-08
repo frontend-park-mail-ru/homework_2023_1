@@ -51,4 +51,53 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 		assert.strictEqual(format(input, 3), expected3);
 	});
+
+	QUnit.test('format работает правильно при случайном расположении чисел с наибольшим количеством разрядов', function (assert) {
+		const input = [ 123123, 21, 0, 123, 4, 55555555555, 12121, 4, 0, 0, 0, 0, 0, 1111111111 ];
+
+		const expected1 = 
+			"     123123\n" +
+			"         21\n" +
+			"          0\n" +
+			"        123\n" +
+			"          4\n" +
+			"55555555555\n" +
+			"      12121\n" +
+			"          4\n" +
+			"          0\n" +
+			"          0\n" +
+			"          0\n" +
+			"          0\n" +
+			"          0\n" +
+			" 1111111111"
+
+
+
+		const expected2 =
+			"123123          21     0 123\n" +
+			"     4 55555555555 12121   4\n" +
+			"     0           0     0   0\n" +
+			"     0  1111111111" 
+
+		assert.strictEqual(format(input, 1), expected1);
+		assert.strictEqual(format(input, 4), expected2);
+	});
+
+
+	QUnit.test('format работает правильно при числе колонок большем, чем количество чисел', function (assert) {
+		const input = [ 0, 1, 2, 10, 100 ];
+
+		const expected1 = 
+			"0 1 2 10 100"
+
+		assert.strictEqual(format(input, 10), expected1);
+	});
+
+	QUnit.test('format работает правильно пустом массиве', function (assert) {
+		const input = [];
+
+		const expected1 = ""
+
+		assert.strictEqual(format(input, 10), expected1);
+	});
 });
