@@ -30,11 +30,29 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(1904), 'MCMIV');
 		assert.strictEqual(roman(1990), 'MCMXC');
 		assert.strictEqual(roman(2017), 'MMXVII');
+
+		assert.strictEqual(roman(3000), 'MMM');
 	});
 
 	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
+	});
+
+	QUnit.test('roman правильно обрабатывает нулевые/пустые значения', function (assert) {
+		// В римских цифрах вообще нет нуля
+		assert.strictEqual(roman(0), '');
+		assert.strictEqual(roman(''), 0);
+		assert.strictEqual(roman('0'), '');
+	});
+
+	QUnit.test('roman правильно выбрасывает ошибку при невалидном значении', function (assert) {
+		// Римские числа не представляют отрицательные и дробные значения
+		assert.throws(() => roman(-123));
+		assert.throws(() => roman(123.456));
+
+		assert.throws(() => roman('Nice code, man'));
+		assert.throws(() => roman('Pro100'));
 	});
 });
