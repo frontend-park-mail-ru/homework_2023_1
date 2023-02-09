@@ -38,19 +38,32 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
 	QUnit.test('Входные данные: строка, не преобразуемая в число', function (assert) {
-		const expected = null;
-		assert.strictEqual(chess('abc'), expected);
+		assert.throws(
+			function (){
+				chess('abc');
+			},
+			Error('Invalid argument: integer number expected.'));
 	});
 
 	QUnit.test('Входные данные: число с плавающей точкой', function (assert) {
-		const expected = null;
-		assert.strictEqual(chess(2.5), expected);
-		assert.strictEqual(chess('2.5'), expected);
+		assert.throws(
+			function (){
+				chess(2.5);
+			},
+			Error('Invalid argument: integer number expected.'));
+
+		assert.throws(
+			function (){
+				chess('2.5');
+			},
+			Error('Invalid argument: integer number expected.'));
 	});
 
-
 	QUnit.test('Входные данные: Infinity', function (assert) {
-		const expected = null;
-		assert.strictEqual(chess(Infinity), expected);
+		assert.throws(
+			function (){
+				chess(Infinity);
+			},
+			Error('Invalid argument: integer number expected.'));
 	});
 });
