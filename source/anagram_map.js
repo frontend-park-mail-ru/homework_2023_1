@@ -35,7 +35,7 @@ function grouping(strings) {
     const result = [];
     strings.forEach(str => {
         const dict = {};
-        [...str].forEach(symbol => {
+        [...str.toLowerCase()].forEach(symbol => {
             symbol in dict ? ++dict[symbol] : dict[symbol] = 1;
         });
         const found = unique_dicts.find(d => isEqual(d.dict, dict));
@@ -53,11 +53,12 @@ function grouping(strings) {
 }
 
 function anagram_map(strings) {
-    strings = strings.map(string => string.toLowerCase())
     return grouping(strings)
         .filter(group => group.length >= 2)
-        .map(group => group.sort())
+        .map(group => group.sort((a, b) => {
+            return a.toLowerCase() > b.toLowerCase() ? 1 : -1; 
+        }))
         .sort((a, b) => {
-            return a > b ? 1 : -1; 
+            return a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1; 
         })
 }

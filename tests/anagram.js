@@ -19,13 +19,13 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram_map(input), output);
 	});
 
-	QUnit.test('Функция работает правильно', function (assert) {
-		const input = ["Aaa", "Kkk", "Kk", "koT", "aaa", "aaaB", "abc", "TOK", "acb", "cba", "bca", "bac"];
+	QUnit.test('Функция работает правильно (разные регистры)', function (assert) {
+		const input = ["Aaa", "Kkk", "Kk", "TKO", "aaa", "aaaB", "abc", "TOK", "acb", "cba", "bca", "bac"];
 
 		const output = [
-			[ 'aaa', 'aaa' ],
+			[ 'aaa', 'Aaa' ],
 			[ 'abc', 'acb', 'bac', 'bca', 'cba' ],
-			[ 'kot', 'tok' ]   
+			[ 'TKO', 'TOK' ]   
 		]
 
 		assert.deepEqual(anagram_sort(input), output);
