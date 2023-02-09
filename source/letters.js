@@ -26,10 +26,17 @@ function letters (str, flag) {
     if (typeof flag !== 'boolean' && typeof flag !== 'undefined' ) {
         throw new TypeError('Expected boolean or nothing as second argument')
     }
-    return str.split('').filter((element, idx, array) => {
-        if (flag === undefined) {
-            return array.lastIndexOf(element) === array.indexOf(element)
-        } else return  (flag) ? array.indexOf(element) === idx
-                              : array.lastIndexOf(element) === idx
-    }).join('')
+    if (flag === undefined) {
+        let letters = {};
+        [...str].map((element) => {
+            if (letters.hasOwnProperty(element)) {
+                letters[element]++;
+            } else letters[element] = 1;
+        });
+        return [...str].filter((element) => {
+            return letters[element] === 1;
+        }).join('')
+    } else {
+        return (flag ? [...new Set(str)] : [...new Set([...str].reverse())].reverse()).join('');
+    }
 }
