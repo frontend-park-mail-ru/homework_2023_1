@@ -10,6 +10,8 @@ QUnit.module('Тестируем функцию zip', function () {
 			cost: '120$'
 		};
 		assert.deepEqual(zip(obj), obj);
+		assert.deepEqual(zip({name: null}), {name: null});
+
 	});
 
 	QUnit.test('Функция работает с объектами среди которых есть объекты без свойств', function (assert) {
@@ -72,11 +74,14 @@ QUnit.module('Тестируем функцию zip', function () {
 			name: 'age',
 			value: 42
 		};
+
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj1);
+
 		const obj2 = {
 			name: null,
 			value: 42
 		};
+
 		assert.deepEqual(zip({name: null}, {value: 42}, {name: 'cost'}, {value: 90}), obj2);
 
 		const obj3 = {
@@ -99,6 +104,14 @@ QUnit.module('Тестируем функцию zip', function () {
 		}
 
 		assert.deepEqual(zip(obj3, obj4), obj5);
-		
+
+		const obj6 = {
+			name : 'Alice',
+			age : 18,
+			height : 160,
+			room : 724
+		}
+
+		assert.deepEqual(zip(obj3, obj4, obj6), obj5);
 	});
 });
