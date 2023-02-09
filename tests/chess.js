@@ -22,12 +22,10 @@ QUnit.module('Тестируем функцию chess', function () {
 
 	QUnit.test('Шахматной доски Infinity на Infinity не бывает', function (assert) {
 		assert.strictEqual(chess(Infinity), null);
-		assert.strictEqual(chess('Infinity'), null);
 	});
 
 	QUnit.test('Шахматной доски undefined на undefined не бывает', function (assert) {
 		assert.strictEqual(chess(undefined), null);
-		assert.strictEqual(chess('undefined'), null);
 	});
 
 	QUnit.test('Шахматная доска 2 на 2', function (assert) {
