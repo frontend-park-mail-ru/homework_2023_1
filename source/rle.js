@@ -15,6 +15,7 @@
 //     return (count !== 1) ? res + str[str.length-1] + count : res + str[str.length-1]
 // }
 
-//Last version
+// Last version
 'use strict';
-const rle = s => s.replace(/(.)\1*/g, function (m, c) { return c + (m.length > 1 ? m.length : ''); });
+const rle = str => str.replace(/(.)\1*/g,
+    function (substr, sym) { return sym + (substr.length > 1 ? substr.length : ''); });
