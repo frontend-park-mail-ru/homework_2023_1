@@ -11,7 +11,7 @@ const BREAK = '\n';
  * with '*', ' ' and '\n' symbols.
  */
 const chess = dim => {
-    if (!Number.isInteger(Number(dim))){
+    if (!Number.isInteger(Number(dim))) {
         throw new Error('Invalid argument: integer number expected.');
     }
 
