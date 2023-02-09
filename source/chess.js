@@ -1,10 +1,12 @@
 'use strict';
 
-const chess = function (numbers) {
-    if (!Number(numbers) | numbers < 2 | numbers % 1 > 0) return null;
+const getEvenLine = numbers => "* ".repeat(numbers / 2) + "*".repeat(numbers % 2) + "\n";
 
-    let evenLines = "* ".repeat(numbers / 2) + "*".repeat(numbers % 2) + "\n";
-    let oddLines = " *".repeat(numbers / 2) + " ".repeat(numbers % 2) + "\n";
+const getOddLine = numbers => " *".repeat(numbers / 2) + " ".repeat(numbers % 2) + "\n";
 
-    return (evenLines + oddLines).repeat(numbers / 2) + evenLines.repeat(numbers % 2);
+const chess = (numbers) => {
+    if (!Number.isInteger(+numbers) || numbers < 2) return null;
+
+    return (getEvenLine(numbers) + getOddLine(numbers)).repeat(numbers / 2) + getEvenLine(numbers).repeat(numbers % 2);
 };
+
