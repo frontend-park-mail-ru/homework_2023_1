@@ -17,7 +17,7 @@ QUnit.module('Тестируем функцию rle', function () {
   });
 
   QUnit.test('rle отрабатывает верно на строке состоящей из цифр', function (assert) {
-    assert.strictEqual(rle('33334'), '344', 'rle(33334) === 344');
+    assert.throws(function() {rle('33334')}, Error("there are numbers in the string"), 'rle(33334) === 344');
   });
 
   QUnit.test('rle отрабатывает верно на строке состоящей из одного символа', function (assert) {
@@ -33,10 +33,10 @@ QUnit.module('Тестируем функцию rle', function () {
   });
 
   QUnit.test('rle отрабатывает верно без аргументов', function (assert) {
-    assert.strictEqual(rle(), null, 'rle() === null');
+    assert.throws(function() {rle()}, Error("wrong input"), 'rle() === Error("wrong input")');
   });
 
   QUnit.test('rle отрабатывает верно на неправильных аргументах', function (assert) {
-    assert.strictEqual(rle(123), null, 'rle(123) === null');
+    assert.throws(function() {rle(123)}, Error("wrong input"), 'rle(123) === Error("wrong input")');
   });
 });

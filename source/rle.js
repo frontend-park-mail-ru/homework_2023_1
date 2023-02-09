@@ -3,11 +3,14 @@
 /**
  * Функция RLE сжатия
  * @param str любая строка, например ABBB
- * @returns {string|null} сжатая строка с помощью RLE, например AB3
+ * @returns {string} сжатая строка с помощью RLE, например AB3
  */
 const rle = function (str) {
   if (str == null || typeof str != 'string') {
-    return null;
+    throw new Error("wrong input");
+  }
+  if(/\d/.test(str)){
+    throw new Error("there are numbers in the string");
   }
   return str.replace(/(.)\1+/g, function (internalStr, symbol) {
     return symbol + internalStr.length;
