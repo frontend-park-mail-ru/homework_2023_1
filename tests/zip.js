@@ -114,4 +114,16 @@ QUnit.module('Тестируем функцию zip', function () {
 
 		assert.deepEqual(zip(obj3, obj4, obj6), obj5);
 	});
+
+	QUnit.test('Функция правильно работает со свойствами, которые являются вложенными объектами', function (assert) {
+		const obj = {
+			name : 'Alice'
+		}
+
+		const obj2 = {
+			name: obj
+		}
+		assert.deepEqual(zip(obj, obj2), obj);
+
+	});
 });
