@@ -4,6 +4,7 @@
  * Функция RLE сжатия
  * @param str любая строка, например ABBB
  * @returns {string} сжатая строка с помощью RLE, например AB3
+ * @throws Выкидывает ошибку, если аргумент null, не строка или в строке есть цифры
  */
 const rle = function (str) {
   if (str == null || typeof str != 'string') {
