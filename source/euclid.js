@@ -7,7 +7,7 @@
  * @returns {number} НОД двух чисел
  */
 const gcd = (a, b) => {
-    var tmp;
+    let tmp;
     while ((a % b) > 0)  {
       tmp = a % b;
       a = b;
