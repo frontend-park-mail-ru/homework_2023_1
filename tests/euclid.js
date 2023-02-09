@@ -28,4 +28,9 @@ QUnit.module('Тестируем функцию euclid', function () {
 		const temp = [ 80325, 55275, 8746650, 3000000, 45672375, 225, 54675 ];
 		assert.strictEqual(euclid(...[ ...temp, ...temp, ...temp, ...temp, ...temp ]), euclid(...temp));
 	});
+	QUnit.test('Функция должна возвращать null, если были переданы не натуральные числа', function (assert){
+		assert.strictEqual(euclid(1, 2.45, 4.3, 2, 2.5), null);
+		assert.strictEqual(euclid(1, -2, 3, -10, 1), null);
+		assert.strictEqual(euclid(0, 0, 0, 0, 0, 0), null);
+	});
 });
