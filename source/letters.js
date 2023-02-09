@@ -1,15 +1,33 @@
 'use strict';
 
-const letters = (string, flag) => {
-    let result = "";
+/**
+ * Функция, удаляющая повторяющиеся 
+ * буквы по правилу, зависящему от входного параметра.
+ * @param {line} line - Исходная строка
+ * @param {?boolean} flag - Булевое значение, определяющее поведение
+ * @description Если flag не передан, то удаляются все повторяющиеся символы, 
+ * если flag равен true - остается первый из повторяющихся символов, 
+ * eсли flag равен false - остается последний из повторяющихся символов.
+ * @returns {line} Измененная строка без повторяющихся букв
+ */
+const letters = (line, flag) => {
+    let result_array = new Array();
     let seen = new Set();
-    [...(flag) ? string : string.split("").reverse().join("")].forEach(letter => {
+
+    for (let letter of line) {
         if (!seen.has(letter)) {
-            result = (flag) ? (result + letter) : (letter + result);
             seen.add(letter);
-        } else if (result.includes(letter) && typeof flag === "undefined") {
-            result = result.replace(letter, '');
+            result_array.push(letter);
+            continue;
         }
-    });
-    return result;
+
+        if (flag === true) {
+            continue;
+        }
+        delete result_array[result_array.indexOf(letter)];
+        if (flag === false) result_array.push(letter);
+
+    }
+
+    return result_array.join("");
 };

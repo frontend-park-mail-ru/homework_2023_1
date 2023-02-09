@@ -54,14 +54,21 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
 
-	QUnit.test('Дополнительная проверка различных случаев', function (assert) {
-		assert.strictEqual(letters('irys    ssd'), 'iryd', "letters('irys    ssd') === 'iryd'");
-		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjd'), 'd', "letters('irys    ssd') === 'iryd'");
-		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj', true), 'jd', "letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj') === 'jd'");
-		assert.strictEqual(letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj', false), 'dj', "letters('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjjjj') === 'dj'");
+	QUnit.test('Дополнительно: удаляет все пробелы', function (assert) {
+		assert.strictEqual(letters('irys    d'), 'irysd', "letters('irys    d') === 'irysd'");
 	});
 
-	QUnit.test('Дополнительная проверка удаления дублированных букв в предложении заикающегося', function (assert) {
+	QUnit.test('Дополнительно: удаляет дублирование букв в предложении заикающегося', function (assert) {
 		assert.strictEqual(letters('Хээй пппприветт', true), 'Хэй привет', "letters('Хээй пппприветт') === 'Хэй привет'");
+	});
+
+	QUnit.test('Дополнительно: подается пустая строка', function (assert) {
+		assert.strictEqual(letters(''), '', "letters('') === ''");
+	});
+
+	QUnit.test('Дополнительно: удаляет дублирование специальных символов', function (assert) {
+		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…', true), 'ыћ÷°љ∆…®њ©', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === 'ыћ÷°љ∆…®њ©'");
+		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…', false), '®њ©ыћ÷°љ∆…', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === '®њ©ыћ÷°љ∆…'");
+		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…'), '®њ©', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === '®њ©'");
 	});
 });
