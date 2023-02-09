@@ -1,5 +1,12 @@
 'use strict';
-
+/**
+ * Inverse array except for elements that are defined by param stop
+ * @function inverse
+ * @param {Array} numbers - array of anything
+ * @param {number} stop - number that demonstrates which elements will stay on their positions
+ * @returns {Array}
+ *
+ */
 const inverse = (numbers, stop = 0) => {
     let newNumbers = numbers.slice()
 
