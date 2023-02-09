@@ -5,13 +5,22 @@ const ODD_LINE_PART = ' *';
 const STAR = '*';
 const SPACE = ' ';
 
-/** The function returns an even checkerboard row of stars and spaces. */
+/**
+ * The function returns an even checkerboard row of stars and spaces.
+ * @param {int} numbers - size of line.
+ */
 const getEvenLine = (numbers) => EVEN_LINE_PART.repeat(numbers / 2) + STAR.repeat(numbers % 2) + '\n';
 
-/** The function returns an odd checkerboard row of stars and spaces. */
+/**
+ * The function returns an odd checkerboard row of stars and spaces.
+ * @param {int} numbers - size of line.
+ */
 const getOddLine = (numbers) => ODD_LINE_PART.repeat(numbers / 2) + SPACE.repeat(numbers % 2) + '\n';
 
-/** A function that returns a chessboard N*N of stars and spaces. */
+/**
+ * A function that returns a chessboard N*N of stars and spaces.
+ * @param {int} numbers - size of chessboard.
+ */
 const chess = (numbers) => {
     if ( !Number.isInteger(+numbers) || numbers < 2) {
         return null;
