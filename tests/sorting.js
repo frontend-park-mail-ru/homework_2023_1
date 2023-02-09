@@ -121,7 +121,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		assert.deepEqual(actual, expected);
 	});
-// own test_1
+
 	QUnit.test('sorting сортирует по булевским значениям', function (assert) {
 		const initial = [
 			{prop1: true, id: '1'},
@@ -148,7 +148,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		assert.deepEqual(actual, expected);
 	});
-// own test_2
+
 	QUnit.test('sorting сортирует по трем полям', function (assert) {
 		const initial = [
 			{prop1: 2, id: '1', prop2: true},
@@ -176,7 +176,6 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	// own test_2
 	QUnit.test('не изменяет массив, если передан несуществующий параметр', function (assert) {
 		const initial = [
 			{prop1: 2, id: '1', prop2: true},

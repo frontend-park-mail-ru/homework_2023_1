@@ -1,6 +1,5 @@
 'use strict';
 
-// sorting
 const sorting = function (arr, params) {
     for (let curParam = 0; curParam < params.length; ++curParam) {
         arr.sort((a, b) => {
