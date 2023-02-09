@@ -1,10 +1,17 @@
 'use strict';
 
 const inverse = (numbers, stop = 0) => {
+    let newNumbers = numbers.slice()
+
     if (stop >= 0) {
-        //part of original array + part of reversed array
-        return numbers.slice(0, stop).concat(numbers.slice(stop).reverse())
+        for (let i = numbers.length - 1; i >= stop; i--) {
+            newNumbers[i] = numbers[numbers.length - 1 - i +stop]
+        }
+    } else {
+        for (let i = 0; i <= numbers.length + stop - 1; i++) {
+            newNumbers[i] = numbers[numbers.length - 1 - i + stop]
+        }
     }
-        //vise verse: part of reversed array + part of original
-    return numbers.slice(0, stop).reverse().concat(numbers.slice(stop))
+
+    return newNumbers
 };

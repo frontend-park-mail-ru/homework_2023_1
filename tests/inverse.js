@@ -34,7 +34,7 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
 	QUnit.test('Дополнительно написанные тесты', function (assert) {
-		assert.deepEqual(inverse([ 1, 2, 3, 4, 5], -4), [ 1, 2, 3, 4, 5]);
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5], 7), [ 1, 2, 3, 4, 5]);
 		assert.deepEqual(inverse([], -1), []);
 		assert.deepEqual(inverse([ 1 ], 3), [ 1 ]);
 	});
