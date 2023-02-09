@@ -1,24 +1,43 @@
 'use strict';
 
-const gcd = function(a, b) {
-    while (a && b) {
-        if (a > b) {
-            a %= b;
-        }
-        else {
-            b %= a;
+/**
+ * Функция нахождения наибольшего общего делителя двух чисел.
+ * @param {number} value1
+ * @param {number} value2
+ * @returns {number} наибольший общий делитель двух чисел
+ */
+
+const gcd = (value1, value2) => {
+    while (value1 && value2) {
+        if (value1 > value2) {
+            value1 %= value2;
+        } else {
+            value2 %= value1;
         }
     }
-    return a + b;
+    return value1 + value2;
 }
 
-const euclid = function() {
-    if (arguments.length === 0){
-        return undefined;
+/**
+ * Функция нахождения наибольшего общего делителя для одного и более чисел.
+ * @param {number} args натуральные числа, для которых находится наибольший общий делитель
+ * @returns {number} наибольший общий делитель
+ * @throws {Error} количество аргументов должно быть больше 0 и это должны быть натуральные числа.
+ */
+
+const euclid = (...args) => {
+    if (args.length === 0) {
+        throw new Error("Function requires at least one input parameter.");
     }
-    let res = arguments[0];
-    for (let i = 1; i < arguments.length; i++){
-        res = gcd(res, arguments[i]);
+
+    if (!args.every(arg => {
+        return Number.isInteger(arg) && (arg > 0)
+    })) {
+        throw new Error("Bad input parameters.");
     }
+
+    let res = 0;
+    args.forEach(next => res = gcd(res, next));
+
     return res;
 };
