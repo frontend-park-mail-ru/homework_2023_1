@@ -20,6 +20,26 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('qwerty'), null);
 	});
 
+	QUnit.test('Шахматной доски Infinity на Infinity не бывает', function (assert) {
+		assert.strictEqual(chess(Infinity), null);
+		assert.strictEqual(chess('Infinity'), null);
+	});
+
+	QUnit.test('Шахматной доски true на true не бывает', function (assert) {
+		assert.strictEqual(chess(true), null);
+		assert.strictEqual(chess('true'), null);
+	});
+
+	QUnit.test('Шахматной доски undefined на undefined не бывает', function (assert) {
+		assert.strictEqual(chess(undefined), null);
+		assert.strictEqual(chess('undefined'), null);
+	});
+
+	QUnit.test('Шахматной доски null на null не бывает', function (assert) {
+		assert.strictEqual(chess(null), null);
+		assert.strictEqual(chess('null'), null);
+	});
+
 	QUnit.test('Шахматная доска 2 на 2', function (assert) {
 		const expected =
 			'* \n' +
