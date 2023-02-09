@@ -28,4 +28,18 @@ QUnit.module('Тестируем функцию euclid', function () {
 		const temp = [ 80325, 55275, 8746650, 3000000, 45672375, 225, 54675 ];
 		assert.strictEqual(euclid(...[ ...temp, ...temp, ...temp, ...temp, ...temp ]), euclid(...temp));
 	});
+
+	QUnit.test('НОД двух чисел', function (assert) {
+		assert.strictEqual(euclid(1, 1), 1);
+		assert.strictEqual(euclid(5, 10), 5);
+		assert.strictEqual(euclid(6, 10), 2);
+		assert.strictEqual(euclid(3, 27), 3);
+	});
+
+	QUnit.test('НОД четырех чисел', function (assert) {
+		assert.strictEqual(euclid(1, 2, 3, 4), 1);
+		assert.strictEqual(euclid(5, 10, 100, 5448300), 5);
+		assert.strictEqual(euclid(6, 10, 4, 90), 2);
+		assert.strictEqual(euclid(3, 27, 9, 300), 3);
+	});
 });
