@@ -20,8 +20,12 @@
  */
 
 function letters (str, flag) {
-    if (typeof str != 'string') throw new TypeError('Expected string as first argument')
-    if (typeof flag != 'boolean' && typeof flag != 'undefined' ) throw new TypeError('Expected boolean or nothing as second argument')
+    if (typeof str !== 'string' && !(str instanceof String)) {
+        throw new TypeError('Expected string as first argument')
+    }
+    if (typeof flag !== 'boolean' && typeof flag !== 'undefined' ) {
+        throw new TypeError('Expected boolean or nothing as second argument')
+    }
     return str.split('').filter((element, idx, array) => {
         if (flag === undefined) {
             return array.lastIndexOf(element) === array.indexOf(element)
@@ -29,4 +33,3 @@ function letters (str, flag) {
                               : array.lastIndexOf(element) === idx
     }).join('')
 }
-
