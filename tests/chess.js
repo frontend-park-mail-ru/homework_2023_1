@@ -1,6 +1,16 @@
 'use strict';
 
 QUnit.module('Тестируем функцию chess', function () {
+	QUnit.test('Шахматной доски -1 на -1 не бывает', function (assert) {
+		assert.strictEqual(chess(-1), null);
+		assert.strictEqual(chess('-1'), null);
+	});
+
+	QUnit.test('Шахматной доски 0 на 0 не бывает', function (assert) {
+		assert.strictEqual(chess(0), null);
+		assert.strictEqual(chess('0'), null);
+	});
+	
 	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {
 		assert.strictEqual(chess(1), null);
 		assert.strictEqual(chess('1'), null);
