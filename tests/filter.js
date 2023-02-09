@@ -26,13 +26,13 @@ QUnit.module('Проверка работы функции filter', function () 
 		assert.strictEqual(filter(`<img src="bad" onerror="alert('1');">`, [ 'strong', 'em' ]), '&lt;img src=&quot;bad&quot; onerror=&quot;alert(&#39;1&#39;);&quot;&gt;');
 	});
 
-	/* QUnit.test('filter экранирует XSS', function (assert) {
-		const input = "<ul class='navbar-nav me-auto mb-2 mb-md-0'> <li class='nav-item'> <a class='nav-link' aria-current='page' href={% url 'index' %}>New</a> </li> </ul>"
+	QUnit.test('filter проверяет несколько вложенных тегов', function (assert) {
+		const input = "<ul> <li> <a>alert('1');</a> </li> </ul>"
 
-		const output = filter(input,)
+		const output = filter(input, ["ul", "a"])
 
-		const expected = 
+		const expected = "<ul> &lt;li&gt; <a>alert(&#39;1&#39;);</a> &lt;/li&gt; </ul>";
 
-		assert.strictEqual(filter(`<script>alert('1');</script>`, [ 'strong', 'em' ]), '&lt;script&gt;alert(&#39;1&#39;);&lt;/script&gt;');
-		});*/
+		assert.strictEqual(output, expected);
+	});
 });

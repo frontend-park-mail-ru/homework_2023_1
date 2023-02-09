@@ -21,10 +21,10 @@ let filter = function(input, tags) {
         return output
     }
     
+    let gt_sym_len = extra.get('>').length;
+    let lt_sym_len = extra.get('<').length;
     for (let tag of tags) {
-        let tag_len = tag.length;
-        let gt_sym_len = extra.get('>').length;
-        let lt_sym_len = extra.get('<').length; 
+        let tag_len = tag.length; 
         
         let pos = -1;
         while ((pos = output.indexOf(tag, pos + 1)) != -1) {
