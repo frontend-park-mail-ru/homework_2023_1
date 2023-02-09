@@ -27,6 +27,6 @@ const chess = dim => {
     row1 = normalizeRow(row1);
     row2 = normalizeRow(row2);
 
-    const  board = (row1 + row2).repeat(Math.floor(dim / 2));
+    const board = (row1 + row2).repeat(Math.floor(dim / 2));
     return dim % 2 !== 0 ? board + row1 : board;
 };
