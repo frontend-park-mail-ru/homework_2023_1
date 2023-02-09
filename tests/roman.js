@@ -51,8 +51,11 @@ QUnit.module('Тестируем функцию roman', function () {
 		// Римские числа не представляют отрицательные и дробные значения
 		assert.throws(() => roman(-123));
 		assert.throws(() => roman(123.456));
-
+		
 		assert.throws(() => roman('Nice code, man'));
 		assert.throws(() => roman('Pro100'));
+
+		assert.throws(() => roman('MC1'));
+		assert.throws(() => roman('1MC'));
 	});
 });
