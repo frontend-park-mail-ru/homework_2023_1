@@ -7,7 +7,7 @@ const BREAK = '\n';
  * Creates a chess board with '*' and ' ' symbols.
  * @function
  * @param {number} dim - Dimension of the chess board.
- * @returns {string | object} A string representing a chess board
+ * @returns {string | null} A string representing a chess board
  * with '*', ' ' and '\n' symbols.
  */
 const chess = dim => {
