@@ -19,24 +19,22 @@
  * letters("a_aabb");
  */
 
-function letters (str, flag) {
+function letters(str, flag) {
     if (typeof str !== 'string' && !(str instanceof String)) {
         throw new TypeError('Expected string as first argument')
     }
-    if (typeof flag !== 'boolean' && typeof flag !== 'undefined' ) {
+    if (typeof flag !== 'boolean' && typeof flag !== 'undefined') {
         throw new TypeError('Expected boolean or nothing as second argument')
     }
+    const charArr = [...str]
     if (flag === undefined) {
-        let letters = {};
-        [...str].map((element) => {
-            if (letters.hasOwnProperty(element)) {
-                letters[element]++;
-            } else letters[element] = 1;
-        });
-        return [...str].filter((element) => {
+        const letters = charArr.reduce(
+            (acc, cur) => ({...acc, [cur]: ((acc[cur] || 0) + 1)}),
+            {}
+        );
+        return charArr.filter((element) => {
             return letters[element] === 1;
         }).join('')
-    } else {
-        return (flag ? [...new Set(str)] : [...new Set([...str].reverse())].reverse()).join('');
     }
+    return (flag ? [...new Set(str)] : [...new Set(charArr.reverse())].reverse()).join('');
 }
