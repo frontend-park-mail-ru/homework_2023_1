@@ -71,4 +71,10 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…', false), '®њ©ыћ÷°љ∆…', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === '®њ©ыћ÷°љ∆…'");
 		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…'), '®њ©', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === '®њ©'");
 	});
+
+	QUnit.test('Дополнительно: тест на валидацию', function (assert) {
+		assert.strictEqual(letters(4), '', "letters(4) === ''");
+		assert.strictEqual(letters('ццц', 4), '', "letters('ццц', 4) === ''");
+		assert.strictEqual(letters(true, true), '', "letters(true, true) === ''");
+	});
 });

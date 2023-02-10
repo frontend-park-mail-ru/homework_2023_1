@@ -11,6 +11,11 @@
  * @returns {line} Измененная строка без повторяющихся букв
  */
 const letters = (line, flag) => {
+    if (typeof line !== "string" ||
+        (typeof flag !== "boolean" && 
+            typeof flag !== "undefined")) {
+            return '';
+        }
     return [...line].filter((item, idx, arr) => {
         if (flag === true) {
             return arr.indexOf(item) == idx;
