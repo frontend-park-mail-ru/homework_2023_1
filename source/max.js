@@ -10,14 +10,14 @@ const max = numbers => Math.max(...numbers);
  */
 function get(obj, attrs) {
     if (attrs == '.') {
-        return obj
+        return obj;
     }
     try {
-        return eval('obj' + attrs.replaceAll(/\.(\w+)/g, "['$1']"))
+        return eval('obj' + attrs.replaceAll(/\.(\w+)/g, "['$1']"));
     } catch (e) {
         if (e.name != 'TypeError') {
-            throw e
+            throw e;
         }
     }
-    return undefined
+    return undefined;
 }
