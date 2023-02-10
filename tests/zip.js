@@ -1,6 +1,16 @@
 'use strict';
 
 QUnit.module('Тестируем функцию zip', function () {
+	QUnit.test('Функция работает с невалидными данными и возвращает пустой объект', function (assert) {
+		assert.deepEqual(zip(null), {});
+		assert.deepEqual(zip(undefined), {});
+	});
+
+	QUnit.test('Функция работает с пустыми и неопределёнными значениями в полях объекта', function (assert) {
+		assert.deepEqual(zip({name: null}), {name: null});
+		assert.deepEqual(zip({name: undefined}), {name: undefined});
+	});
+
 	QUnit.test('Функция работает с единственным объектом', function (assert) {
 		assert.deepEqual(zip({}), {});
 		assert.deepEqual(zip({answer: 42}), {answer: 42});
@@ -10,8 +20,6 @@ QUnit.module('Тестируем функцию zip', function () {
 			cost: '120$'
 		};
 		assert.deepEqual(zip(obj), obj);
-		assert.deepEqual(zip({name: null}), {name: null});
-
 	});
 
 	QUnit.test('Функция работает с объектами среди которых есть объекты без свойств', function (assert) {
