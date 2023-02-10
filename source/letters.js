@@ -11,23 +11,13 @@
  * @returns {line} Измененная строка без повторяющихся букв
  */
 const letters = (line, flag) => {
-    let result_array = new Array();
-    let seen = new Set();
-
-    for (let letter of line) {
-        if (!seen.has(letter)) {
-            seen.add(letter);
-            result_array.push(letter);
-            continue;
-        }
-
+    return [...line].filter((item, idx, arr) => {
         if (flag === true) {
-            continue;
+            return arr.indexOf(item) == idx;
+        } else if (flag === false) {
+            return arr.lastIndexOf(item) == idx;
+        } else {
+            return arr.indexOf(item) == arr.lastIndexOf(item);
         }
-        delete result_array[result_array.indexOf(letter)];
-        if (flag === false) result_array.push(letter);
-
-    }
-
-    return result_array.join("");
+        }).join("");
 };
