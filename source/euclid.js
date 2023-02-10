@@ -20,24 +20,19 @@ const gcd = (value1, value2) => {
 
 /**
  * Функция нахождения наибольшего общего делителя для одного и более чисел.
- * @param {number} args натуральные числа, для которых находится наибольший общий делитель
+ * @param {...number} args натуральные числа, для которых находится наибольший общий делитель
  * @returns {number} наибольший общий делитель
  * @throws {Error} количество аргументов должно быть больше 0 и это должны быть натуральные числа.
  */
 
 const euclid = (...args) => {
-    if (args.length === 0) {
+    if (!args.length) {
         throw new Error("Function requires at least one input parameter.");
     }
 
-    if (!args.every(arg => {
-        return Number.isInteger(arg) && (arg > 0)
-    })) {
+    if (!args.every(arg => Number.isInteger(arg) && arg > 0)) {
         throw new Error("Bad input parameters.");
     }
 
-    let res = 0;
-    args.forEach(next => res = gcd(res, next));
-
-    return res;
+    return args.reduce((accumulator, currentValue) => gcd(accumulator, currentValue), 0);
 };
