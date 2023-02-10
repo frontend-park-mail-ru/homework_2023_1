@@ -1,32 +1,48 @@
 'use strict';
 
+const MAX_ROMAN = 3999;
+const MIN_ROMAN = 1;
+
+const ROMAN = {
+    1000: 'M', 100: 'C', 10: 'X',  1: 'I'
+};
+
+const ROMAN_FIVE_MULTIPLES = {
+    100: 'D', 10: 'L', 1: 'V'
+};
+
+const ARABIC = {
+    I: 1, V: 5, X: 10,
+    L: 50, C: 100, D: 500, M: 1000
+};
+
 /**
- * Перевод чисел из римской записи и обратно
+ * Перевод чисел из римской записи в арабскую и обратно
  * @param {(string|number)} input - Число/строка с арабской записью числа или строка, содержащая римскую запись числа
  * @returns {(string|number)} - Результат преобразования (число, если арабская запись, строка - если римская)
  */
-function roman(input) {
+const roman = (input) => {
     if (Number.isNaN(input) || input === null ||
         input === undefined || typeof input === 'object') {
         return NaN;
     }
 
-    function fromRoman(str) {
-        const arabic = {
-            I: 1, V: 5, X: 10,
-            L: 50, C: 100, D: 500, M: 1000
-        };
+    /**
+     * Перевод чисел из римской записи в арабскую
+     * @param {string} str - Строка, содержащая римскую запись числа
+     * @returns {number} - Результат преобразования в арабскую запись
+     */
+    const fromRoman = (str) => {
+        const processedInput = str.toUpperCase().split('');
 
-        const processed_input = str.toUpperCase().split('');
-
-        if (!processed_input.every((elem) => Object.keys(arabic).includes(elem))) {
+        if (!processedInput.every((elem) => Object.keys(ARABIC).includes(elem))) {
             return NaN;
         }
 
-        return processed_input.reduce((res, cur, ind, arr) => {
-            let currentArabic = arabic[cur];
+        return processedInput.reduce((res, cur, ind, arr) => {
+            const currentArabic = ARABIC[cur];
 
-            if (ind + 1 < arr.length && arabic[arr[ind + 1]] > currentArabic) {
+            if (ind + 1 < arr.length && ARABIC[arr[ind + 1]] > currentArabic) {
                 return res - currentArabic;
             }
 
@@ -34,50 +50,45 @@ function roman(input) {
         }, 0);
     }
 
-    function toRoman(number) {
-        const MAX_ROMAN = 3999
-
-        if (number > MAX_ROMAN || number < 1)
+    /**
+     * Перевод чисел из арабской записи в римскую
+     * @param {number} number - Арабская запись числа
+     * @returns {string} - Результат преобразования в римскую запись
+     */
+    const toRoman = (number) => {
+        if (number > MAX_ROMAN || number < MIN_ROMAN)
             return NaN;
 
-        const roman = {
-            1000: 'M', 100: 'C', 10: 'X',  1: 'I'
-        };
-
-        const roman_five_multiples = {
-            100: 'D', 10: 'L', 1: 'V'
-        };
-
-        return Object.keys(roman).reverse().reduce((res, cur, ind, arr) => {
-            let digit = Math.floor(number / cur);
+        return Object.keys(ROMAN).reverse().reduce((res, cur, ind, arr) => {
+            const digit = Math.floor(number / cur);
 
             number %= cur;
 
-            if (digit == 4) {
-                return res + roman[cur] + roman_five_multiples[cur];
+            if (digit === 4) {
+                return res + ROMAN[cur] + ROMAN_FIVE_MULTIPLES[cur];
             }
 
-            if (digit == 9) {
-                return res + roman[cur] + roman[arr[ind - 1]];
+            if (digit === 9) {
+                return res + ROMAN[cur] + ROMAN[arr[ind - 1]];
             }
 
             if (digit >= 5) {
-                return res + roman_five_multiples[cur] + roman[cur].repeat(digit % 5);
+                return res + ROMAN_FIVE_MULTIPLES[cur] + ROMAN[cur].repeat(digit % 5);
             }
 
             if (digit > 0) {
-                return res + roman[cur].repeat(digit);
+                return res + ROMAN[cur].repeat(digit);
             }
 
             return res;
         }, '');
     }
 
-    const number_input = parseInt(input);
+    const numberInput = parseInt(input);
 
-    if (Number.isNaN(number_input)) {
+    if (Number.isNaN(numberInput)) {
         return fromRoman(input);
     }
 
-    return toRoman(number_input);
+    return toRoman(numberInput);
 }
