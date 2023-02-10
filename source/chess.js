@@ -23,13 +23,12 @@ const getOddLine = (numbers) => ODD_LINE_PART.repeat(numbers / 2) + SPACE.repeat
 /**
  * A function that returns a chessboard N*N of stars and spaces.
  * @param {int} numbers - size of chessboard.
- * @returns {string} chessboard of stars and spaces.
+ * @returns {string | null} chessboard of stars and spaces.
  */
 const chess = (numbers) => {
-    if ( !Number.isInteger(+numbers) || numbers < 2) {
+    if (!Number.isInteger(+numbers) || numbers < 2) {
         return null;
     }
 
     return (getEvenLine(numbers) + getOddLine(numbers)).repeat(numbers / 2) + getEvenLine(numbers).repeat(numbers % 2);
 };
-
