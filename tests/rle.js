@@ -21,5 +21,3 @@ QUnit.module('Тестируем функцию rle', function () {
 			"rle('AVVVBBBVVXDHJFFFFDDDDDDHAAAAJJJDDSLSSSDDDD') === 'AV3B3V2XDHJF4D6HA4J3D2SLS3D4'");
 	});
 });
-
-
