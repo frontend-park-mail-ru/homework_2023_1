@@ -10,7 +10,7 @@ let extra = new Map([['>', "&gt;"],
  * Filter html block
  * @param {string} - Input html block
  * @param {Object} array of strings - Tags to leave as they are
- * @return {string}  The value that was set.
+ * @return {string} - Filtered html block
  * 
  * @author Popov Stepan
  */
