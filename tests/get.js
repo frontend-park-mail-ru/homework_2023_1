@@ -48,4 +48,34 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.baz.length'), undefined);
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
 	});
+
+	QUnit.test('get вызывает исключение, если строка атрибутов не начинается с точки', function (assert) {
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+		assert.throws(
+			function() {
+				get(object, 'nopoint');
+			}
+		);
+	});
+
+	QUnit.test('get вызывает исключение, если в строке встречаются спецсимволы (кроме _)', function (assert) {
+		const object = {
+			_: 42
+		};
+		assert.throws(
+			function() {
+				get(object, '.+-');
+			}
+		);
+		assert.throws(
+			function() {
+				get(object, '.@');
+			}
+		);
+		assert.strictEqual(get(object, '._'), 42)
+	});
 });

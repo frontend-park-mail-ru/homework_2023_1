@@ -2,6 +2,14 @@
 
 const max = numbers => Math.max(...numbers);
 
+
+class ValueError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ValueError";
+    }
+}
+
 /**
  * Apply string of attributes to object
  * @param {Object} obj - object
@@ -9,6 +17,9 @@ const max = numbers => Math.max(...numbers);
  * @returns {Object} - object that can be interpreted as obj['attr1']['attr2']['attrN']
  */
 function get(obj, attrs) {
+    if (!attrs.startsWith('.')) {
+        throw new ValueError("attrs must start with '.'")
+    }
     if (attrs == '.') {
         return obj;
     }
