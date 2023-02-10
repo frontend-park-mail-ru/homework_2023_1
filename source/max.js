@@ -15,7 +15,7 @@ function get(obj, attrs) {
     try {
         return eval('obj' + attrs.replaceAll(/\.(\w+)/g, "['$1']"));
     } catch (e) {
-        if (e.name != 'TypeError') {
+        if (e.name != 'TypeError') { // TypeError appears in case 'undefined.attr' which is fine
             throw e;
         }
     }
