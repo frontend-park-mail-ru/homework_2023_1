@@ -1,29 +1,31 @@
-'use strict'
+'use strict';
 
 /**
+ * Функция, получающая путь к вложенному свойству объекта и устанавливающая значение в это свойство
+ * 
  * @param {Object} obj
  * @param {string} property
  * @param {any} new_val
- * 
+ *
  * @returns {Object}
  */
-function set(obj, property, new_val) {
-    let arr = property.split('.')
-    arr.shift()
-    let length = arr.length
+const set = (obj, property, new_val) => {
+    const arr = property.split('.');
+    arr.shift();
+    const length = arr.length;
 
-    let current = obj
+    let current = obj;
 
-    for (let i = 0; i < length - 1; i++) {
-        let val = arr[i]
-
-        if (!current[val]) {
-            current[val] = {}
+    arr.forEach((val, ind) => {
+        if (ind == length - 1) {
+            current[arr[length - 1]] = new_val;
+        } else {
+            if (!current[val]) {
+                current[val] = {};
+            }
+            current = current[val];
         }
-        current = current[val]
-    }
+    });
 
-    current[arr[length - 1]] = new_val
-
-    return obj
-}
+    return obj;
+};
