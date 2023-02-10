@@ -45,4 +45,20 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 		assert.deepEqual(anagram(input), output);
 	});
+
+	QUnit.test('Функция работает правильно (неверный аргумент - строка вместо массива)', function (assert) {
+		const input = 'маРш';
+
+		assert.throws(function() {
+			anagram(input)
+		}, TypeError('Expected array as argument'), "anagram('маРш') === TypeError('Expected array as argument')")
+	});
+
+	QUnit.test('Функция работает правильно (неверный аргумент - массив чисел вместо массива строк)', function (assert) {
+		const input = [1, 2, 3];
+		
+		assert.throws(function() {
+			anagram(input)
+		}, TypeError('Expected string as element of array'), "anagram('маРш') === TypeError('Expected string as element of array')")
+	});
 });
