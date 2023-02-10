@@ -42,4 +42,12 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.strictEqual(euclid(6, 10, 4, 90), 2);
 		assert.strictEqual(euclid(3, 27, 9, 300), 3);
 	});
+
+	QUnit.test('Проверка валидации данных', function (assert) {
+		assert.throws(function () {
+			euclid(5, 10, '20');
+		}, 'Array should only contain numbers!');
+	});
+
+
 });

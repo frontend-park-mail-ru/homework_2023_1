@@ -20,6 +20,15 @@ const gcd = (a, b) => {
  * @returns {number} НОД данной последовательности чисел
  */
 const euclid = (...numbers) => {
+    let err = numbers.every(element => {
+        return typeof element === 'number';
+    });
+
+    if (!err) {
+        throw new Error('Array should only contain numbers!');
+    }
+
+
     var result = numbers.reduce(function(result, current) {
         return gcd(result, current)
     }, numbers[0]);
@@ -27,4 +36,4 @@ const euclid = (...numbers) => {
     return result;
 }
 
-console.log(euclid(5, 10, 15, 100))
+console.log(euclid(5, 10, 15, '100'))
