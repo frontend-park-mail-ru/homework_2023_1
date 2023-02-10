@@ -33,15 +33,34 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -5), [ 1, 2, 3, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
-	QUnit.test('Дополнительно написанные тесты', function (assert) {
+
+	QUnit.test('Тесты на одинаковые элементы массива', function (assert) {
 		assert.deepEqual(inverse([ 1, 1, 1], 1), [ 1, 1, 1]);
+		assert.deepEqual(inverse([ 'a', 'a', 'a'], -1), [ 'a', 'a', 'a']);
+		assert.deepEqual(inverse([ false, false, false, false, false], ), [ false, false, false, false, false]);
+	});
+
+	QUnit.test('Тесты на вложенные массивы', function (assert) {
 		assert.deepEqual(inverse([ [ 1, 2 ], [ 2, 1 ], [ 1, 1 ], [ 2, 2 ] ], -1), [ [ 1, 1 ], [ 2, 1 ], [ 1, 2 ], [ 2, 2 ] ]);
 		assert.deepEqual(inverse([ [ [ 1 ] ] ], 3), [ [ [ 1 ] ] ]);
 		assert.deepEqual(inverse([ [ 1, 3 ], [ 2 ] ], 0), [ [ 2 ], [ 1, 3 ] ]);
-		assert.deepEqual(inverse(123, 0), Error("The first parameter is not array"));
-		assert.deepEqual(inverse('this is eror', 0), Error("The first parameter is not array"));
-		assert.deepEqual(inverse(12.4, 0), Error("The first parameter is not array"));
-		assert.deepEqual(inverse([1, 2, 3], 1.4), Error("The second parameter is not integer"));
-		assert.deepEqual(inverse([1, 2, 3], -10.44), Error("The second parameter is not integer"));
+	});
+
+	QUnit.test('тесты с ошибочными входными данными', function (assert) {
+		assert.throws(function () {
+			inverse(123, 0);
+		}, "The first parameter is not array");
+		assert.throws(function () {
+			inverse('this is eror', 0);
+		}, "The first parameter is not array");
+		assert.throws(function () {
+			inverse(12.4, 0);
+		}, "The first parameter is not array");
+		assert.throws(function () {
+			inverse([1, 2, 3], 1.4);
+		}, "The second parameter is not integer");
+		assert.throws(function () {
+			inverse([1, 2, 3], -10.44);
+		}, "The second parameter is not integer");
 	});
 });
