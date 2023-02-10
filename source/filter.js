@@ -5,7 +5,15 @@ let extra = new Map([['>', "&gt;"],
                     ['"', "&quot;"],
                     ['&', "&amp;"],
                     ['\'', "&#39;"]]);
-                    
+
+/**
+ * Filter html block
+ * @param {string} - Input html block
+ * @param {Object} array of strings - Tags to leave as they are
+ * @return {string}  The value that was set.
+ * 
+ * @author Popov Stepan
+ */
 let filter = function(input, tags) {
     let output = ""
     for (let i = 0; i < input.length; ++i) {
