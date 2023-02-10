@@ -9,9 +9,7 @@
 const gcd = (a, b) => {
     let tmp;
     while ((a % b) > 0)  {
-      tmp = a % b;
-      a = b;
-      b = tmp;
+        [a, b] = [b, a % b];
     }
     return b;
   }
@@ -22,8 +20,11 @@ const gcd = (a, b) => {
  * @returns {number} НОД данной последовательности чисел
  */
 const euclid = (...numbers) => {
-    while (numbers.length > 1) {
-        numbers.push(gcd(numbers.pop(), numbers.pop()));
-    }
-    return numbers[0];
+    var result = numbers.reduce(function(result, current) {
+        return gcd(result, current)
+    }, numbers[0]);
+    
+    return result;
 }
+
+console.log(euclid(5, 10, 15, 100))
