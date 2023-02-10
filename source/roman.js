@@ -1,54 +1,82 @@
 'use strict';
 
-const ROMAN = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-const ARAB = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+const ROMAN_ARAB = {
+    'M': 1000,
+    'CM': 900,
+    'D': 500,
+    'CD': 400,
+    'C': 100,
+    'XC': 90,
+    'L': 50,
+    'XL': 40,
+    'X': 10,
+    'IX': 9,
+    'V': 5,
+    'IV': 4,
+    'I': 1,
+}
+const romanSymbols = /^[MDCLXVI]*$/i;
 
-const isRoman = input => {
+/**
+ * Сhecks if a number is roman.
+ * @param {string} input - incoming character sequence.
+ * @returns {boolean} whether the input character sequence is an roman number.
+ */
+const isRoman = (input) => {
     if (typeof input === 'string' || input instanceof String) {
-        const romanSymbols = /^[MDCLXVI]*$/;
-        return romanSymbols.test(input.toUpperCase());
+        return romanSymbols.test(input);
     }
     
     return false;
 }
 
-const isArab = input => Number.isInteger(Number(input));
+/**
+ * Сhecks if a number is arabic.
+ * @param {string} input - incoming character sequence.
+ * @returns {boolean} whether the input character sequence is an arabic number.
+ */
+const isArab = (input) => Number.isInteger(Number(input));
 
-const toRoman = num => {
+/**
+ * Сonvert arabic to roman numbers.
+ * @param {number} num - arabic number.
+ * @returns {string} result - roman number.
+ */
+const toRoman = (num) => {
     let result = '';
-    let i = 0;
 
-    while (num > 0) {
-        if (num >= ARAB[i]) {
-            num -= ARAB[i];
-            result += ROMAN[i];
-        } else {
-            i++;
-        }
+    for (let item of Object.keys(ROMAN_ARAB)) {
+        let i = Math.floor(num / ROMAN_ARAB[item]);
+        num -= i * ROMAN_ARAB[item];
+        result += item.repeat(i);
     }
 
     return result;
 }
 
-const toArab = str => {
-    let result = 0;
-    const romanNum = str.toUpperCase();
-    let pos = 0;
-    let i = 0;
+/**
+ * Сonvert roman to arabic numbers.
+ * @param {string} str - roman number.
+ * @returns {number} result - arabic number.
+ */
+const toArab = (str) => {
+    const romanNum = str.toUpperCase().split('');
 
-    while (pos < romanNum.length && i < ROMAN.length) {
-        if (romanNum.substring(pos, pos + ROMAN[i].length) === ROMAN[i]) {
-            pos += ROMAN[i].length;
-            result += ARAB[i];
+    return romanNum.reduce((result, currentItem, i, arr) => {
+        if (ROMAN_ARAB[currentItem] < ROMAN_ARAB[arr[i + 1]]) {
+            return result - ROMAN_ARAB[currentItem];
         } else {
-            i++;
+            return result + ROMAN_ARAB[currentItem];
         }
-    }
-
-    return result;
+    }, 0);
 }
 
-const roman = input => {
+/**
+ * Сonverts numbers from arabic to roman and vice versa.
+ * @param {string} input - incoming character sequence.
+ * @returns {(number| string)} resulting number (roman or arabic).
+ */
+const roman = (input) => {
     if (isArab(input) && input > 0) {
         return toRoman(input);
     } else if (isRoman(input)) {
@@ -57,3 +85,5 @@ const roman = input => {
 
     throw TypeError('Incorrect input!');
 }
+
+console.log( roman('v') );
