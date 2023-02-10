@@ -38,6 +38,10 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ [ 1, 2 ], [ 2, 1 ], [ 1, 1 ], [ 2, 2 ] ], -1), [ [ 1, 1 ], [ 2, 1 ], [ 1, 2 ], [ 2, 2 ] ]);
 		assert.deepEqual(inverse([ [ [ 1 ] ] ], 3), [ [ [ 1 ] ] ]);
 		assert.deepEqual(inverse([ [ 1, 3 ], [ 2 ] ], 0), [ [ 2 ], [ 1, 3 ] ]);
-
+		assert.deepEqual(inverse(123, 0), Error("The first parameter is not array"));
+		assert.deepEqual(inverse('this is eror', 0), Error("The first parameter is not array"));
+		assert.deepEqual(inverse(12.4, 0), Error("The first parameter is not array"));
+		assert.deepEqual(inverse([1, 2, 3], 1.4), Error("The second parameter is not integer"));
+		assert.deepEqual(inverse([1, 2, 3], -10.44), Error("The second parameter is not integer"));
 	});
 });

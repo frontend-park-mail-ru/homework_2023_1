@@ -8,7 +8,15 @@
  *
  */
 const inverse = (numbers, stop = 0) => {
-    let newNumbers = numbers.slice()
+    if (!Array.isArray(numbers)) {
+        return Error("The first parameter is not array")
+    }
+
+    if (!Number.isInteger(stop)) {
+        return Error("The second parameter is not integer")
+    }
+
+    const newNumbers = numbers.slice()
 
     if (stop >= 0) {
         for (let i = numbers.length - 1; i >= stop; i--) {
