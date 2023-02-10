@@ -11,6 +11,8 @@ QUnit.module('Тестируем функцию zip', function () {
     assert.throws(zip.bind(null, new Boolean(true), {}, {test: "test"}), new Error("Argument №0 is not object"));
     assert.throws(zip.bind(null, {}, new String("test")), new Error("Argument №1 is not object"));
     assert.throws(zip.bind(null, {}, [1, 2, 3, 4]), new Error("Argument №1 is not object"));
+    assert.throws(zip.bind(null, []), new Error("Argument №0 is not object"));
+    assert.throws(zip.bind(null, {test: 'test'}, {}, [0, -10]), new Error("Argument №2 is not object"));
   });
 
   QUnit.test('Функция работает с единственным объектом', function (assert) {

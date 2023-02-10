@@ -3,7 +3,7 @@
 /**
  *accepts objects (any number) as input, and return a single object containing all fields from all objects.
  * @param {Object[]} objects - Objects for zip.
- * @returns {Object}
+ * @returns {Object} object that contains the fields of all objects
  */
 const zip = (...objects) => {
   return objects.reduceRight((result, obj, index) => {
