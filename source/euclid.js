@@ -29,11 +29,9 @@ const euclid = (...numbers) => {
     }
 
 
-    var result = numbers.reduce(function(result, current) {
+    let result = numbers.reduce(function(result, current) {
         return gcd(result, current)
     }, numbers[0]);
     
     return result;
 }
-
-console.log(euclid(5, 10, 15, '100'))
