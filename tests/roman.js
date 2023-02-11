@@ -42,20 +42,21 @@ QUnit.module('Тестируем функцию roman', function () {
 
 	QUnit.test('roman правильно обрабатывает нулевые/пустые значения', function (assert) {
 		// В римских цифрах вообще нет нуля
-		assert.strictEqual(roman(0), '');
-		assert.strictEqual(roman(''), 0);
-		assert.strictEqual(roman('0'), '');
+		assert.throws(() => roman(0));
+		assert.throws(() => roman(''));
+		assert.throws(() => roman('0'));
 	});
 
 	QUnit.test('roman правильно выбрасывает ошибку при невалидном значении', function (assert) {
 		// Римские числа не представляют отрицательные и дробные значения
 		assert.throws(() => roman(-123));
 		assert.throws(() => roman(123.456));
-		
+
 		assert.throws(() => roman('Nice code, man'));
 		assert.throws(() => roman('Pro100'));
 
 		assert.throws(() => roman('MC1'));
+		assert.throws(() => roman('M1C'));
 		assert.throws(() => roman('1MC'));
 
 		assert.throws(() => roman(null));

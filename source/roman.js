@@ -10,8 +10,6 @@ const romanNums =  ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 
  * @returns {string|number} Полученное число: римское строкой, десятичное числом
 */
 const roman = (input) => {
-    if (input === '') return 0;
-
     if (isValidRomanNum(input)) return romanToArabic(input);
     if (isValidArabicToRomanNum(input)) return arabicToRoman(input);
 
@@ -21,14 +19,14 @@ const roman = (input) => {
 const isValidRomanNum = (str) => {
     if (typeof str !== 'string') return false;
 
-    const validRomanNum = /^[ivxlcdm]*$/i;
+    const validRomanNum = /^[ivxlcdm]+$/i;
     return validRomanNum.test(str);
 }
 
 const isValidArabicToRomanNum = (num) => {
     if (typeof num === 'string') num = Number(num);
 
-    return (Number.isInteger(num) && num >= 0);
+    return (Number.isInteger(num) && num > 0);
 }
 
 const romanToArabic = (romanNum) => {
