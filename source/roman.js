@@ -82,5 +82,3 @@ const roman = (input) => {
 
     throw TypeError('Incorrect input!');
 }
-
-console.log( roman('v') );
