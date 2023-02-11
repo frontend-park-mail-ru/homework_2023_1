@@ -23,13 +23,10 @@ const letters = (line, flag) => {
     if (flag === true || flag === false) {
         if (flag === false) line = line.reverse();
         let set = new Set();
-        line.forEach((item, idx, arr) => {
+        line.forEach((item) => {
             if (!set.has(item)) {
                 set.add(item);
                 result += item;
-            } else if (typeof flag === "undefined" && 
-                result.includes(item)) {
-                result = result.replace(item, "");
             }
         });
         if (flag === false) result = [...result].reverse().join("");
