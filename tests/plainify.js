@@ -99,4 +99,19 @@ QUnit.module('Тестируем функцию plainify', function () {
 
 		assert.deepEqual(plainify(nested), plain);
 	});
+
+	QUnit.test('plainify работает правильно с неподходящими значениями', function (assert) {
+		assert.deepEqual(plainify(), {});
+		assert.deepEqual(plainify(1), {});
+		assert.deepEqual(plainify('abs'), {});
+		assert.deepEqual(plainify(1.2), {});
+
+		assert.deepEqual(plainify(true), {});
+		assert.deepEqual(plainify(null), {});
+		assert.deepEqual(plainify(undefined), {});
+
+		assert.deepEqual(plainify(() => {alert(hi)}), {});
+		
+		assert.deepEqual(plainify(1,2,3), {});
+	});
 });
