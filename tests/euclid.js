@@ -49,5 +49,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 		}, 'Array should only contain numbers!');
 	});
 
-
+	QUnit.test('Проверка правильности определeния инстанса числа', function (assert) {
+		assert.strictEqual(euclid(5, 10, new Number(20)), 5);
+	});
 });

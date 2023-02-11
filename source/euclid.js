@@ -20,7 +20,7 @@ const gcd = (a, b) => {
  */
 const euclid = (...numbers) => {
     let valid_input = numbers.every(element => {
-        return typeof element === 'number';
+        return (typeof element === 'number') || element instanceof Number;
     });
 
     if (!valid_input) {
@@ -31,6 +31,6 @@ const euclid = (...numbers) => {
     let result = numbers.reduce(function(result, current) {
         return gcd(result, current)
     }, numbers[0]);
-    
+
     return result;
 }
