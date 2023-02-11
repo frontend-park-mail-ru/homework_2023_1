@@ -42,17 +42,15 @@ const isArab = (input) => Number.isInteger(Number(input));
  * @param {number} num - arabic number.
  * @returns {string} result - roman number.
  */
-const toRoman = (num) => {
-    let result = '';
+const toRoman = (num) =>
+    Object.keys(ROMAN_ARAB).reduce((result, currentItem) => {
+        let [roman, arab] = result;
+        let i = Math.floor(arab / ROMAN_ARAB[currentItem])
+        arab -= i * ROMAN_ARAB[currentItem];
+        
+        return [roman + currentItem.repeat(i), arab]
+    }, ['', num])[0];
 
-    for (let item of Object.keys(ROMAN_ARAB)) {
-        let i = Math.floor(num / ROMAN_ARAB[item]);
-        num -= i * ROMAN_ARAB[item];
-        result += item.repeat(i);
-    }
-
-    return result;
-}
 
 /**
  * Сonvert roman to arabic numbers.
@@ -65,9 +63,8 @@ const toArab = (str) => {
     return romanNum.reduce((result, currentItem, i, arr) => {
         if (ROMAN_ARAB[currentItem] < ROMAN_ARAB[arr[i + 1]]) {
             return result - ROMAN_ARAB[currentItem];
-        } else {
-            return result + ROMAN_ARAB[currentItem];
         }
+        return result + ROMAN_ARAB[currentItem];
     }, 0);
 }
 
