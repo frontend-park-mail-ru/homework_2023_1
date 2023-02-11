@@ -11,18 +11,41 @@
  * @returns {line} Измененная строка без повторяющихся букв
  */
 const letters = (line, flag) => {
-    if (typeof line !== "string" ||
-        (typeof flag !== "boolean" && 
-            typeof flag !== "undefined")) {
-            return '';
-        }
-    return [...line].filter((item, idx, arr) => {
-        if (flag === true) {
-            return arr.indexOf(item) == idx;
-        } else if (flag === false) {
-            return arr.lastIndexOf(item) == idx;
-        } else {
-            return arr.indexOf(item) == arr.lastIndexOf(item);
-        }
-        }).join("");
+    if (typeof line !== "string") {
+        throw new Error('The first parameter is not a string!');;
+    }
+    if (typeof flag !== "boolean" && typeof flag !== "undefined") {
+        throw new Error('The second parameter is not a boolean!');;
+    }
+
+    line = [...line];
+    let result = '';
+    if (flag === true || flag === false) {
+        if (flag === false) line = line.reverse();
+        let set = new Set();
+        line.forEach((item, idx, arr) => {
+            if (!set.has(item)) {
+                set.add(item);
+                result += item;
+            } else if (typeof flag === "undefined" && 
+                result.includes(item)) {
+                result = result.replace(item, "");
+            }
+        });
+        if (flag === false) result = [...result].reverse().join("");
+    } else {
+        let obj = new Object(null);
+        [...line].forEach((item) => {
+            if (!obj[item]) {
+                obj[item] = 1;
+            } else {
+                obj[item] += 1;
+            }
+        });
+        
+        [...line].forEach((item) => {
+            if (obj[item] == 1) result += item;
+        });
+    }
+    return result;
 };
