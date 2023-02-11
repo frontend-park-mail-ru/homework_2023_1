@@ -57,5 +57,9 @@ QUnit.module('Тестируем функцию roman', function () {
 
 		assert.throws(() => roman('MC1'));
 		assert.throws(() => roman('1MC'));
+
+		assert.throws(() => roman(null));
+		assert.throws(() => roman(undefined));
+		assert.throws(() => roman(NaN));
 	});
 });
