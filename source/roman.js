@@ -30,30 +30,30 @@ const isValidArabicToRomanNum = (num) => {
 }
 
 const romanToArabic = (romanNum) => {
-    const reversedNum = romanNum.toUpperCase().split("");
+    romanNum = romanNum.toUpperCase().split("");
 
-    const firstNum = romanArabicBind[reversedNum.at(-1)];
+    const firstNum = romanArabicBind[romanNum.at(-1)];
 
-    let prevSymb = reversedNum.at(-1);
-    return reversedNum.slice(0, -1).reduceRight(
-        (subSum, currSymb) => {
+    let prevSymb = romanNum.at(-1);
+    return romanNum.slice(0, -1).reduceRight(
+        (subArabic, currSymb) => {
             const curr = romanArabicBind[currSymb];
             const prev = romanArabicBind[prevSymb];
             prevSymb = currSymb;
 
-            subSum += (curr >= prev ? curr : -curr);
+            subArabic += (curr >= prev ? curr : -curr);
 
-            return subSum;
+            return subArabic;
         }, firstNum);
 }
 
 const arabicToRoman = (arabicNum) => {
     return arabicNums.reduceRight(
-        (subRes, curr, ind) => {
+        (subRoman, curr, ind) => {
             while (arabicNum >= curr) {
-                subRes += romanNums[ind];
+                subRoman += romanNums[ind];
                 arabicNum -= curr;
             }
-            return subRes;
+            return subRoman;
         }, '');
 }
