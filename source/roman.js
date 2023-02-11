@@ -28,8 +28,7 @@ const isValidRomanNum = (str) => {
 const isValidArabicToRomanNum = (num) => {
     if (typeof num === 'string') num = Number(num);
 
-    if (!Number.isInteger(num) || num < 0) return false;
-    return true;
+    return (Number.isInteger(num) && num >= 0);
 }
 
 const romanToArabic = (romanNum) => {
