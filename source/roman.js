@@ -43,9 +43,8 @@ const isArab = (input) => Number.isInteger(Number(input));
  * @returns {string} result - roman number.
  */
 const toRoman = (num) =>
-    Object.keys(ROMAN_ARAB).reduce((result, currentItem) => {
-        let [roman, arab] = result;
-        let i = Math.floor(arab / ROMAN_ARAB[currentItem])
+    Object.keys(ROMAN_ARAB).reduce(([roman, arab] = result, currentItem) => {
+        const i = Math.floor(arab / ROMAN_ARAB[currentItem])
         arab -= i * ROMAN_ARAB[currentItem];
         
         return [roman + currentItem.repeat(i), arab]
@@ -76,7 +75,8 @@ const toArab = (str) => {
 const roman = (input) => {
     if (isArab(input) && input > 0) {
         return toRoman(input);
-    } else if (isRoman(input)) {
+    }
+    if (isRoman(input)) {
         return toArab(input);
     }
 
