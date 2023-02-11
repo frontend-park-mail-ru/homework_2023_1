@@ -7,7 +7,6 @@
  * @returns {number} НОД двух чисел
  */
 const gcd = (a, b) => {
-    let tmp;
     while ((a % b) > 0)  {
         [a, b] = [b, a % b];
     }
@@ -20,11 +19,11 @@ const gcd = (a, b) => {
  * @returns {number} НОД данной последовательности чисел
  */
 const euclid = (...numbers) => {
-    let err = numbers.every(element => {
+    let valid_input = numbers.every(element => {
         return typeof element === 'number';
     });
 
-    if (!err) {
+    if (!valid_input) {
         throw new Error('Array should only contain numbers!');
     }
 
