@@ -46,12 +46,21 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ [ 1, 3 ], [ 2 ] ], 0), [ [ 2 ], [ 1, 3 ] ]);
 	});
 
+	QUnit.test('Тесты на массивы со специальными константами', function (assert) {
+		assert.deepEqual(inverse([ NaN, 0, NaN,], -1), [ 0, NaN, NaN,]);
+		assert.deepEqual(inverse([ NaN ]), [ NaN ]);
+		assert.deepEqual(inverse([ Infinity, -Infinity ]), [ -Infinity, Infinity ]);
+	});
+
 	QUnit.test('тесты с ошибочными входными данными', function (assert) {
 		assert.throws(function () {
 			inverse(123, 0);
 		}, "The first parameter is not array");
 		assert.throws(function () {
 			inverse('this is eror', 0);
+		}, "The first parameter is not array");
+		assert.throws(function () {
+			inverse(NaN, 0);
 		}, "The first parameter is not array");
 		assert.throws(function () {
 			inverse(12.4, 0);

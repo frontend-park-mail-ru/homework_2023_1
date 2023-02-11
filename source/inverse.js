@@ -13,7 +13,7 @@ const inverse = (numbers, stop = 0) => {
     }
 
     if (!Number.isInteger(stop)) {
-        throw "The second parameter is not integer"
+        throw new Error("The second parameter is not integer")
     }
 
     const newNumbers = [...numbers]
