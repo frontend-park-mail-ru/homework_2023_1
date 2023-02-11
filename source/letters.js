@@ -12,10 +12,10 @@
  */
 const letters = (line, flag) => {
     if (typeof line !== "string") {
-        throw new Error('The first parameter is not a string!');;
+        throw new TypeError('The first parameter is not a string!');;
     }
     if (typeof flag !== "boolean" && typeof flag !== "undefined") {
-        throw new Error('The second parameter is not a boolean!');;
+        throw new TypeError('The second parameter is not a boolean!');;
     }
 
     line = [...line];
@@ -41,7 +41,7 @@ const letters = (line, flag) => {
         });
         
         [...line].forEach((item) => {
-            if (obj[item] == 1) result += item;
+            if (obj[item] === 1) result += item;
         });
     }
     return result;
