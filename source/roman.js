@@ -26,7 +26,9 @@ const roman = (input) => {
  * @returns {bool} Является ли строка валидным римским числом
 */
 const isValidRomanNum = (str) => {
-    if (typeof str !== 'string') return false;
+    if (typeof str !== 'string') {
+        return false;
+    }
 
     const validRomanNum = /^[ivxlcdm]+$/i;
     return validRomanNum.test(str);
@@ -39,7 +41,9 @@ const isValidRomanNum = (str) => {
  * @returns {bool} Является ли строка валидным десятичным числом
 */
 const isValidArabicToRomanNum = (num) => {
-    if (typeof num === 'string') num = Number(num);
+    if (typeof num === 'string') {
+        num = Number(num);
+    }
 
     return (Number.isInteger(num) && num > 0);
 }
