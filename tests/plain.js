@@ -53,14 +53,16 @@ QUnit.module('Тестируем функцию plain', function () {
 	// Негативные тесты
 
 	QUnit.test('Кидает исключение, если тип аргумента не Array', function (assert) {
-		assert.throws(() => plain({ dummy: true, willWork: 'NO' }), 'Кидает исключение, если был подан объект');
-		assert.throws(() => plain(NaN), new TypeError('arr must be an array!'), 'Кидает исключение, если был подан NaN');
-		assert.throws(() => plain(15), new TypeError('arr must be an array!'), 'Кидает исключение, если был подан тип Number');
-		assert.throws(() => plain("Hi"), new TypeError('arr must be an array!'), 'Кидает исключение, если была подана строка');
+		const exception = new TypeError('arr must be an array!');
+		assert.throws(() => plain({ dummy: true, willWork: 'NO' }), exception, 'Кидает исключение, если был подан объект');
+		assert.throws(() => plain(NaN), exception, 'Кидает исключение, если был подан NaN');
+		assert.throws(() => plain(15), exception, 'Кидает исключение, если был подан тип Number');
+		assert.throws(() => plain("Hi"), exception, 'Кидает исключение, если была подана строка');
 	});
 
 	QUnit.test('Кидает исключение, если на вход подано undefined или null', function (assert) {
-		assert.throws(() => plain(undefined), 'Кидает исключение, если была подан undefined');
-		assert.throws(() => plain(null), 'Кидает исключение, если была подан null');
+		const exception = new TypeError('arr must be an array!');
+		assert.throws(() => plain(undefined), exception, 'Кидает исключение, если была подан undefined');
+		assert.throws(() => plain(null), exception, 'Кидает исключение, если была подан null');
 	});
 });
