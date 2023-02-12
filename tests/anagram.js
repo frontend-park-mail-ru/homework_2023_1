@@ -26,22 +26,32 @@ QUnit.module('Тестируем функцию anagram', function () {
 	});
 
 	QUnit.test('Функция работает правильно (одна группа анаграмм)', function (assert) {
-		const input = ['марш', 'шарм', 'шрам'];
-		const output = [['марш', 'шарм', 'шрам']];
+		const input = [ 
+			'марш', 'шарм', 'шрам' 
+		];
+		const output = [
+			[ 'марш', 'шарм', 'шрам' ]
+		];
 
 		assert.deepEqual(anagram(input), output);
 	});
 
 	QUnit.test('Функция работает правильно (нет групп)', function (assert) {
-		const input = ['антилопа', 'портфель', 'монстр'];
+		const input = [
+			'антилопа', 'портфель', 'монстр'
+		];
 		const output = [];
 
 		assert.deepEqual(anagram(input), output);
 	});
 
 	QUnit.test('Функция работает правильно (разный регистр)', function (assert) {
-		const input = ['маРш', 'шарМ', 'шраМ'];
-		const output = [['шарМ', 'шраМ']];
+		const input = [
+			'маРш', 'шарМ', 'шраМ'
+		];
+		const output = [
+			[ 'шарМ', 'шраМ' ]
+		];
 
 		assert.deepEqual(anagram(input), output);
 	});
@@ -49,9 +59,11 @@ QUnit.module('Тестируем функцию anagram', function () {
 	QUnit.test('Функция работает правильно (неверный аргумент - строка вместо массива)', function (assert) {
 		const input = 'маРш';
 
-		assert.throws(function() {
-			anagram(input)
-		}, TypeError('Expected array as argument'), "anagram('маРш') === TypeError('Expected array as argument')")
+		assert.throws(
+			() => anagram(input), 
+			TypeError('Expected array as argument'), 
+			"anagram('маРш') === TypeError('Expected array as argument')"
+		)
 	});
 
 	QUnit.test('Функция работает правильно (неверный аргумент - массив чисел вместо массива строк)', function (assert) {

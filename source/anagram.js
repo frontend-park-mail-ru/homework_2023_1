@@ -1,41 +1,38 @@
 'use strict';
 
 function deleteSingleWord(groups) {
-    return groups.filter(group => group.length != 1);
+    return groups.filter(group => group.length !== 1);
 }
 
 /**
  * Функция поиска анаграмм 
- * @param {Array} words массив строк
- * @returns {Array} массив подмассивов строк, в котором каждый подмассив содержит анаграммы
+ * @param {Array.<string>} words массив строк
+ * @returns {Array.<Array.<string>>} массив подмассивов строк, в котором каждый подмассив содержит анаграммы
  * @example 
- * // returns [['марш', 'шарм', 'шрам']]
- * anagram(['марш', 'шарм', 'шрам'])
+ * // returns [[ 'марш', 'шарм', 'шрам' ]]
+ * anagram([ 'марш', 'шарм', 'шрам' ])
  * @example 
  * // returns [[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ]]
- * anagram(['кот', 'пила', 'барокко', 'стоп', 'ток', 'кошка', 'липа', 'коробка', 'пост']) 
+ * anagram([ 'кот', 'пила', 'барокко', 'стоп', 'ток', 'кошка', 'липа', 'коробка', 'пост' ]) 
  */
 const anagram = words => {
-    if (!(words instanceof Array)) {
+    if (!(Array.isArray(words))) {
         throw new TypeError('Expected array as argument');
     }
 
-    let result = {};
     words.sort();
 
-    words.forEach(word => {
+    const result  = words.reduce((result, word) => {
         if (typeof word !== 'string') {
             throw new TypeError('Expected string as element of array');
         }
 
-        let cleaned = word.split('').sort().join('');
+        const cleaned = word.split('').sort().join('');
+        result[cleaned] ??= [];
+        result[cleaned].push(word);
 
-        if (result[cleaned]) {
-            result[cleaned].push(word);
-        } else {
-            result[cleaned] = [word]
-        }
-    });
+        return result;
+    }, {});
 
     return deleteSingleWord(Object.values(result));
 }
