@@ -175,4 +175,55 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		assert.deepEqual(actual, expected);
 	});
+
+	QUnit.test('sorting с рандомными данными', function(assert) {
+		const initial = [
+			{name: "Daniil", surname: "Zelenko", money: 123, status: true},
+			{name: "Bro", surname: "Bratishka", money: 772, status: false},
+			{name: "Chebupeli", surname: "Goryachie", money: 1, status: true},
+		];
+
+		const actual = sorting(initial, ['money', 'surname', 'status']);
+
+		const expected = [		
+			{ name: 'Chebupeli', surname: 'Goryachie', money: 1, status: true },
+			{ name: 'Daniil', surname: 'Zelenko', money: 123, status: true },
+			{ name: 'Bro', surname: 'Bratishka', money: 772, status: false },
+		]
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting сортирует разные типы данных', function(assert) {
+		const initial = [
+			{name: Infinity, surname: null, money: NaN, status:  -Infinity},
+    		{name: "Daniil", surname: NaN, money: Infinity, status: 22},
+    		{name: -Infinity, surname: NaN, money: "some money", status: null},
+		];
+
+		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
+
+		const expected = [		
+			{name: -Infinity, surname: NaN, money: 'some money', status: null },
+  			{name: Infinity, surname: null, money: NaN, status: -Infinity},
+  			{name: 'Daniil', surname: NaN, money: Infinity, status: 22}
+		]
+
+		assert.deepEqual(actual, expected);
+	});
+	
+	QUnit.test('sorting невалидные данные. Длины массивов не равны.', function(assert) {
+		const initial = [
+			{},
+    		{},
+    		{},
+		];
+
+		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
+
+		const expected = []
+		// const expectedError = new Error('Invalid data. Array consist only empty objects'); 
+
+		assert.deepEqual(actual, expected);
+	})
 });

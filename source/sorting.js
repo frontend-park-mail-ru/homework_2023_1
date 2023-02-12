@@ -12,40 +12,34 @@
  * @returns {(Array.<Object>|string)} - отсортированный массив либо сообщение об ошибке
  */
 
-const TYPE_ERROR = 'invalid arguments';
-
-const sorting = (objects, properties) => {
-    if (Array.isArray(objects) && objects.length == 0) {
-        return []
-    }
-    
-    if (Array.isArray(properties) && properties.length == 0) {
-        return objects
-    }
-
-    return objects?.sort((a,b) => {
-        debugger
-        for (let i = 0; i < properties.length; i++) {
-            if (a[properties[i]] < b[properties[i]]) {
-                return -1
-            }
-            if (a[properties[i]] > b[properties[i]]) {
-                return 1
-            }
+function isArrayConsistFromEmptyObjects(objects) {
+    let emptyObjects = 0;
+    objects.forEach((value) => {
+        if(JSON.stringify(value) ===  JSON.stringify({})) {
+            ++emptyObjects;
         }
-        return 0
     })
 
+    return emptyObjects === objects.length;
+}
 
+const sorting = (objects, properties) => {
+    if (!objects?.length) return [];
+    if (!properties?.length) return objects;
+
+    if (isArrayConsistFromEmptyObjects(objects)) {
+        return []
+    }
+
+    return objects.sort((a,b) => {
+        for (let i = 0; i < properties.length; i++) {
+            if (a[properties[i]] < b[properties[i]]) {
+                return -1;
+            }
+            if (a[properties[i]] > b[properties[i]]) {
+                return 1;
+            }
+        }
+        return 0;
+    });
 };
-
-console.log(sorting([
-    {prop1: 3, id: '1', name: "Daniil"},
-    {prop1: 3, id: '2', name: null},
-    {prop1: 1, id: '1', name: null},
-    {prop1: 1, id: '2', name: null},
-    {prop1: 4, id: '1', name: "Alexa"},
-    {prop1: 4, id: '2', name: null},
-    {prop1: 2, id: '1', name: "Roma"},
-    {prop1: 2, id: '2', name: null}
-], [ 'id', 'prop1', 'name' ]))
