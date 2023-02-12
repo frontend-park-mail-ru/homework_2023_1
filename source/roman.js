@@ -26,7 +26,7 @@ const roman = (input) => {
  * @returns {bool} Является ли строка валидным римским числом
 */
 const isValidRomanNum = (str) => {
-    if (typeof str !== 'string' || !(str instanceof String)) {
+    if (typeof str !== 'string' && !(str instanceof String)) {
         return false;
     }
 
