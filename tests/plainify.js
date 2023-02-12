@@ -44,7 +44,7 @@ QUnit.module('Тестируем функцию plainify', function () {
 	});
 
 	QUnit.test('plainify работает правильно с функциями внутри', function (assert) {
-		let functionToInputInObjects = function() {
+		const functionToInputInObjects = function() {
 		}
 
 		assert.deepEqual(plainify({foo: 'bar', baz: 42, hi: functionToInputInObjects}), {'foo': 'bar', 'baz': 42, 'hi': functionToInputInObjects});
@@ -93,8 +93,8 @@ QUnit.module('Тестируем функцию plainify', function () {
 	});
 
 	QUnit.test('plainify работает правильно с пустыми объектами', function (assert) {
-		let plain = {}
-		let nested = {}
+		const plain = {};
+		const nested = {};
 
 		assert.deepEqual(plainify(nested), plain);
 	});
@@ -104,13 +104,15 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.throws(() => plainify(1));
 		assert.throws(() => plainify('abs'));
 		assert.throws(() => plainify(1.2));
+		assert.throws(() => plainify(1,2,3));
 
 		assert.throws(() => plainify(true));
 		assert.throws(() => plainify(null));
 		assert.throws(() => plainify(undefined));
 
 		assert.throws(() => plainify(() => {}));
-		
-		assert.throws(() => plainify(1,2,3) );
+		assert.throws(() => plainify(new String('aaa')));
+		assert.throws(() => plainify([1, 2]));
+		assert.throws(() => plainify(new function func() {}));
 	});
 });

@@ -1,6 +1,18 @@
 'use strict';
 
 /**
+ * @param {any} variableToCheck - переменная, над которой производится проверка
+ * @returns {bool} возращает true, если не объект, и false, если объект
+ * @example
+ * checkIfNotObject({}) // вернёт нам true
+ * checkIfNotObject(new String('aaa')) // вернёт нам false
+ */
+const checkIfNotObject = (variableToCheck) => {
+    return variableToCheck === null || 
+    Object.getPrototypeOf(variableToCheck) !== Object.getPrototypeOf({})
+}
+
+/**
  * Избавление объекта от вложенных свойств
  * @param {object} objectToSimplify - объект для упрощения 
  * @returns {object} возращает объект без вложенных свойств или пустой при ошибке
@@ -24,18 +36,15 @@
  * 
  */
 const plainify = (objectToSimplify) => {
-    if (typeof(objectToSimplify) !== "object" || objectToSimplify === null) {
-        throw Error("Not object or null");
+    if (checkIfNotObject(objectToSimplify)) {
+        throw new TypeError('Not object or null', 'planify.js', 31)
     };
-
     const fieldsFromObject = Object.entries(objectToSimplify);
 
     return fieldsFromObject.reduce((simpleObj,
                                     [nameOfField, valueOfField]) => {
-        if (
-            valueOfField !== null &&
-            typeof(valueOfField) === "object"
-        ) {
+        
+        if (!checkIfNotObject(valueOfField)) {
             const innerObjectFields =
                 Object.entries(plainify(valueOfField));
 
