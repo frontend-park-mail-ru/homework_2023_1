@@ -30,20 +30,21 @@ const plainify = (objectToSimplify) => {
 
     const fieldsFromObject = Object.entries(objectToSimplify);
 
-    return fieldsFromObject.reduce((simpleObj, fieldOfObject) => {
+    return fieldsFromObject.reduce((simpleObj,
+                                    [nameOfField, valueOfField]) => {
         if (
-            typeof(fieldOfObject[1]) === "object" &&
-            fieldOfObject[1] !== null
+            valueOfField !== null &&
+            typeof(valueOfField) === "object"
         ) {
             const innerObjectFields =
-                Object.entries(plainify(fieldOfObject[1]));
+                Object.entries(plainify(valueOfField));
 
-            innerObjectFields.forEach( (innerField) => {
-                simpleObj[`${fieldOfObject[0]}.${innerField[0]}`] =
-                    innerField[1];
+            innerObjectFields.forEach( ([innerFieldName, innerFieldValue]) => {
+                simpleObj[`${nameOfField}.${innerFieldName}`] =
+                    innerFieldValue;
             });
         } else {
-            simpleObj[fieldOfObject[0]] = fieldOfObject[1];
+            simpleObj[nameOfField] = valueOfField;
         };
 
         return simpleObj;
