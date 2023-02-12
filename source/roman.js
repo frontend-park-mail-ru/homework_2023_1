@@ -10,12 +10,21 @@ const romanNums =  ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 
  * @returns {string|number} Полученное число: римское строкой, десятичное числом
 */
 const roman = (input) => {
-    if (isValidRomanNum(input)) return romanToArabic(input);
-    if (isValidArabicToRomanNum(input)) return arabicToRoman(input);
+    if (isValidRomanNum(input)) { 
+        return romanToArabic(input);
+    }
+    if (isValidArabicToRomanNum(input)) {
+        return arabicToRoman(input);
+    }
 
     throw Error('Arabic (positive integer only) or Roman number expected');
 }
 
+/**
+ * Проверяет строку на валидное римское число
+ * @param {string} str - Предполагаемое римское число
+ * @returns {bool} Является ли строка валидным римским числом
+*/
 const isValidRomanNum = (str) => {
     if (typeof str !== 'string') return false;
 
@@ -23,12 +32,23 @@ const isValidRomanNum = (str) => {
     return validRomanNum.test(str);
 }
 
+/**
+ * Проверяет строку или число на валидное арабское (десятичное) число,
+ * которое возможно перевести в римское, т.е. целое неотрицательное
+ * @param {string|number} num - Предполагаемое десятичное число
+ * @returns {bool} Является ли строка валидным десятичным числом
+*/
 const isValidArabicToRomanNum = (num) => {
     if (typeof num === 'string') num = Number(num);
 
     return (Number.isInteger(num) && num > 0);
 }
 
+/**
+ * Переводит римские числа в десятичные
+ * @param {string} romanNum - Римское число
+ * @returns {number} Полученное арабское число
+*/
 const romanToArabic = (romanNum) => {
     romanNum = romanNum.toUpperCase().split("");
 
@@ -47,6 +67,11 @@ const romanToArabic = (romanNum) => {
         }, firstNum);
 }
 
+/**
+ * Переводит арабские (десятичные) числа в римские
+ * @param {string|number} arabicNum - Десятичное число
+ * @returns {string} Полученное римское число
+*/
 const arabicToRoman = (arabicNum) => {
     return arabicNums.reduceRight(
         (subRoman, curr, ind) => {
