@@ -8,13 +8,6 @@ const solve = (expression, argument) => {
     "use strict"
 
     /**
-     * Reverses the sequence of function arguments
-     * @type {function(...any): function(...any)}
-     * @param {function(...any)} f
-     */ 
-    const flip_arguments = f => (...args) => f(...args.reverse())
-
-    /**
      * An operator object
      * @param {number} priority priority of operator
      * @param {function(number, number)} func the callback invoked when operator is executed
@@ -36,7 +29,6 @@ const solve = (expression, argument) => {
 
     /**
      * Takes the top operator from the op_stack and applies it to two numbers from num_stack
-     * As we pull numbers from the stack, they are in the reverse order; hence, flip_arguments is used
      * @param {Array} op_stack 
      * @param {Array} num_stack 
      */
@@ -44,7 +36,11 @@ const solve = (expression, argument) => {
         if (op_stack.length < 1 || num_stack.length < 2)
             throw Error('invalid expession');
         
-        num_stack.push(flip_arguments(ops[op_stack.pop()].exec)(num_stack.pop(), num_stack.pop()))
+        // arguments pulled from the stack are in the reverse order
+        const second_argument = num_stack.pop();
+        const first_argument = num_stack.pop();
+
+        num_stack.push(ops[op_stack.pop()].exec(first_argument, second_argument));
     };
 
     let op_stack = [];
