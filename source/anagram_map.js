@@ -1,7 +1,12 @@
 'use strict';
 
-// функция сравнения двух объектов (одной вложенности)
-function isEqual(obj1, obj2) {
+/**
+ * Функция сравнения на равенство двух объектов. Сравнение ограничевается первой вложенностью.
+ * @param {Object} obj1 первый объект  
+ * @param {Object} obj2 первый объект
+ * @returns {Boolean} истина или ложь в зависимости от того, совпадают ли состав и значения полей объектов
+ */
+const isEqual = (obj1, obj2) => {
     const keys1 = Object.keys(obj1);
     const keys2 = Object.keys(obj2);
     if (keys1.length !== keys2.length) {
@@ -13,30 +18,36 @@ function isEqual(obj1, obj2) {
 }
 
 /*
-    КРАТКОЕ ОПИСАНИЕ
-    функция группировки на анаграммы (без фильтрации и сортировки)
-    для каждой строки создается объект
-    {
-        string: "hello"
-        dict: {
-            "h" : 1
-            "e" : 1
-            "l" : 2
-            "o" : 1
+    Описание алгоритма.
+    Для каждой строки создается объект:
+        {
+            string: "hello"
+            dict: {
+                "h" : 1
+                "e" : 1
+                "l" : 2
+                "o" : 1
+            }
         }
-    }
-    объекты для первых встретившихся анаграмм помещаются в массив unique_dicts
-    для следующих строк ищется парная анаграмма в этом массиве
-        - находится - помещаем строку в массив результатов в соответсвующую группу
-        - не находится - помещаем строку в массив результатов в одиночную группу и добавляем объект в unique_dicts
+    Объекты для первых встретившихся анаграмм помещаются в массив unique_dicts, 
+    для следующих строк ищется парная анаграмма в этом массиве. Возможны следующие варианты:
+        1. если находится, помещаем строку в массив результатов в соответствующую группу
+        2. если не находится, помещаем строку в массив результатов в одиночную группу и добавляем объект в unique_dicts
 */
-function grouping(strings) {
+
+/**
+ * Функция для поиска анаграмм 
+ * @param {Array} strings массив строк 
+ * @returns {Array} массив групп анаграмм, каждая из которых также представляет собой массив
+ */
+
+const grouping = (strings) => {
     const unique_dicts = [];
     const result = [];
     strings.forEach(str => {
         const dict = {};
         [...str.toLowerCase()].forEach(symbol => {
-            symbol in dict ? ++dict[symbol] : dict[symbol] = 1;
+            dict[symbol] = ++dict[symbol] | 1
         });
         const found = unique_dicts.find(d => isEqual(d.dict, dict));
         if (found) {
@@ -52,7 +63,13 @@ function grouping(strings) {
     return result
 }
 
-function anagram_map(strings) {
+/**
+ * Функция для поиска анаграмм.
+ * Поиск осуществляется с использованием словарей лексем
+ * @param {Array} strings массив строк 
+ * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
+ */
+const anagram_map = (strings) => {
     return grouping(strings)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {

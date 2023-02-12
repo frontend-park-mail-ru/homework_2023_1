@@ -19,7 +19,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram_map(input), output);
 	});
 
-	QUnit.test('Функция работает правильно (разные регистры)', function (assert) {
+	QUnit.test('Функция работает правильно с разными регистрами', function (assert) {
 		const input = ["Aaa", "Kkk", "Kk", "TKO", "aaa", "aaaB", "abc", "TOK", "acb", "cba", "bca", "bac"];
 
 		const output = [
@@ -30,5 +30,21 @@ QUnit.module('Тестируем функцию anagram', function () {
 
 		assert.deepEqual(anagram_sort(input), output);
 		assert.deepEqual(anagram_map(input), output);
+	});
+
+	QUnit.test('Функция работает правильно при отсутствие анаграмм и единственной группе анаграмм', function (assert) {
+		const input_no_anagrams = ["hello", "world", "what", "is", "your", "name"];
+		const input_all_anagrams = ["Hello", "Elloh", "Llohe", "Lohel", "Ohell"];
+
+		const output_no_anagrams = []
+		const output_all_anagrams = [
+			["Elloh", "Hello", "Llohe", "Lohel", "Ohell"]
+		]
+
+		assert.deepEqual(anagram_sort(input_no_anagrams), output_no_anagrams);
+		assert.deepEqual(anagram_map(input_all_anagrams), output_all_anagrams);
+
+		assert.deepEqual(anagram_sort(input_no_anagrams), output_no_anagrams);
+		assert.deepEqual(anagram_map(input_all_anagrams), output_all_anagrams);
 	});
 });
