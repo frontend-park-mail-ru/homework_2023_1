@@ -40,7 +40,12 @@ const solve = (expression, argument) => {
      * @param {Array} op_stack 
      * @param {Array} num_stack 
      */
-    const apply = (op_stack, num_stack) => num_stack.push(flip_arguments(ops[op_stack.pop()].exec)(num_stack.pop(), num_stack.pop()));
+    const apply = (op_stack, num_stack) => {
+        if (op_stack.length < 1 || num_stack.length < 2)
+            throw Error('invalid expession');
+        
+        num_stack.push(flip_arguments(ops[op_stack.pop()].exec)(num_stack.pop(), num_stack.pop()))
+    };
 
     let op_stack = [];
     let num_stack = [];
