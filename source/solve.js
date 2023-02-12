@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Solves a valid mathematical expression with regard to passed argument
  * @param {string} expression consists of x, integers, basic operators and parantheses
@@ -5,8 +7,6 @@
  * @namespace solve
  */
 const solve = (expression, argument) => {
-    "use strict"
-
     /**
      * An operator object
      * @param {number} priority priority of operator
