@@ -53,6 +53,7 @@ QUnit.module('Тестируем функцию plain', function () {
     QUnit.test('Невалидные данные', function (assert) {
         const err = new Error('Incorrect data');
 
+        assert.throws(() => { plain(undefined); }, err);
         assert.throws(() => { plain(NaN); }, err);
         assert.throws(() => { plain(null); }, err);
         assert.throws(() => { plain(Infinity); }, err);
