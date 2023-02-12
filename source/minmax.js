@@ -1,25 +1,25 @@
 'use strict';
 
 /**
- * @description Ôóíêöèÿ äëÿ ïîèñêà ìèíèìàëüíîãî ÷èñëà â ìàññèâå ÷èñåë
- * @param {Array} numbers - ìàññèâ ÷èñåë
- * @returns {number} Ìèíèìàëüíîå ÷èñëî
+ * @description Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ¸ÑĞºĞ° Ğ¼Ğ¸Ğ½Ğ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğ³Ğ¾ Ñ‡Ğ¸ÑĞ»Ğ° Ğ² Ğ¼Ğ°ÑÑĞ¸Ğ²Ğµ Ñ‡Ğ¸ÑĞµĞ»
+ * @param {Array} numbers - Ğ¼Ğ°ÑÑĞ¸Ğ² Ñ‡Ğ¸ÑĞµĞ»
+ * @returns {number} ĞœĞ¸Ğ½Ğ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾
 */
 const min = numbers => Math.min(...numbers);
 
 /**
- * @description Ôóíêöèÿ äëÿ ïîèñêà ìàêñèìàëüíîãî ÷èñëà â ìàññèâå ÷èñåë
- * @param {Array} numbers - ìàññèâ ÷èñåë
- * @returns {number} Ìàêñèìàëüíîå ÷èñëî
+ * @description Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ¸ÑĞºĞ° Ğ¼Ğ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğ³Ğ¾ Ñ‡Ğ¸ÑĞ»Ğ° Ğ² Ğ¼Ğ°ÑÑĞ¸Ğ²Ğµ Ñ‡Ğ¸ÑĞµĞ»
+ * @param {Array} numbers - Ğ¼Ğ°ÑÑĞ¸Ğ² Ñ‡Ğ¸ÑĞµĞ»
+ * @returns {number} ĞœĞ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾
 */
 const max = numbers => Math.max(...numbers);
 
 /**
- * @description Ôóíêöèÿ äëÿ ïîèñêà ìèíèìàëüíîãî è ìàêñèìàëüíîãî ÷èñåë â ñòğîêå
- * @param {string} str - ñòğîêà ñ ÷èñëà, ğàçäåë¸ííûìè ïğîáåëàìè
- * @returns {Array} Ìàññèâ, ñîäåğæàùèé ìèíèìàëüíîå è ìàêñèìàëüíîå ÷èñëà
+ * @description Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ¸ÑĞºĞ° Ğ¼Ğ¸Ğ½Ğ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğ³Ğ¾ Ğ¸ Ğ¼Ğ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğ³Ğ¾ Ñ‡Ğ¸ÑĞµĞ» Ğ² ÑÑ‚Ñ€Ğ¾ĞºĞµ
+ * @param {string} str - ÑÑ‚Ñ€Ğ¾ĞºĞ° Ñ Ñ‡Ğ¸ÑĞ»Ğ°, Ñ€Ğ°Ğ·Ğ´ĞµĞ»Ñ‘Ğ½Ğ½Ñ‹Ğ¼Ğ¸ Ğ¿Ñ€Ğ¾Ğ±ĞµĞ»Ğ°Ğ¼Ğ¸
+ * @returns {Array} ĞœĞ°ÑÑĞ¸Ğ², ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ°Ñ‰Ğ¸Ğ¹ Ğ¼Ğ¸Ğ½Ğ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ğ¸ Ğ¼Ğ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ñ‡Ğ¸ÑĞ»Ğ°
 */
-const minmax = str => {
-    const numbers = str ? str.split(' ').map(Number).filter((value) => !Number.isNaN(value)) : [];
-    return numbers.length ? [min(numbers), max(numbers)] : [undefined, undefined];
+const minmax = (str) => {
+    const numbers = str.split(' ').filter(Boolean).map(Number).filter((value) => !Number.isNaN(value))
+    return numbers.length ? [min(numbers), max(numbers)] : [undefined, undefined]
 };
