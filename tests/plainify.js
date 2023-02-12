@@ -45,7 +45,6 @@ QUnit.module('Тестируем функцию plainify', function () {
 
 	QUnit.test('plainify работает правильно с функциями внутри', function (assert) {
 		let functionToInputInObjects = function() {
-			alert('hi')
 		}
 
 		assert.deepEqual(plainify({foo: 'bar', baz: 42, hi: functionToInputInObjects}), {'foo': 'bar', 'baz': 42, 'hi': functionToInputInObjects});
@@ -101,17 +100,17 @@ QUnit.module('Тестируем функцию plainify', function () {
 	});
 
 	QUnit.test('plainify работает правильно с неподходящими значениями', function (assert) {
-		assert.deepEqual(plainify(), {});
-		assert.deepEqual(plainify(1), {});
-		assert.deepEqual(plainify('abs'), {});
-		assert.deepEqual(plainify(1.2), {});
+		assert.throws(() => plainify());
+		assert.throws(() => plainify(1));
+		assert.throws(() => plainify('abs'));
+		assert.throws(() => plainify(1.2));
 
-		assert.deepEqual(plainify(true), {});
-		assert.deepEqual(plainify(null), {});
-		assert.deepEqual(plainify(undefined), {});
+		assert.throws(() => plainify(true));
+		assert.throws(() => plainify(null));
+		assert.throws(() => plainify(undefined));
 
-		assert.deepEqual(plainify(() => {alert(hi)}), {});
+		assert.throws(() => plainify(() => {}));
 		
-		assert.deepEqual(plainify(1,2,3), {});
+		assert.throws(() => plainify(1,2,3) );
 	});
 });
