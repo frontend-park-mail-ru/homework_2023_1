@@ -19,7 +19,7 @@
  * letters("a_aabb");
  */
 
-function letters(str, flag) {
+const letters = (str, flag) => {
     if (typeof str !== 'string' && !(str instanceof String)) {
         throw new TypeError('Expected string as first argument')
     }
