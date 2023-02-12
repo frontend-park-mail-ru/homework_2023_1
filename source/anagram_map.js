@@ -69,7 +69,7 @@ const grouping = (strings) => {
  * @param {Array} strings массив строк 
  * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
-const anagram_map = (strings) => {
+const anagramMap = (strings) => {
     return grouping(strings)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {

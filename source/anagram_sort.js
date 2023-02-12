@@ -6,7 +6,7 @@
  * @param {string} new_string строка для включения в масив групп анаграмм 
  * @returns {Array} массив групп анаграмм с включенной строкой
  */
-const add_anagram = (groups, new_string) => {
+const addAnagram = (groups, new_string) => {
     try {
         groups.find(group => 
             [...group[0].toLowerCase()].sort().toString() 
@@ -26,9 +26,9 @@ const add_anagram = (groups, new_string) => {
  * @param {Array} strings массив строк 
  * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
-const anagram_sort = (strings) => {
+const anagramSort = (strings) => {
     return strings.reduce((acc, string) => {
-            return add_anagram(acc, string)
+            return addAnagram(acc, string)
         }, [])
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {

@@ -15,8 +15,8 @@ QUnit.module('Тестируем функцию anagram', function () {
 			[ 'пост', 'стоп' ]
 		];
 
-		assert.deepEqual(anagram_sort(input), output);
-		assert.deepEqual(anagram_map(input), output);
+		assert.deepEqual(anagramSort(input), output);
+		assert.deepEqual(anagramMap(input), output);
 	});
 
 	QUnit.test('Функция работает правильно с разными регистрами', function (assert) {
@@ -28,8 +28,8 @@ QUnit.module('Тестируем функцию anagram', function () {
 			[ 'TKO', 'TOK' ]   
 		]
 
-		assert.deepEqual(anagram_sort(input), output);
-		assert.deepEqual(anagram_map(input), output);
+		assert.deepEqual(anagramSort(input), output);
+		assert.deepEqual(anagramMap(input), output);
 	});
 
 	QUnit.test('Функция работает правильно при отсутствие анаграмм и единственной группе анаграмм', function (assert) {
@@ -41,10 +41,10 @@ QUnit.module('Тестируем функцию anagram', function () {
 			["Elloh", "Hello", "Llohe", "Lohel", "Ohell"]
 		]
 
-		assert.deepEqual(anagram_sort(input_no_anagrams), output_no_anagrams);
-		assert.deepEqual(anagram_map(input_all_anagrams), output_all_anagrams);
+		assert.deepEqual(anagramSort(input_no_anagrams), output_no_anagrams);
+		assert.deepEqual(anagramMap(input_all_anagrams), output_all_anagrams);
 
-		assert.deepEqual(anagram_sort(input_no_anagrams), output_no_anagrams);
-		assert.deepEqual(anagram_map(input_all_anagrams), output_all_anagrams);
+		assert.deepEqual(anagramSort(input_no_anagrams), output_no_anagrams);
+		assert.deepEqual(anagramMap(input_all_anagrams), output_all_anagrams);
 	});
 });
