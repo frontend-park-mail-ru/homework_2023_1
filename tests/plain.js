@@ -49,4 +49,15 @@ QUnit.module('Тестируем функцию plain', function () {
         assert.deepEqual(plain([ null ]), [ null ]);
         assert.deepEqual(plain([ [ [ [ null ] ], null ], null, null, [ [ null ] ] ]), [ null, null, null, null, null ]);
     });
+
+    QUnit.test('Невалидные данные', function (assert) {
+        const err = new Error('Incorrect data');
+
+        assert.throws(() => { plain(NaN); }, err);
+        assert.throws(() => { plain(null); }, err);
+        assert.throws(() => { plain(Infinity); }, err);
+        assert.throws(() => { plain(1); }, err);
+        assert.throws(() => { plain("abc"); }, err);
+        assert.throws(() => { plain(new TestClass()); }, err);
+    });
 });
