@@ -28,7 +28,7 @@ const sorting = (objects, properties) => {
     if (!properties?.length) return objects;
 
     if (isArrayConsistFromEmptyObjects(objects)) {
-        return []
+        return new Error('Invalid data. Array consist only empty objects');
     }
 
     return objects.sort((a,b) => {

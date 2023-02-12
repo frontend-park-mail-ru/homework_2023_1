@@ -221,9 +221,8 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
 
-		const expected = []
-		// const expectedError = new Error('Invalid data. Array consist only empty objects'); 
+		const expectedError = new Error('Invalid data. Array consist only empty objects'); 
 
-		assert.deepEqual(actual, expected);
+		assert.deepEqual(actual, expectedError);
 	})
 });
