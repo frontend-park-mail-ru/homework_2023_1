@@ -6,6 +6,16 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax('мама мыла раму'), [ undefined, undefined ]);
 	});
 
+	QUnit.test('minmax работает правильно при null и undefined', function (assert) {
+		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
+		assert.deepEqual(minmax(null), [ undefined, undefined ]);
+	});
+
+	QUnit.test('minmax работает правильно при null и undefined в строке', function (assert) {
+		assert.deepEqual(minmax('undefined'), [ undefined, undefined ]);
+		assert.deepEqual(minmax('null'), [ undefined, undefined ]);
+	});
+
 	QUnit.test('minmax правильно парсит отдельные числа', function (assert) {
 		assert.deepEqual(minmax('0'), [ 0, 0 ]);
 		assert.deepEqual(minmax('1'), [ 1, 1 ]);
