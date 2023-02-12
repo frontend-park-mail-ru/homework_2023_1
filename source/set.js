@@ -18,7 +18,7 @@ const set = (obj, property, new_val) => {
 
     arr.forEach((val, ind) => {
         if (ind == length - 1) {
-            current[arr[length - 1]] = new_val;
+            current[val] = new_val;
         } else {
             if (!current[val]) {
                 current[val] = {};
