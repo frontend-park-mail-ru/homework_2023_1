@@ -1,6 +1,11 @@
 'use strict';
 
 QUnit.module('Тестируем функцию minmax', function () {
+	QUnit.test('minmax работает правильно на невалидных данных', function (assert) {
+		assert.deepEqual(minmax(null), [ undefined, undefined ]);
+		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
+	});
+
 	QUnit.test('minmax работает правильно на строках без чисел', function (assert) {
 		assert.deepEqual(minmax(''), [ undefined, undefined ], 'Особый случай, когда в строке нет чисел');
 		assert.deepEqual(minmax('мама мыла раму'), [ undefined, undefined ]);
