@@ -9,9 +9,9 @@
  *
  */
 
-const plain = arr => {
+const plain = (arr) => {
 	if (!Array.isArray(arr)) {
-		throw new Error('Incorrect data');
+		throw new TypeError('Expected array');
 	}
 
 	const ans = [];
