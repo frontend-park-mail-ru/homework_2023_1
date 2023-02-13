@@ -10,23 +10,14 @@
  * @param {Array.<Object>} objects - массив plain-объектов
  * @param {Array.<String>} properties - массив имён свойств, по которым необходимо отсортировать массив объектов
  * @returns {(Array.<Object>|string)} - отсортированный массив либо сообщение об ошибке
+ * @throws {<String>} Will throw an error if array consists of empty objects.
  */
-
-function isArrayConsistFromEmptyObjects(objects) {
-    return objects.reduce((sum, curObj) => {
-        for (let _ in curObj) {
-            return 0;
-        }
-        return sum + 1;
-    }, 0) === objects.length;
-}
-
 
 const sorting = (objects, properties) => {
     if (!objects?.length) return [];
     if (!properties?.length) return objects;
 
-    if (isArrayConsistFromEmptyObjects(objects)) {
+    if (objects.every(o => Object.keys(o).length() === 0)) {
         return new Error('Invalid data. Array consists only empty objects');
     }
 
