@@ -27,7 +27,5 @@ const euclid = (...numbers) => {
         throw new Error('Array should only contain numbers!');
     }
 
-    let result = numbers.reduce(gcd);
-
-    return result;
+    return numbers.reduce(gcd);
 }
