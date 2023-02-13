@@ -1,9 +1,17 @@
 'use strict';
 
 QUnit.module('Тестируем функцию minmax', function () {
-	QUnit.test('minmax работает правильно на невалидных данных', function (assert) {
-		assert.deepEqual(minmax(null), [ undefined, undefined ]);
-		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
+	QUnit.test('minmax возвращает ошибку при невалидных данных', function (assert) {
+		assert.throws(
+			function() {
+				minmax(null);
+			},
+			Error('Неверный аргумент: ожидалась строка!'));
+		assert.throws(
+			function() {
+				minmax(undefined);
+			},
+			Error('Неверный аргумент: ожидалась строка!'));
 	});
 
 	QUnit.test('minmax работает правильно на строках без чисел', function (assert) {
