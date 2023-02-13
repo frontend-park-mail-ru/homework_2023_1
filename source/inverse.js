@@ -9,11 +9,11 @@
  */
 const inverse = (numbers, stop = 0) => {
     if (!Array.isArray(numbers)) {
-        throw new Error("The first parameter is not array");
+        throw new TypeError("The first parameter is not array");
     }
 
     if (!Number.isInteger(stop)) {
-        throw new Error("The second parameter is not integer");
+        throw new TypeError("The second parameter is not integer");
     }
 
     const newNumbers = [...numbers];

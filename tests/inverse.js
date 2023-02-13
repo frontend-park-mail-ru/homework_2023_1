@@ -55,21 +55,21 @@ QUnit.module('Тестируем функцию inverse', function () {
 	QUnit.test('тесты с ошибочными входными данными', function (assert) {
 		assert.throws(function () {
 			inverse(123, 0);
-		}, Error, "The first parameter is not array");
+		}, TypeError, "The first parameter is not array");
 		assert.throws(function () {
 			inverse('this is eror', 0);
-		}, Error, "The first parameter is not array");
+		}, TypeError, "The first parameter is not array");
 		assert.throws(function () {
 			inverse(NaN, 0);4
-		}, Error, "The first parameter is not array");
+		}, TypeError, "The first parameter is not array");
 		assert.throws(function () {
 			inverse(12.4, 0);
-		}, Error, "The first parameter is not array");
+		}, TypeError, "The first parameter is not array");
 		assert.throws(function () {
 			inverse([1, 2, 3], 1.4);
 		}, Error, "The second parameter is not integer");
 		assert.throws(function () {
 			inverse([1, 2, 3], -10.44);
-		}, Error,  "The second parameter is not integer");
+		}, TypeError,  "The second parameter is not integer");
 	});
 });
