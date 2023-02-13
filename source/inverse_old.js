@@ -8,11 +8,14 @@
 
 
 // old realisation
-// const inverse = (given_array, position = 0) => {
-//     if ((!Array.isArray(given_array)) || (!Number.isInteger(position))) {
-//         throw new Error("wrong parameters!")
+// function inverse (given_array, position = 0) {
+//     if (!Array.isArray(given_array)) {
+//         throw new Error("First parameter is not an array!")
 //     }
 
+//     if (!Number.isInteger(position)) {
+//         throw new Error("Second parameter is not integer type!")
+//     }
 //     const temp_given_array = [...given_array]
 
 //     if (position < 0) {
