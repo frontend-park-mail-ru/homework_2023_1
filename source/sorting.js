@@ -10,26 +10,22 @@
  * @author Ivan Stuaklov <sid21u699@student.bmstu.ru>
  */
 function sorting (arr, params) {
-    params.forEach(element =>
-        arr.sort((a, b) => {
-            let wasCoincident = true;
-            for (let lastParam = 0; lastParam < element; ++lastParam){ // проверяем, равны ли значения по всем предыдущим параметрам
-                if (a[params[lastParam]] !== b[params[lastParam]]) {     
-                    wasCoincident = false;
-                }
+    arr.sort((a, b) => {
+        let comparator = 0;
+        for (let p = 0; p < params.length; ++p) {
+            if (a[params[p]] < b[params[p]]) {
+                comparator = -1;
+                return comparator;
             }
-            if (wasCoincident) {
-                if (a[params[curParam]] > b[params[curParam]]) {
-                    return 1;
-                }
-                if (a[params[curParam]] === b[params[curParam]]) {
-                    return 0;
-                }
-                if (a[params[curParam]] < b[params[curParam]]) {
-                    return -1;
-                }
+            if (a[params[p]] === b[params[p]]) {
+                comparator = 0;
             }
-        })
-    );   
+            if (a[params[p]] > b[params[p]]) {
+                comparator = 1;
+                return comparator;
+            }
+        };
+        return comparator;
+    });
     return arr;
 }
