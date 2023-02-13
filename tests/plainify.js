@@ -100,5 +100,4 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.deepEqual(plainify(nested2), plain2);
 	});
 
-
 });
