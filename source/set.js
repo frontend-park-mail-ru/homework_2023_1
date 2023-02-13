@@ -11,11 +11,11 @@
  */
 const set = (obj, property, new_val) => {
     if (Object.prototype.toString.call(obj) !== '[object Object]') {
-        throw new Error('first argument must be an object');
+        throw new TypeError('first argument must be an object');
     }
 
     if (Object.prototype.toString.call(property) !== '[object String]') {
-        throw new Error('second argument must be a string');
+        throw new TypeError('second argument must be a string');
     }
 
     const arr = property.split('.');
