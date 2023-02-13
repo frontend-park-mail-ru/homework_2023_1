@@ -28,7 +28,7 @@ function format(values, columnsNumber) {
 		); 
 	}
 
-	let maxLengths = Array(columnsNumber).fill(0);
+	const maxLengths = Array(columnsNumber).fill(0);
 
 
 	// получаем максимальные длины по столбцам
