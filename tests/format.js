@@ -129,7 +129,7 @@ QUnit.module('Тестируем функцию format', function () {
 			);
 
 		const expected4 = TypeError(
-			`Wrong value of second argument. 'columnsNumber' must be > 0`
+			`Wrong value of second argument. "columnsNumber" must be > 0`
 			);
 
 		assert.throws(function() {
