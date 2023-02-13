@@ -61,4 +61,30 @@ QUnit.module('Тестируем функцию get', function () {
 			}
 		);
 	});
+
+	QUnit.test('get вызывает иключение для невалидных типов данных', function (assert) {
+		const objectInvalidTypes = [
+			Number,
+			Boolean,
+			undefined,
+			null
+		];
+		const attrsInvalidTypes = [
+			Number,
+			Boolean,
+			undefined,
+			null,
+			Object
+		]
+
+		for (let objectInvalidType of objectInvalidTypes) {
+			for (let attrsInvalidType of attrsInvalidTypes) {
+				assert.throws(
+					function() {
+						get(objectInvalidType(), attrsInvalidType());
+					}
+				);
+			}
+		}
+	});
 });
