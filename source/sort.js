@@ -1,6 +1,19 @@
 'use strict';
 
+/**
+ * 
+ * Сортирует буквы в словах по алфавиту, получившиеся слова в предложении — тоже.
+ * Первую букву каждого слова она сделает прописной, остальные — строчными.
+ * 
+ * @param {string} str - входная строка (текст)
+ * @return {string} Отсортированная строка.
+ */
+
 function sort(str) {
+    if (str.length === 0) {
+        return str;
+    }
+
     let arrayOfStrings = str.split(' ');
 
     arrayOfStrings.forEach((word, i) => {
@@ -8,7 +21,6 @@ function sort(str) {
             return a.localeCompare(b, 'ru', 'en');
         }).join('').toLowerCase();
         word = word[0].toUpperCase() + word.slice(1);
-        console.log(word);
         arrayOfStrings[i] = word;
     });
 
