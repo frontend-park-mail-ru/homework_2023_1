@@ -1,4 +1,4 @@
-
+'use strict' // включает строгий режим
 /**
  * Inverse array except the elements, which are divided by param position
  * @function inverse
