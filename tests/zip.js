@@ -33,7 +33,6 @@ QUnit.module('Тестируем функцию zip', function () {
     assert.deepEqual(zip({}, {}), {});
     assert.deepEqual(zip({answer: 42}, {}), {answer: 42});
     assert.deepEqual(zip({}, {answer: 42}), {answer: 42});
-    assert.deepEqual(zip({}, {answer: 42}), {answer: 42});
     assert.deepEqual(zip({}, {}, {}, {name: 'Georg'}), {name: 'Georg'});
 
     const obj = {

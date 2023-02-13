@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- *accepts objects (any number) as input, and return a single object containing all fields from all objects.
+ * Accepts objects array as input, and return a single object containing all properties from all input objects.
  * @param {Object[]} objects - Objects for zip.
- * @returns {Object} object that contains the fields of all objects
+ * @returns {Object} object that contains properties of all objects
  */
 const zip = (...objects) => {
   return objects.reduceRight((result, obj, index) => {
