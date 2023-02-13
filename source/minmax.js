@@ -1,5 +1,9 @@
 'use strict';
 
+const isNullOrUndefined = value => {
+  return value === null || value === undefined;
+}
+
 /**
  * @description Функция для поиска максимального числа в массиве чисел
  * @param {Array} numbers - массив чисел
@@ -40,10 +44,8 @@ const min = numbers => {
  * @returns {Array} Кортеж, содержащий 2 значения: минимальное и максимальное числа
 */
 const minmax = str => {
-  if (!str) {
-    if (str !== '') {
-      throw new Error('Неверный аргумент: ожидалась строка!');
-    }
+  if (isNullOrUndefined(str)) {
+    throw new Error('Неверный аргумент: ожидалась строка!');
   }
 
   const numbers = str.split(' ').filter(Boolean).map(Number).filter((value) => !Number.isNaN(value));
