@@ -7,7 +7,10 @@
  * @author Taktashova Daria <taktashovadasha@yandex.ru>
  */
 const zip = (...objects) => {
-    if (objects && objects.every(elem => Object.getPrototypeOf(elem) === Object.prototype)) {
+    if (!objects || !objects.every(elem => elem !== null && elem !== undefined)) {
+        throw new Error('Type Error')
+    }       
+    if (objects.every(elem => Object.getPrototypeOf(elem) === Object.prototype)) {
         return objects.reduceRight((acc, cur) => ({ ...acc, ...cur}), {});
     }
     return objects[0]

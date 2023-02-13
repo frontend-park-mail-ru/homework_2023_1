@@ -2,9 +2,9 @@
 
 QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция работает с невалидными данными и выбрасывает ошибку ', function (assert) {
-		assert.throws(()=>zip(null))
-		assert.throws(()=>zip(undefined))
-		assert.throws(()=>zip({name: 42}, null))
+		assert.throws(()=>zip(null), Error('Type Error'))
+		assert.throws(()=>zip(undefined),  Error('Type Error'))
+		assert.throws(()=>zip({name: 42}, null),  Error('Type Error'))
 	});
 
 	QUnit.test('Функция работает со строками, функциями и boolean и возвращает первоначальное значение', function (assert) {
