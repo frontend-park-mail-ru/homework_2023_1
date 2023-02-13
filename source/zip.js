@@ -6,4 +6,4 @@
  * @returns {object} A new object whose properties are given by the objects
  * @author Taktashova Daria <taktashovadasha@yandex.ru>
  */
-const zip = (...objects) => objects.reverse().reduce((acc, cur) => ({ ...acc, ...cur}), {});
+const zip = (...objects) => objects.reduceRight((acc, cur) => ({ ...acc, ...cur}), {});
