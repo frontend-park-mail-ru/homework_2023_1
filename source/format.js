@@ -22,7 +22,7 @@ function format(values, columnsNumber) {
 		);
 	}
 
-	if (columnsNumber.length < 1) {
+	if (columnsNumber < 1) {
 		throw new TypeError(
 			`Wrong value of second argument. 'columnsNumber' must be > 0`
 		); 
@@ -30,14 +30,13 @@ function format(values, columnsNumber) {
 
 	let maxLengths = Array(columnsNumber).fill(0);
 
-	let columnIndex = 0;
 
 	// получаем максимальные длины по столбцам
-	values.forEach((value) => {
-		if (typeof value != "number") {
+	values.forEach((value, index) => {
+		let columnIndex = index % columnsNumber;
+		if (typeof value != "number" && typeof value !== 'bigint') {
 			throw new TypeError(
-				`Wrong type of array values.
-				Expected "Number", got "${typeof value}"`
+				`Wrong type of array values. Expected "Number", got "${typeof value}"`
 			);
 		}
 
@@ -45,31 +44,26 @@ function format(values, columnsNumber) {
 		if (newLength > maxLengths[columnIndex]) {
 			maxLengths[columnIndex] = newLength;
 		}
-
-		columnIndex++;
-		if (columnIndex >= columnsNumber) {
-			columnIndex = 0;
-		}
-	});
+	});		
 
 	// формируем строку
-	columnIndex = 0;
-	let output = "";
-	values.forEach((value, index, values) => {
-		output += formatNumber(value, maxLengths[columnIndex]);
+	let output = values.reduce((previousValue, currentElement, index, arr) => {
+		let columnIndex = index % columnsNumber;
+		let newValue = previousValue + formatNumber(currentElement,
+													 maxLengths[columnIndex])
 
-		if (index == values.length - 1) {
-			return;
+		if (index == arr.length - 1) {
+			return newValue;
 		}
 
 		if (columnIndex >= columnsNumber - 1) {
-			columnIndex = 0;
-			output += '\n';
+			newValue += '\n';
 		} else {
-			output += ' ';
-			columnIndex++;
+			newValue += ' ';
 		}
-	});
+
+		return newValue;
+	}, "");
 
 	return output;
 
@@ -82,11 +76,11 @@ function format(values, columnsNumber) {
  * @returns {String} Table cell 
  */
 function formatNumber(number, length) {
-	let stringedNumber = number.toString();
+	const stringedNumber = number.toString();
 
-	let spacesAmount = length - stringedNumber.length;
-	if (length > stringedNumber.length) {
-		stringedNumber = " ".repeat(spacesAmount) + stringedNumber;	
+	const spacesAmount = length - stringedNumber.length;
+	if (spacesAmount > 0) {
+		return `${" ".repeat(spacesAmount)}${stringedNumber}`;	
 	}
 	
 	return stringedNumber;
