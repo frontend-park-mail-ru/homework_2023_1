@@ -27,11 +27,11 @@ const gcd = (value1, value2) => {
 
 const euclid = (...args) => {
     if (!args.length) {
-        throw new Error("Function requires at least one input parameter.");
+        throw new Error('Function requires at least one input parameter.');
     }
 
     if (!args.every(arg => Number.isInteger(arg) && arg > 0)) {
-        throw new Error("Bad input parameters.");
+        throw new TypeError('Bad input parameters.');
     }
 
     return args.reduce((accumulator, currentValue) => gcd(accumulator, currentValue), 0);
