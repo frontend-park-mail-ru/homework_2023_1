@@ -28,6 +28,7 @@ const format = (values, columnsNumber) => {
 		); 
 	}
 
+	const startLengths = Array(columnsNumber).fill(0);
 	// получаем максимальные длины по столбцам
 	const maxLengths = values.reduce((previousValue, currentElement, index) => {
 		const columnIndex = index % columnsNumber;
@@ -43,28 +44,28 @@ const format = (values, columnsNumber) => {
 		}
 
 		return previousValue;
-	}, Array(columnsNumber).fill(0));	
+	}, startLengths);	
 
 	// формируем строку
-	const output = values.reduce((previousValue, currentElement, index, arr) => {
+	const stringsArray = values.reduce((resultArray, currentElement, index) => {
 		const columnIndex = index % columnsNumber;
-		let newValue = previousValue + formatNumber(currentElement, maxLengths[columnIndex])
+		const newValue = formatNumber(currentElement, maxLengths[columnIndex]);
 
-		if (index == arr.length - 1) {
-			return newValue;
-		}
-
-		if (columnIndex >= columnsNumber - 1) {
-			newValue += "\n";
+		let last = resultArray.length - 1;
+		if (columnIndex < columnsNumber - 1) {
+			resultArray[last] += newValue;
+			resultArray[last] += " ";
 		} else {
-			newValue += " ";
+			resultArray[last] += newValue;
+			resultArray.push("");
 		}
 
-		return newValue;
-	}, "");
+		return resultArray;
+	}, [""]);
 
-	return output;
+	const output = stringsArray.join("\n");
 
+	return output.slice(0, -1);
 }
 
 
