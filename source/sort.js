@@ -14,6 +14,7 @@ function sort(str) {
         return str;
     }
 
+    str = str.replace(/ +/g, ' ').trim();
     let arrayOfStrings = str.split(' ');
 
     arrayOfStrings.forEach((word, i) => {

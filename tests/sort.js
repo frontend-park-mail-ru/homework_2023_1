@@ -5,7 +5,7 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('яяя'), 'Яяя', 'Работает с русским алфавитом');
 		assert.strictEqual(sort('Бббббб'), 'Бббббб');
 		assert.strictEqual(sort('zzzzzz'), 'Zzzzzz', 'Работает с английским алфавитом');
-		assert.strictEqual(sort('Rrrrrrrr'), 'Rrrrrrrr');
+		assert.strictEqual(sort('rrrrrrrr'), 'Rrrrrrrr');
 	});
 
 	QUnit.test('Функция делает все буквы, кроме первой, строчными', function (assert) {
@@ -32,10 +32,28 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('в б а в а'), 'А А Б В В');
 	});
 
-	QUnit.test('Функция работает правильно', function (assert) {
+	QUnit.test('Функция сортирует многобуквенные слова правильно', function (assert) {
 		assert.strictEqual(sort('мама мыла раму'), 'Аамм Алмы Амру');
 		assert.strictEqual(sort('космический корабль летит на марс'), 'Абклорь Амрс Ан Еиийккмоссч Еилтт');
 		assert.strictEqual(sort('i love frontend'), 'Defnnort Elov I');
 		assert.strictEqual(sort('hello world'), 'Dlorw Ehllo');
+	});
+
+	QUnit.test('Функция сортирует многобуквенные слова правильно и ставит нужный регистр', function (assert) {
+		assert.strictEqual(sort("When the snow begins to melt aNd streamlets CAn bE seen everyWHere in the sTrEets," +
+								" the air beComEs fresh and it is filled with Aroma of fLOwers"), ",eersstt Aamor Acn Adn Adn " +
+						   "Aeelmrsstt Air Bceemos Be Begins Defill Eeeehrrvwy Eens Efhrs Eflorsw Ehnw Eht Eht Eht Elmt Fo Hitw In Is It Nosw Ot",
+						   'Работает с английским алфавитом');
+		assert.strictEqual(sort('DEFORESTATION COulD CAuSE ONe fourtH oF ALl sPECIES'), 'Acesu Adeefinoorstt All Cdlou Ceeipss Eno Fhortu Fo');
+		assert.strictEqual(sort("В европейской части России находятся старинные русские города Ярославль, Кострома, " + 
+								"Владимир, Углич, Ростов Великий, Суздаль. Они очень инТЕресны своей историей и КУЛЬТурой"),
+						   ",авдиилмр ,авллорсья ,акмоорст ,веиийкл ,гилуч .адзлсуь Агдоор Адностхяя Аеиннрсты Аистч В Вееййкоопрс Вейос Воорст " + 
+						   "Ееиннрсты Еиийорст Еикрссу Еночь И Ииорсс Ино Йклортууь", 'Работает с русским алфавитом');
+		assert.strictEqual(sort('В нашЕЙ СТране слЫШали ТОЛЬКО о мОСкве'), 'Аейнш Аенрст Аиллсшы В Векмос Клооть О');
+	});
+
+	QUnit.test('Функция правильно обрабатывает слова, убирая избыточные пробелы', function (assert) {
+		assert.strictEqual(sort('  Я учусь в технопарке  '), 'Аеекнопртх В Суучь Я');
+		assert.strictEqual(sort(' Frontend   iS   a coOl     subject  '), 'A Bcejstu Cloo Defnnort Is');
 	});
 });
