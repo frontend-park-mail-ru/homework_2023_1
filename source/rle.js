@@ -16,7 +16,7 @@ const rle = (str) => {
   if (/\d/.test(str)) {
     throw new Error('there are numbers in the string');
   }
-  return str.replace(/(.)\1+/g, function (internalStr, symbol) {
+  return str.replace(/(.)\1+/g,  (internalStr, symbol) => {
     return symbol + internalStr.length;
   });
 };
