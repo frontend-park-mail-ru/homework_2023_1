@@ -26,24 +26,18 @@ QUnit.module('Тестируем функцию inverse с использова�
 	QUnit.test('Обработка функцией ошибкок', function (assert) {
 		assert.throws(function() {
 			inverse('a', 0);
-			}, TypeError, 'First parameter is not an array!'
-		);
+			}, TypeError, 'First parameter is not an array!');
 		assert.throws(function() {
 			inverse(null, 0);
-			}, TypeError, 'First parameter is not an array!'
-		);
+			}, TypeError, 'First parameter is not an array!');
 		assert.throws(function() {
 			inverse(0.5, 0);
-			}, TypeError, 'First parameter is not an array!'
-		);
+			}, TypeError, 'First parameter is not an array!');
 		assert.throws(function() {
 			inverse(['a'], 1.4);
-			}, TypeError, 'First parameter is not an array!'
-		);
+			}, TypeError, 'First parameter is not an array!');
 		assert.throws(function() {
 			inverse(['a'], -1.6);
-			}, TypeError, 'First parameter is not an array!'
-		);
-
+			}, TypeError, 'First parameter is not an array!');
 	});
 });
