@@ -221,7 +221,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
 
-		const expectedError = 'Invalid data.';
+		const expectedError = TypeError("Invalid data");
 
 		assert.deepEqual(actual, expectedError);
 	})
@@ -235,7 +235,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
 
-		const expectedError = "Invalid data.";
+		const expectedError = TypeError("Invalid data");
 
 		assert.deepEqual(actual, expectedError);
 	})

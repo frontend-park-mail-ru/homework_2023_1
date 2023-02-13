@@ -9,10 +9,8 @@
  * @author ZelenkoDaniil - https://github.com/Zela2520
  * @param {Array.<Object>} objects - массив plain-объектов
  * @param {Array.<String>} properties - массив имён свойств, по которым необходимо отсортировать массив объектов
- * @returns {(Array.<Object>|string)} - отсортированный массив либо сообщение об ошибке
+ * @returns {(Array.<Object>|TypeError)} - отсортированный массив либо сообщение об ошибке
  */
-
-const TYPE_ERROR = 'Invalid data.';
 
 const sorting = (objects, properties) => {
     if (!objects?.length) {
@@ -23,7 +21,7 @@ const sorting = (objects, properties) => {
     }
 
     if (!objects.every(o => Object.keys(o).length)) {
-        return TYPE_ERROR;
+        return TypeError("Invalid data");
     }
 
     return structuredClone(objects).sort((a,b) => {
