@@ -13,30 +13,29 @@
  */
 
 function isArrayConsistFromEmptyObjects(objects) {
-    let emptyObjects = 0;
-    objects.forEach((value) => {
-        if(JSON.stringify(value) ===  JSON.stringify({})) {
-            ++emptyObjects;
+    return objects.reduce((sum, curObj) => {
+        for (let _ in curObj) {
+            return 0;
         }
-    })
-
-    return emptyObjects === objects.length;
+        return sum + 1;
+    }, 0) === objects.length;
 }
+
 
 const sorting = (objects, properties) => {
     if (!objects?.length) return [];
     if (!properties?.length) return objects;
 
     if (isArrayConsistFromEmptyObjects(objects)) {
-        return new Error('Invalid data. Array consist only empty objects');
+        return new Error('Invalid data. Array consists only empty objects');
     }
 
     return objects.sort((a,b) => {
-        for (let i = 0; i < properties.length; i++) {
-            if (a[properties[i]] < b[properties[i]]) {
+        for (const key of properties) {
+            if (a[key] < b[key]) {
                 return -1;
             }
-            if (a[properties[i]] > b[properties[i]]) {
+            if (a[key] > b[key]) {
                 return 1;
             }
         }
