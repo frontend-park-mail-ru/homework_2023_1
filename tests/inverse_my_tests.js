@@ -35,9 +35,9 @@ QUnit.module('Тестируем функцию inverse с использова�
 			}, TypeError, 'First parameter is not an array!');
 		assert.throws(function() {
 			inverse(['a'], 1.4);
-			}, TypeError, 'First parameter is not an array!');
+			}, TypeError, 'Second parameter is not integer type!');
 		assert.throws(function() {
 			inverse(['a'], -1.6);
-			}, TypeError, 'First parameter is not an array!');
+			}, TypeError, 'Second parameter is not integer type!');
 	});
 });
