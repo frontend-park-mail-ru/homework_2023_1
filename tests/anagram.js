@@ -69,8 +69,9 @@ QUnit.module('Тестируем функцию anagram', function () {
 	QUnit.test('Функция работает правильно (неверный аргумент - массив чисел вместо массива строк)', function (assert) {
 		const input = [1, 2, 3];
 		
-		assert.throws(function() {
-			anagram(input)
-		}, TypeError('Expected string as element of array'), "anagram('маРш') === TypeError('Expected string as element of array')")
+		assert.throws(
+			() => anagram(input),
+			TypeError('Expected string as element of array'),
+			"anagram('маРш') === TypeError('Expected string as element of array')")
 	});
 });
