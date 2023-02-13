@@ -11,7 +11,7 @@
  * @returns {line} Измененная строка без повторяющихся букв
  */
 const letters = (line, flag) => {
-    if (typeof line !== "string") {
+    if (typeof line !== "string" && !(line instanceof String)) {
         throw new TypeError('The first parameter is not a string!');;
     }
     if (typeof flag !== "boolean" && typeof flag !== "undefined") {
