@@ -7,7 +7,7 @@
  * @throws Выкидывает ошибку, если аргумент null, не строка или в строке есть цифры
  */
 const rle = (str) => {
-  if (str == null) {
+  if (str === null) {
     throw new Error('input is null');
   }
   if (typeof str !== 'string' && !str instanceof String) {
