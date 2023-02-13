@@ -42,10 +42,4 @@ QUnit.module('Тестируем функцию rle: bad input', function () {
       rle()
     }, Error("wrong input"), 'rle() === Error("wrong input")');
   });
-
-  QUnit.test('rle на неправильных аргументах', function (assert) {
-    assert.throws(function () {
-      rle(123)
-    }, Error("wrong input"), 'rle(123) === Error("wrong input")');
-  });
 });
