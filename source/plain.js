@@ -10,21 +10,21 @@
  */
 
 const plain = arr => {
-    if (!Array.isArray(arr)) {
-        throw new Error('Incorrect data');
-    }
+	if (!Array.isArray(arr)) {
+		throw new Error('Incorrect data');
+	}
 
-    const ans = [];
+	const ans = [];
 
-    while (arr.length) {
-        const elem = arr.shift();
+	while (arr.length) {
+		const elem = arr.shift();
 
-        if (Array.isArray(elem)) {
-            arr.unshift(...elem);
-        } else {
-            ans.push(elem);
-        }
-    };
+		if (Array.isArray(elem)) {
+			arr.unshift(...elem);
+		} else {
+			ans.push(elem);
+		}
+	};
 
-    return ans;
+	return ans;
 };
