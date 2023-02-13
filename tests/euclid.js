@@ -33,4 +33,7 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.strictEqual(euclid(1, -2, 3, -10, 1), null);
 		assert.strictEqual(euclid(0, 0, 0, 0, 0, 0), null);
 	});
+	QUnit.test('Функция должна возвращать null, если были переданы отрицательные числа', function (assert){
+		assert.strictEqual(euclid(-100, -12, -7, -6. -5), null);
+	});
 });

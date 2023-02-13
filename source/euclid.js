@@ -1,21 +1,26 @@
 "use strict";
 
+/**
+ * Нахождение наибольшего общего делителя натуральных чисел.
+ * @param  nums - Массив натуральных чисел
+ * @returns {null|number} - Результат вычисления (натуральное число, если входные параметры корректны, иначе null)
+ */
 function euclid(...nums) {
     //проверка натуральных чисел
-    let correct_input = true;
-    nums.forEach(function (item, i, arr){
-        if (!Number.isInteger(item) || item <= 0){
-            correct_input = false;
-        }
-    });
-    if (!correct_input){
+    if (nums.some(number => !Number.isInteger(number) || number <= 0)){
         return null;
     }
     //проверка единственного аргумента
     if (nums.length === 1) {
         return nums.at(0);
     }
-    let CountGCD = function(first, second){
+    /**
+     * Вычисление наибольшего общего делителя для двух натуральных чисел
+     * @param first - первое натуральное число
+     * @param second - второе натуральное число
+     * @returns {number} - результат вычисления
+     */
+    const CountGCD = function(first, second){
         let largest = Math.max(first, second);
         let lowest = Math.min(first, second);
         let temp;
@@ -26,10 +31,6 @@ function euclid(...nums) {
         }
         return largest;
     };
-    let pair_GCD = CountGCD(nums.at(0), nums.at(1));
-    for (let index = 2; index < nums.length; ++index){
-        pair_GCD = CountGCD(pair_GCD, nums.at(index));
-    }
-    return pair_GCD;
+    return nums.reduce((pair_GCD, currentValue) => CountGCD(pair_GCD, currentValue));
 }
 
