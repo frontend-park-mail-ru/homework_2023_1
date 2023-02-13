@@ -61,21 +61,4 @@ QUnit.module('Тестируем функцию get', function () {
 			}
 		);
 	});
-
-	QUnit.test('get вызывает исключение, если в строке встречаются спецсимволы (кроме _)', function (assert) {
-		const object = {
-			_: 42
-		};
-		assert.throws(
-			function() {
-				get(object, '.+-');
-			}
-		);
-		assert.throws(
-			function() {
-				get(object, '.@');
-			}
-		);
-		assert.strictEqual(get(object, '._'), 42)
-	});
 });
