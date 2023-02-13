@@ -1,6 +1,6 @@
 'use strict';
 
-const obj = {
+const OBJECT_FOR_TEST  = {
   count: 0,
   cost: '120$'
 };
@@ -24,7 +24,7 @@ QUnit.module('Тестируем функцию zip', function () {
     assert.deepEqual(zip({}), {});
     assert.deepEqual(zip({answer: 42}), {answer: 42});
     assert.deepEqual(zip({name: 'Georg'}), {name: 'Georg'});
-    assert.deepEqual(zip(obj), obj);
+    assert.deepEqual(zip(OBJECT_FOR_TEST), OBJECT_FOR_TEST);
     assert.deepEqual(zip({nickname: "Test", name: "Kirill"}), {nickname: "Test", name: "Kirill"})
   });
 
@@ -33,7 +33,7 @@ QUnit.module('Тестируем функцию zip', function () {
     assert.deepEqual(zip({answer: 42}, {}), {answer: 42});
     assert.deepEqual(zip({}, {answer: 42}), {answer: 42});
     assert.deepEqual(zip({}, {}, {}, {name: 'Georg'}), {name: 'Georg'});
-    assert.deepEqual(zip({}, {}, {}, obj, {}, {}), obj);
+    assert.deepEqual(zip({}, {}, {}, OBJECT_FOR_TEST, {}, {}), OBJECT_FOR_TEST);
     assert.deepEqual(zip({}, {}, {name: "Test"}, {}, {nickname: "Test"}), {name: "Test", nickname: "Test"});
   });
 
