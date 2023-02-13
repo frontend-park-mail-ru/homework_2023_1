@@ -212,7 +212,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 	
-	QUnit.test('sorting невалидные данные. Длины массивов не равны.', function(assert) {
+	QUnit.test('sorting невалидные данные. Все объекты массивы пусты.', function(assert) {
 		const initial = [
 			{},
     		{},
