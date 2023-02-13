@@ -40,7 +40,7 @@ QUnit.module('Тестируем функцию zip', function () {
 
   QUnit.test('Функция работает с объектами со свойствами с разными именами', function (assert) {
 
-    assert.deepEqual(zip({count: 0}, {cost: '120$'}), obj);
+    assert.deepEqual(zip({count: 0}, {cost: '120$'}), OBJECT_FOR_TEST);
 
     const obj2 = {
       a: 1,
