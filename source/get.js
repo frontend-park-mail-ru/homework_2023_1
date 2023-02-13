@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Apply string of attributes to object
@@ -7,14 +7,13 @@
  * @returns {*} - object that can be interpreted as obj['attr1']['attr2']['attrN']
  */
 const get = (object, attrs) => {
-  if (!attrs.startsWith(".")) {
-    throw new Error("attrs must start with '.'");
-  }
-  if (attrs === ".") {
-    return object;
-  }
-  return attrs
-    .slice(1)
-    .split(".")
-    .reduce((obj, attr) => (obj === undefined ? undefined : obj[attr]), object);
-};
+    if (!attrs.startsWith('.')) {
+        throw new Error("attrs must start with '.'")
+    }
+    if (attrs === '.') {
+        return object
+    }
+    return attrs.slice(1)
+                .split('.')
+                .reduce((obj, attr) => obj === undefined ? undefined : obj[attr], object);
+}
