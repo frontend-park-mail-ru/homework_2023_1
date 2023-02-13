@@ -27,6 +27,10 @@ QUnit.module('Тестируем функцию rle: success', function () {
   QUnit.test('rle на пустой строке', function (assert) {
     assert.strictEqual(rle(''), '', 'rle() === ');
   });
+  QUnit.test('rle c объектом строка', function (assert) {
+    const str = new String('abccc')
+    assert.strictEqual(rle(str), 'abc3', 'rle() === abc3');
+  });
 });
 
 QUnit.module('Тестируем функцию rle: bad input', function () {
@@ -40,6 +44,6 @@ QUnit.module('Тестируем функцию rle: bad input', function () {
   QUnit.test('rle без аргументов', function (assert) {
     assert.throws(function () {
       rle()
-    }, Error("wrong input"), 'rle() === Error("wrong input")');
+    }, Error("input is null"), 'rle() === Error("input is null")');
   });
 });
