@@ -20,8 +20,8 @@ const sorting = (objects, properties) => {
     if (!objects.every(o => Object.keys(o).length)) {
         return new Error('Invalid data. Array consists of empty objects');
     }
-
-    return objects.sort((a,b) => {
+    
+    return structuredClone(objects).sort((a,b) => {
         for (const key of properties) {
             if (a[key] < b[key]) {
                 return -1;
