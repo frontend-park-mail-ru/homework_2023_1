@@ -24,4 +24,24 @@ QUnit.module('Тестируем функцию inverse с использова�
 	});
 
 
+	QUnit.test('Обработка функцией ошибкок', function (assert) {
+        assert.throws(function () {
+			inverse('a', 0);
+		}, Error,"First parameter is not an array!");
+		assert.throws(function () {
+			inverse(null, 0);
+		}, Error,"First parameter is not an array!");
+		assert.throws(function () {
+			inverse(0.5, 0);
+		}, Error,"First parameter is not an array!");
+
+		assert.throws(function () {
+			inverse(['a'], 1.4);
+		}, Error, "Second parameter is not integer type!");
+		assert.throws(function () {
+			inverse(['a'], -1.6);
+		}, Error,  "Second parameter is not integer type!");
+	});
+	
+
 });
