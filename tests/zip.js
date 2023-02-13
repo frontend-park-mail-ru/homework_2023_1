@@ -2,9 +2,18 @@
 
 QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция работает с невалидными данными и выбрасывает ошибку ', function (assert) {
-		assert.throws(()=>zip(null), new TypeError('One of elements is null or undefined'))
-		assert.throws(()=>zip(undefined), new TypeError('One of elements is null or undefined'))
-		assert.throws(()=>zip({name: 42}, null), new TypeError('One of elements is null or undefined'))
+		assert.throws(()=>zip(null))
+		assert.throws(()=>zip(undefined))
+		assert.throws(()=>zip({name: 42}, null))
+	});
+
+	QUnit.test('Функция работает со строками, функциями и boolean и возвращает первоначальное значение', function (assert) {
+		assert.deepEqual(zip(new Boolean()), new Boolean())
+		assert.deepEqual(zip(new String("123")), new String("123"))
+		function what() {
+			return 'really?';
+		}
+		assert.deepEqual(zip(what), what)
 	});
 
 	QUnit.test('Функция работает с пустыми и неопределёнными значениями в полях объекта', function (assert) {
