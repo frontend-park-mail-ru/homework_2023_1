@@ -3,16 +3,16 @@
 /**
  * Функция, удаляющая повторяющиеся 
  * буквы по правилу, зависящему от входного параметра.
- * @param {line} line - Исходная строка
+ * @param {string} line - Исходная строка
  * @param {?boolean} flag - Булевое значение, определяющее поведение
  * @description Если flag не передан, то удаляются все повторяющиеся символы, 
  * если flag равен true - остается первый из повторяющихся символов, 
  * eсли flag равен false - остается последний из повторяющихся символов.
- * @returns {line} Измененная строка без повторяющихся букв
+ * @returns {string} Измененная строка без повторяющихся букв
  */
 const letters = (line, flag) => {
     if (typeof line !== "string" && !(line instanceof String)) {
-        throw new TypeError('The first parameter is not a string!');;
+        throw new TypeError('The first parameter is not a string!');
     }
     if (typeof flag !== "boolean" && typeof flag !== "undefined") {
         throw new TypeError('The second parameter is not a boolean!');;
@@ -21,7 +21,9 @@ const letters = (line, flag) => {
     line = [...line];
     let result = '';
     if (flag === true || flag === false) {
-        if (flag === false) line = line.reverse();
+        if (flag === false) {
+            line = line.reverse();
+        }
         let set = new Set();
         line.forEach((item) => {
             if (!set.has(item)) {
@@ -29,7 +31,9 @@ const letters = (line, flag) => {
                 result += item;
             }
         });
-        if (flag === false) result = [...result].reverse().join("");
+        if (flag === false) {
+            result = [...result].reverse().join("");
+        }
     } else {
         let obj = new Object(null);
         [...line].forEach((item) => {
@@ -41,7 +45,9 @@ const letters = (line, flag) => {
         });
         
         [...line].forEach((item) => {
-            if (obj[item] === 1) result += item;
+            if (obj[item] === 1) {
+                result += item;
+            }
         });
     }
     return result;

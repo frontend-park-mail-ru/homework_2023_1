@@ -72,4 +72,22 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…'), '®њ©', "letters('ыћ÷°љ∆…®њ©ыћ÷°љ∆…') === '®њ©'");
 	});
 
+	QUnit.test('Дополнительно: проверка валидации', function (assert) {
+		assert.strictEqual(letters(new String('hello')), 'heo', "letters(new String('hello')) === 'heo'");
+		assert.strictEqual(letters('hello'), 'heo', "letters('hello') === 'heo'");
+		assert.strictEqual(letters('hello', true), 'helo', "letters('hello', true) === 'helo'");
+		
+		try {
+			letters(false);
+		} catch (err) {
+			assert.strictEqual(err.message, 'The first parameter is not a string!', 'letters(false) === error :: The first parameter is not a string!');
+		}
+
+		try {
+			letters('false', 'true');
+		} catch (err) {
+			assert.strictEqual(err.message, 'The second parameter is not a boolean!', "letters('false', 'true') === error :: The second parameter is not a boolean!");
+		}
+	});
+
 });
