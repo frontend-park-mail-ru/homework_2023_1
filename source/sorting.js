@@ -10,17 +10,22 @@
  * @param {Array.<Object>} objects - массив plain-объектов
  * @param {Array.<String>} properties - массив имён свойств, по которым необходимо отсортировать массив объектов
  * @returns {(Array.<Object>|string)} - отсортированный массив либо сообщение об ошибке
- * @throws {<String>} Will throw an error if array consists of empty objects.
  */
 
+const TYPE_ERROR = 'Invalid data.';
+
 const sorting = (objects, properties) => {
-    if (!objects?.length) return [];
-    if (!properties?.length) return objects;
+    if (!objects?.length) {
+        return [];
+    }
+    if (!properties?.length) {
+        return objects;
+    }
 
     if (!objects.every(o => Object.keys(o).length)) {
-        return new Error('Invalid data. Array consists of empty objects');
+        return TYPE_ERROR;
     }
-    
+
     return structuredClone(objects).sort((a,b) => {
         for (const key of properties) {
             if (a[key] < b[key]) {
@@ -33,3 +38,14 @@ const sorting = (objects, properties) => {
         return 0;
     });
 };
+
+let arr =[
+    {prop1: 3, id: '1'},
+    {prop1: 3, id: '2'},
+    {prop1: 1, id: '1'},
+    {prop1: 1, id: '2'},
+    {prop1: 4, id: '1'},
+    {prop1: 4, id: '2'},
+    {prop1: 2, id: '1'},
+    {prop1: 2, id: '2'}
+]

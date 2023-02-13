@@ -221,7 +221,21 @@ QUnit.module('Тестируем функцию sorting', function () {
 
 		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
 
-		const expectedError = new Error('Invalid data. Array consist only empty objects'); 
+		const expectedError = 'Invalid data.';
+
+		assert.deepEqual(actual, expectedError);
+	})
+
+	QUnit.test('sorting невалидные данные. Все элементы массива должны являться объектами.', function(assert) {
+		const initial = [
+			"object object",
+    		22,
+    		{name: 'Daniil', surname: NaN, money: Infinity, status: 22}
+		];
+
+		const actual = sorting(initial, ['name', 'money', 'status', 'surname']);
+
+		const expectedError = "Invalid data.";
 
 		assert.deepEqual(actual, expectedError);
 	})
