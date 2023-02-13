@@ -101,6 +101,14 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 10), expected1);
 	});
 
+	QUnit.test('format работает правильно c new Number()', function (assert) {
+		const input = [];
+
+		const expected1 = ""
+
+		assert.strictEqual(format(input, new Number(10)), expected1);
+	});
+
 	QUnit.test('format выдает ошибку при неверном типе входных данных', function (assert) {
 		const input1 = "Im wrong input, hello";
 		const input2 = [1, 2, 3];

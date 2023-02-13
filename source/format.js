@@ -15,7 +15,7 @@ function format(values, columnsNumber) {
 		);
 	}
 
-	if (typeof columnsNumber !== 'number') {
+	if (typeof columnsNumber !== 'number' && columnsNumber.constructor != Number) {
 		throw new TypeError(
 			`Wrong type of second argument.
 			Expected "number", got "${typeof columnsNumber}"`
@@ -34,7 +34,7 @@ function format(values, columnsNumber) {
 	// получаем максимальные длины по столбцам
 	values.forEach((value, index) => {
 		let columnIndex = index % columnsNumber;
-		if (typeof value != "number" && typeof value !== 'bigint') {
+		if (typeof value != "number" && value.constructor != Number) {
 			throw new TypeError(
 				`Wrong type of array values. Expected "Number", got "${typeof value}"`
 			);
