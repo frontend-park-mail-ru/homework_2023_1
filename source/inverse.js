@@ -11,19 +11,21 @@ const inverse = (given_array, position = 0) => {
         throw new Error("wrong parameters!")
     }
 
-    const new_given_array = [...given_array]
+    const temp_given_array = [...given_array]
 
-    if (position >= 0) {
-        for (let i = given_array.length - 1; i >= position; i--) {
-            new_given_array[i] = given_array[given_array.length - 1 - i +position]
+    if (position < 0) {
+        for (let i = given_array.length + position - 1; i >= 0; i--) {
+            temp_given_array[i] = given_array[given_array.length - 1 - i + position]
+
+
         }
-    } else {
-        for (let i = 0; i <= given_array.length + position - 1; i++) {
-            new_given_array[i] = given_array[given_array.length - 1 - i + position]
+    } else  if (position >= 0) {
+        for (let i = given_array.length - 1; i >= position; i--) {
+            temp_given_array[i] = given_array[given_array.length - 1 - i + position]
         }
     }
 
-    return new_given_array
+    return temp_given_array
 };
 
 
