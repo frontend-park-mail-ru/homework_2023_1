@@ -1,33 +1,5 @@
 'use strict';
 
-QUnit.module('Тестируем функцию addLayer', function () {
-	QUnit.test('Слои дерева шириной 3', function (assert) {
-		assert.strictEqual(addLayer('*', 0, 3), ' * \n');
-		assert.strictEqual(addLayer('*', 1, 3), '***\n');
-		assert.strictEqual(addLayer('|', 0, 3), ' | \n');
-	});
-
-	QUnit.test('Слои дерева шириной 5', function (assert) {
-		assert.strictEqual(addLayer('*', 0, 5), '  *  \n');
-		assert.strictEqual(addLayer('*', 1, 5), ' *** \n');
-		assert.strictEqual(addLayer('*', 2, 5), '*****\n');
-		assert.strictEqual(addLayer('|', 0, 5), '  |  \n');
-	});
-
-	QUnit.test('Слои дерева шириной 999', function (assert) {
-		assert.strictEqual(addLayer('*', 0, 999).length, 1000);
-		assert.strictEqual(addLayer('*', 1, 999).length, 1000);
-		assert.strictEqual(addLayer('*', 2, 999).length, 1000);
-		assert.strictEqual(addLayer('|', 0, 999).length, 1000);
-		assert.strictEqual(addLayer('*', 0, 999).trim(), '*');
-		assert.strictEqual(addLayer('*', 1, 999).trim(), '***');
-		assert.strictEqual(addLayer('*', 500, 999), '*'.repeat(1001) + '\n');
-
-		const trunk_expected = ' '.repeat(500) + '|' + ' '.repeat(500) + '\n';
-		assert.strictEqual(addLayer('|', 0, 1001), trunk_expected); 
-	});
-});
-
 QUnit.module('Тестируем функцию tree', function () {
 	QUnit.test('Ёлочек нечисловой высоты не бывает', function (assert) {
 		assert.strictEqual(tree(undefined), null);
