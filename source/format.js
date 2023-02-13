@@ -15,7 +15,7 @@ const format = (values, columnsNumber) => {
 		);
 	}
 
-	if (typeof columnsNumber !== "number" && !Number.prototype.isPrototypeOf(columnsNumber)) {
+	if (typeof columnsNumber !== "number" && !(columnsNumber instanceof Number)) {
 		throw new TypeError(
 			`Wrong type of second argument.
 			Expected "number", got "${typeof columnsNumber}"`
@@ -32,7 +32,7 @@ const format = (values, columnsNumber) => {
 	// получаем максимальные длины по столбцам
 	const maxLengths = values.reduce((previousValue, currentElement, index) => {
 		const columnIndex = index % columnsNumber;
-		if (typeof currentElement != "number" && !Number.prototype.isPrototypeOf(currentElement)) {
+		if (typeof currentElement != "number" && !(currentElement instanceof Number)) {
 			throw new TypeError(
 				`Wrong type of array values. Expected "Number", got "${typeof currentElement}"`
 			);
