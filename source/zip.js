@@ -7,7 +7,9 @@
  */
 const zip = (...objects) => {
   return objects.reduceRight((result, obj, index) => {
-    if (Object.prototype.toString.call(obj) !== "[object Object]") throw new Error(`Argument №${index} is not object`)
+    if (Object.prototype.toString.call(obj) !== "[object Object]") {
+      throw new TypeError(`Argument №${index} is not object`)
+    } 
     Object.keys(obj).forEach((key) => {result[key] = obj[key]}) 
     return result
   }, {})
