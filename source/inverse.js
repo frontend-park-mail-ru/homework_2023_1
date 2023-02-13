@@ -5,6 +5,7 @@
  * @param {number} position - position where elements won't be inverted
  * @returns {Array}
  *
+ * @author Chichikin Timofey <tchichikin@mail.ru>
  */
 
 function inverse (given_array, position = 0) {
