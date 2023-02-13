@@ -1,5 +1,5 @@
 /**
- * Inverse array except for elements that are divided by param position
+ * Inverse array except the elements, which are divided by param position
  * @function inverse
  * @param {Array} given_array - array of anything
  * @param {number} position - position where elements won't be inverted
