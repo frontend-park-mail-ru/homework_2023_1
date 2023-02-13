@@ -38,14 +38,3 @@ const sorting = (objects, properties) => {
         return 0;
     });
 };
-
-let arr =[
-    {prop1: 3, id: '1'},
-    {prop1: 3, id: '2'},
-    {prop1: 1, id: '1'},
-    {prop1: 1, id: '2'},
-    {prop1: 4, id: '1'},
-    {prop1: 4, id: '2'},
-    {prop1: 2, id: '1'},
-    {prop1: 2, id: '2'}
-]
