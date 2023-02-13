@@ -17,7 +17,7 @@ const sorting = (objects, properties) => {
     if (!objects?.length) return [];
     if (!properties?.length) return objects;
 
-    if (objects.every(o => Object.keys(o).length() === 0)) {
+    if (!objects.every(o => Object.keys(o).length)) {
         return new Error('Invalid data. Array consists of empty objects');
     }
 
