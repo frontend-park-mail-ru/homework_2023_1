@@ -1,13 +1,13 @@
-'use strict';
+/**
+ * Inverse array except for elements that are divided by param position
+ * @function inverse
+ * @param {Array} given_array - array of anything
+ * @param {number} position - position where elements won't be inverted
+ * @returns {Array}
+ *
+ */
 
-// Напишите функцию inverse, которая меняет порядок элементов в массике на противоположный.
-// Если в функцию вторым аргументом передаётся число — то переставляются все элементы массива
-// кроме нескольких первых (количество зависит от числа). Если число отрицательное — то на
-// месте остаются элементы в конце массива
-
-
-
-const inverse = (given_array, position = 0) => {
+function inverse (given_array, position = 0) {
     if (!Array.isArray(given_array)) {
         throw new Error("First parameter is not an array!")
     }
