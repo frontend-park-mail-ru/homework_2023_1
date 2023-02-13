@@ -7,8 +7,8 @@
  * @author Taktashova Daria <taktashovadasha@yandex.ru>
  */
 const zip = (...objects) => {
-    if (objects != null && objects.every(elem => elem != null)) {
+    if (objects !== null && objects !== undefined && objects.every(elem => elem !== null && elem !== undefined)) {
         return objects.reduceRight((acc, cur) => ({ ...acc, ...cur}), {});
     }
-    throw new Error('One of elements is null or undefined')
+    throw new TypeError('One of elements is null or undefined')
 }
