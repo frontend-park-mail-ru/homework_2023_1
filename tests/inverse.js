@@ -66,7 +66,7 @@ QUnit.module('Тестируем функцию inverse', function () {
 	QUnit.test('Функция на ошибочные входные данные', function (assert) {
 		assert.throws(function () {
 			inverse();
-		}, 'Функция не принимает пустой массив');
+		}, 'Функция должна принимать аргументы');
 		assert.throws(function () {
 			inverse(1);
 		}, 'Функция не принимает число');
