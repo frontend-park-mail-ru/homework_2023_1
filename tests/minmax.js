@@ -55,4 +55,8 @@ QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax игнорирует обычный текст, слипшийся справа от числа или Infinity', function (assert) {
 		assert.deepEqual(minmax('1, -5.8gb или 10, Infinity хотя 34 + -5.3 и 73'), [ -5.8, Infinity ]);
 	});
+
+	QUnit.test('minmax правильно работает со строками типа object', function (assert) {
+		assert.deepEqual(minmax(new String('6 7 hi 9 0')), [ 0, 9 ]);
+	});
 });

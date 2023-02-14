@@ -12,8 +12,8 @@ const massiveFromString = str => str.split(' ').map(c => parseFloat(c)).filter(c
  * @param {string} str - строка с числами
  * @return {Array} - массив, содержащий минимальное и максимальное число из строки
  */
-const minmax = str => {
-        if (typeof str !== 'string') {
+const minmax = (str) => {
+        if (typeof str !== 'string' && !(str instanceof String)) {
                 throw new TypeError('str is not a string');
         }
         const arr = massiveFromString(str);
