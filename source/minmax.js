@@ -5,14 +5,14 @@
  * @param {Array.<number>} numbers - массив чисел
  * @returns {number} Максимальное число
 */
-const max = (numbers) => numbers.reduce((max, item) => item > max ? item : max);
+const max = (numbers) => Math.max(...numbers);
 
 /**
  * @description Функция для поиска минимального числа в массиве чисел
  * @param {Array.<number>} numbers - массив чисел
  * @returns {number} Минимальное число
 */
-const min = (numbers) => numbers.reduce((min, cur) => cur > min ? min : cur);
+const min = (numbers) => Math.min(...numbers);
 
 /**
  * @description Функция для поиска минимального и максимального чисел в строке
@@ -20,7 +20,7 @@ const min = (numbers) => numbers.reduce((min, cur) => cur > min ? min : cur);
  * @returns {Array.<number>} Кортеж, содержащий 2 значения: минимальное и максимальное числа
 */
 const minmax = (str) => {
-  if (typeof str !== 'string') {
+  if (typeof str !== 'string' && !(str instanceof String)) {
     throw new TypeError('Неверный аргумент: ожидалась строка!');
   }
 
