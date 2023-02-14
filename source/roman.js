@@ -44,7 +44,7 @@ const roman = (input) => {
 const fromRoman = (str) => {
     const processedInput = str.toUpperCase().split('');
 
-    if (!processedInput.every(elem => Object.keys(ARABIC).includes(elem))) {
+    if (!processedInput.every((elem) => Object.keys(ARABIC).includes(elem))) {
         return NaN;
     }
 
