@@ -59,7 +59,8 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.throws(
 			function() {
 				get(object, 'nopoint');
-			}
+			},
+			new Error('attrs must start with "."')
 		);
 	});
 
@@ -91,7 +92,9 @@ QUnit.module('Тестируем функцию get', function () {
 		const invalidObjects = [
 			1337,
 			undefined,
-			true
+			null,
+			true,
+			"helloworld"
 		];
 
 		for (let invalidObject of invalidObjects) {
@@ -99,12 +102,8 @@ QUnit.module('Тестируем функцию get', function () {
 				function() {
 					get(invalidObject, '.attribute');
 				},
-				new TypeError("typeof object (param) should be 'object' or 'string'")
+				new TypeError('typeof object (param) should be "object"')
 			);
 		}
-	});
-
-	QUnit.test('get работает со строковым object', function (assert) {
-		assert.strictEqual(get('helloworld', '.1'), 'e');
 	});
 });
