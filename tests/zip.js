@@ -83,4 +83,14 @@ QUnit.module('Тестируем функцию zip', function () {
 		};
 		assert.deepEqual(zip(obj, obj, obj), obj);
 	});
+
+	QUnit.test('Функция кидает исключение при вызове без параметров', function (assert) {
+		assert.throws(() => zip(), new Error('Function was called without arguments'), "ok");
+	});
+
+	QUnit.test('Функция кидает исключение при вызове с неправильными аргументами', function (assert) {
+		assert.throws(() => zip([1, 2, 3]), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip('Arguments', 'as', 'strings'), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(1, 'as', 'strings', {ok: 'ok'}), new TypeError('Each argument of this function must be instance of Object'), "ok");
+	});
 });
