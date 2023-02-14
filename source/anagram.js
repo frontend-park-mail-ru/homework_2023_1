@@ -1,5 +1,16 @@
 'use strict';
 
+/**
+ * Фунция, которая удаляет из массива подмасивы, длина которых равна 1
+ * @param {Array.<Array.<string>>} массив подмассивов строк
+ * @returns {Array.<Array.<string>>} массив подмассивов строк, в которых нет подмассивов длины 1
+ * @example 
+ * // returns [[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ]]
+ * deleteSingleWord([[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ], [ 'кошка' ]])
+ * @example 
+ * // returns []
+ * deleteSingleWord([['ложка'], ['картофель']])
+ */
 function deleteSingleWord(groups) {
     return groups.filter(group => group.length !== 1);
 }
@@ -21,7 +32,7 @@ const anagram = (words) => {
     }
 
     words.forEach((word) => {
-        if (typeof word !== 'string') {
+        if (typeof word !== 'string' && !(word instanceof String)) {
             throw new TypeError('Expected string as element of array');
         }
     });

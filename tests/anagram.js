@@ -1,7 +1,7 @@
 'use strict';
 
 QUnit.module('Тестируем функцию anagram', function () {
-	QUnit.test('Функция работает правильно (обычный тест)', function (assert) {
+	QUnit.test('Функция работает правильно', function (assert) {
 		const input = [
 			'кот', 'пила', 'барокко',
 			'стоп', 'ток', 'кошка',
@@ -63,7 +63,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 			() => anagram(input), 
 			TypeError('Expected array as argument'), 
 			"anagram('маРш') === TypeError('Expected array as argument')"
-		)
+		);
 	});
 
 	QUnit.test('Функция работает правильно (неверный аргумент - массив чисел вместо массива строк)', function (assert) {
@@ -72,6 +72,37 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.throws(
 			() => anagram(input),
 			TypeError('Expected string as element of array'),
-			"anagram('маРш') === TypeError('Expected string as element of array')")
+			"anagram('маРш') === TypeError('Expected string as element of array')"
+		);
+	});
+
+	QUnit.test('Функция работает правильно (неверный аргумент - NaN)', function (assert) {
+		const input = [1, 2, 3];
+		
+		assert.throws(
+			() => anagram(NaN),
+			TypeError('Expected array as argument'), 
+			"anagram(NaN) === TypeError('Expected array as argument')"
+		);
+	});
+
+	QUnit.test('Функция работает правильно (неверный аргумент - undefined)', function (assert) {
+		const input = [1, 2, 3];
+		
+		assert.throws(
+			() => anagram(undefined),
+			TypeError('Expected array as argument'), 
+			"anagram(undefined) === TypeError('Expected array as argument')"
+		);
+	});
+
+	QUnit.test('Функция работает правильно (неверный аргумент - null)', function (assert) {
+		const input = [1, 2, 3];
+		
+		assert.throws(
+			() => anagram(null),
+			TypeError('Expected array as argument'), 
+			"anagram(null) === TypeError('Expected array as argument')"
+		);
 	});
 });
