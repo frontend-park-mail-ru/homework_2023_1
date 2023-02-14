@@ -8,13 +8,13 @@
  */
 const inverse = (array, pos = 0) => {
     if (!Array.isArray(array)) {
-        throw new Error('First argument must be an array');
+        throw new TypeError('First argument must be an array');
     }
 
-    if (typeof pos !== 'number') {
-        throw new Error('Second argument must be a number');
+    if (!Number.isInteger(pos)) {
+        throw new TypeError('Second argument must be an integer');
     }
-
+    
     const newArray = [...array];
     
     if (pos < 0) {
