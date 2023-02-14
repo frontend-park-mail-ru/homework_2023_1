@@ -8,7 +8,7 @@
  * @returns {boolean} – Результат сравнения типов.
  */
 const isObject = (value) => {
-    return Object.getPrototypeOf(value) === Object.prototype;
+    return value.constructor.name === 'Object';
 }
 
 /**
