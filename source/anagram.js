@@ -1,21 +1,6 @@
 'use strict';
 
 /**
- * Фунция, которая удаляет из массива подмасивы, длина которых равна 1
- * @param {Array.<Array.<string>>} массив подмассивов строк
- * @returns {Array.<Array.<string>>} массив подмассивов строк, в которых нет подмассивов длины 1
- * @example 
- * // returns [[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ]]
- * deleteSingleWord([[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ], [ 'кошка' ]])
- * @example 
- * // returns []
- * deleteSingleWord([['ложка'], ['картофель']])
- */
-function deleteSingleWord(groups) {
-    return groups.filter(group => group.length !== 1);
-}
-
-/**
  * Функция поиска анаграмм 
  * @param {Array.<string>} words массив строк
  * @returns {Array.<Array.<string>>} массив подмассивов строк, в котором каждый подмассив содержит анаграммы
@@ -37,15 +22,17 @@ const anagram = (words) => {
         }
     });
 
-    words.sort((a, b) => a.localeCompare(b, 'ru', {sensitivity: 'base'}));
+    words.sort((a, b) => a.localeCompare(b, 'ru', { sensitivity: 'base' }));
 
-    const result  = words.reduce((result, word) => {
+    const result = words.reduce((result, word) => {
         const cleaned = word.split('').sort().join('');
         result[cleaned] ??= [];
         result[cleaned].push(word);
 
         return result;
     }, {});
+
+    const deleteSingleWord = (groups) => groups.filter(group => group.length !== 1);
 
     return deleteSingleWord(Object.values(result));
 }
