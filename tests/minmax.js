@@ -7,13 +7,13 @@ QUnit.module('Тестируем функцию minmax', function () {
 	});
 
 	QUnit.test('minmax работает правильно при null и undefined', function (assert) {
-		assert.throws( function () { minmax(undefined); } );
-		assert.throws( function () { minmax(null); } );
+		assert.throws( () => { minmax(undefined); } );
+		assert.throws( () => { minmax(null); } );
 	});
 
 	QUnit.test('minmax работает правильно при других типах', function (assert) {
-		assert.throws( function () { minmax(123); } );
-		assert.throws( function () { minmax(false); } );
+		assert.throws( () => { minmax(123); } );
+		assert.throws( () => { minmax(false); } );
 	});
 
 	QUnit.test('minmax работает правильно при null и undefined в строке', function (assert) {

@@ -16,8 +16,6 @@ const minmax = str => {
         if (typeof str !== 'string') {
                 throw new TypeError('str is not a string');
         }
-
         const arr = massiveFromString(str);
-
         return arr.length <= 0 ? [ undefined, undefined ] : [Math.min(...arr), Math.max(...arr)];
 }
