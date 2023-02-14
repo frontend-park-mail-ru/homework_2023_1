@@ -19,7 +19,7 @@ const ARABIC = {
 /**
  * Перевод чисел из римской записи в арабскую и обратно
  * @param {(string|number)} input - Число/строка с арабской записью числа или строка, содержащая римскую запись числа
- * @returns {(string|number)} - Результат преобразования (число, если арабская запись, строка - если римская)
+ * @returns {(string|number|NaN)} - Результат преобразования (число, если арабская запись, строка - если римская)
  */
 const roman = (input) => {
     if (Number.isNaN(input) || input === null ||
@@ -39,7 +39,7 @@ const roman = (input) => {
 /**
  * Перевод чисел из римской записи в арабскую
  * @param {string} str - Строка, содержащая римскую запись числа
- * @returns {number} - Результат преобразования в арабскую запись
+ * @returns {(number|NaN)} - Результат преобразования в арабскую запись (NaN при невалидных входных данных)
  */
 const fromRoman = (str) => {
     const processedInput = str.toUpperCase().split('');
@@ -62,7 +62,7 @@ const fromRoman = (str) => {
 /**
  * Перевод чисел из арабской записи в римскую
  * @param {number} number - Арабская запись числа
- * @returns {string} - Результат преобразования в римскую запись
+ * @returns {(string|NaN)} - Результат преобразования в римскую запись (NaN при невалидных входных данных)
  */
 const toRoman = (number) => {
     if (number > MAX_ROMAN || number < MIN_ROMAN) {
