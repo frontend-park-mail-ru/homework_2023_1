@@ -45,17 +45,17 @@ const grouping = (strings) => {
     const unique_dicts = [];
     const result = [];
     strings.forEach(str => {
-        const dict = {};
-        [...str.toLowerCase()].forEach(symbol => {
-            dict[symbol] = ++dict[symbol] | 1
-        });
+        const dict = [...str.toLowerCase()].reduce((acc, symbol) => {
+            acc[symbol] = ++acc[symbol] || 1
+            return acc
+        }, {});
         const found = unique_dicts.find(d => isEqual(d.dict, dict));
         if (found) {
-            result.find(s => s[0] == found.string).push(str);
+            result.find(s => s[0] === found.string).push(str);
         } else {
             unique_dicts.push({
-                "string": str, 
-                "dict" : dict,
+                'string': str, 
+                'dict' : dict,
             });
             result.push([str]);
         } 
@@ -70,12 +70,17 @@ const grouping = (strings) => {
  * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
 const anagramMap = (strings) => {
+    if (!Array.isArray(strings) || (!strings.every((elem) => {
+        return typeof elem === 'string'
+    }))) {
+        throw new TypeError('Expected Array of strings');
+    }
     return grouping(strings)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {
-            return a.toLowerCase() > b.toLowerCase() ? 1 : -1; 
+            return a.localeCompare(b)
         }))
         .sort((a, b) => {
-            return a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1; 
+            return a[0].localeCompare(b[0])
         })
 }

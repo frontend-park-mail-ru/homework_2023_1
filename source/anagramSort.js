@@ -3,20 +3,24 @@
 /**
  * Функция для добавления строки в массив групп анаграмм
  * @param {Array} groups массив групп анаграмм
- * @param {string} new_string строка для включения в масив групп анаграмм 
+ * @param {string} newString строка для включения в масив групп анаграмм 
  * @returns {Array} массив групп анаграмм с включенной строкой
  */
-const addAnagram = (groups, new_string) => {
-    try {
-        groups.find(group => 
-            [...group[0].toLowerCase()].sort().toString() 
-                === [...new_string.toLowerCase()].sort().toString())
-            .push(new_string)
-    } catch(err) {
-        groups.push([new_string])
+
+const addAnagram = (groups, newString) => {
+    const groupsCopy = groups.slice()
+    const foundGroup = groupsCopy.find(group => group[0].toLowerCase().split('').sort().toString() 
+            === newString.toLowerCase().split('').sort().toString())
+    if (foundGroup) {
+        foundGroup.push(newString)
     }
-    return groups
+    else {
+        groupsCopy.push([newString])
+    }
+    return groupsCopy
 }
+
+
 
 /**
  * Функция для поиска анаграмм.
@@ -27,15 +31,19 @@ const addAnagram = (groups, new_string) => {
  * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
 const anagramSort = (strings) => {
+    if (!Array.isArray(strings) || (!strings.every((elem) => {
+        return typeof elem === 'string'
+    }))) {
+        throw new TypeError('Expected Array of strings');
+    }
     return strings.reduce((acc, string) => {
             return addAnagram(acc, string)
         }, [])
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {
-            return a.toLowerCase() > b.toLowerCase() ? 1 : -1; 
+            return a.localeCompare(b)
         }))
         .sort((a, b) => {
-            return a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1; 
+            return a[0].localeCompare(b[0])
         })
 }
-
