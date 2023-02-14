@@ -5,7 +5,7 @@
  * @param {string} str - строка с числами
  * @return {Array} - массив всех чисел из строки
  */
-const massiveFromString = str => str.split(' ').map(c => parseFloat(c)).filter(c => !isNaN(c));
+const massiveFromString = (str) => str.split(' ').map(c => parseFloat(c)).filter(c => !isNaN(c));
 
 /**
  * Получение минимального и максимального чисел из строки
