@@ -7,8 +7,8 @@ QUnit.module('Тестируем функцию minmax', function () {
 	});
 
 	QUnit.test('minmax работает правильно при null и undefined', function (assert) {
-		assert.deepEqual(minmax(undefined), [ undefined, undefined ]);
-		assert.deepEqual(minmax(null), [ undefined, undefined ]);
+		assert.throws( function () { minmax(undefined); } );
+		assert.throws( function () { minmax(null); } );
 	});
 
 	QUnit.test('minmax работает правильно при null и undefined в строке', function (assert) {

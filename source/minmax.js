@@ -12,7 +12,12 @@ const massiveFromString = str => str.split(' ').map(c => parseFloat(c)).filter(c
  * @param {string} str - строка с числами
  * @return {Array} - массив, содержащий минимальное и максимальное число из строки
  */
-const minmax = str => str === null || str === undefined || massiveFromString(str).length <= 0 ?
-        [ undefined, undefined ] :
-        [Math.min(...massiveFromString(str)), Math.max(...massiveFromString(str))];
-        
+const minmax = str => {
+        if (typeof str !== 'string') {
+                throw new TypeError('str is not a string');
+        }
+
+        const arr = massiveFromString(str);
+
+        return arr.length <= 0 ? [ undefined, undefined ] : [Math.min(...arr), Math.max(...arr)];
+}
