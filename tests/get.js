@@ -55,6 +55,7 @@ QUnit.module('Тестируем функцию get', function () {
 				bar: 42
 			}
 		};
+
 		assert.throws(
 			function() {
 				get(object, 'nopoint');
@@ -62,29 +63,48 @@ QUnit.module('Тестируем функцию get', function () {
 		);
 	});
 
-	QUnit.test('get вызывает иключение для невалидных типов данных', function (assert) {
-		const objectInvalidTypes = [
-			Number,
-			Boolean,
-			undefined,
-			null
-		];
-		const attrsInvalidTypes = [
-			Number,
-			Boolean,
+	QUnit.test('get вызывает иключение для невалидного типа attrs', function (assert) {
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+		const invalidAttrs = [
+			1337,
 			undefined,
 			null,
-			Object
-		]
+			{ foo: 'hello' },
+			true
+		];
 
-		for (let objectInvalidType of objectInvalidTypes) {
-			for (let attrsInvalidType of attrsInvalidTypes) {
-				assert.throws(
-					function() {
-						get(objectInvalidType(), attrsInvalidType());
-					}
-				);
-			}
+		for (let invalidAttr of invalidAttrs) {
+			assert.throws(
+				function() {
+					get(object, invalidAttr);
+				},
+				new TypeError('attrs should be string')
+			);
 		}
+	});
+
+	QUnit.test('get вызывает иключение для невалидного типа object', function (assert) {
+		const invalidObjects = [
+			1337,
+			undefined,
+			true
+		];
+
+		for (let invalidObject of invalidObjects) {
+			assert.throws(
+				function() {
+					get(invalidObject, '.attribute');
+				},
+				new TypeError("typeof object (param) should be 'object' or 'string'")
+			);
+		}
+	});
+
+	QUnit.test('get работает со строковым object', function (assert) {
+		assert.strictEqual(get('helloworld', '.1'), 'e');
 	});
 });
