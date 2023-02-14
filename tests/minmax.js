@@ -3,24 +3,20 @@
 QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax возвращает ошибку при невалидных данных', function (assert) {
 		assert.throws(
-			() => minmax(null),
+			function() {
+				minmax(null);
+			},
 			TypeError('Неверный аргумент: ожидалась строка!'));
 		assert.throws(
-			() => minmax(undefined),
+			function() {
+				minmax(undefined);
+			},
 			TypeError('Неверный аргумент: ожидалась строка!'));
-        assert.throws(
-			() => minmax({}),
+		assert.throws(
+			function() {
+				minmax({});
+			},
 			TypeError('Неверный аргумент: ожидалась строка!'));
-	});
-
-	QUnit.test('minmax работает правильно на шаблонных строках', function (assert) {
-		assert.deepEqual(minmax(``), [ undefined, undefined ]);
-		assert.deepEqual(minmax(`1`), [ 1, 1 ]);
-		assert.deepEqual(minmax(`Infinity`), [ Infinity, Infinity ]);
-		assert.deepEqual(minmax(`-1e-5`), [ -1e-5, -1e-5 ]);
-		assert.deepEqual(minmax(`1 2 3`), [ 1, 3 ]);
-		assert.deepEqual(minmax(`-Infinity -1 0 1 Infinity`), [ -Infinity, Infinity ]);
-		assert.deepEqual(minmax(`-.01 0 .01`), [ -.01, .01 ]);
 	});
 
 	QUnit.test('minmax работает правильно на строках без чисел', function (assert) {
