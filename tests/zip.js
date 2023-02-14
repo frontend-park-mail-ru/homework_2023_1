@@ -1,3 +1,5 @@
+'use strict';
+
 QUnit.module('Тестируем функцию zip', function () {
 	QUnit.test('Функция работает с единственным объектом', function (assert) {
 		assert.deepEqual(zip({}), {});

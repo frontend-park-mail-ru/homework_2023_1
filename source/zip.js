@@ -8,7 +8,7 @@
  * @returns {boolean} – Результат сравнения типов.
  */
 const isObject = (value) => {
-    return value.toString() === '[object Object]';
+    return Object.getPrototypeOf(value) === Object.prototype;
 }
 
 /**
@@ -26,17 +26,11 @@ const zip = (...objects) => {
     if (!objects.length) {
         throw new Error('Function was called without arguments');
     }
-	let result = {};
 
-    objects.forEach(obj => {
-        Object.keys(obj).forEach((key) => {
-            if (!isObject(obj)) {
-                throw new TypeError('Each argument of this function must be instance of Object');
-            }
-            if (!result.hasOwnProperty(key)) {
-                result[key] = obj[key];
-            }
-        })
-    })
-    return result;
+    return objects.reduce((previousItem, currentItem) => {
+        if (!isObject(currentItem)) {
+            throw new TypeError('Each argument of this function must be instance of Object');
+        }
+        return {...currentItem, ...previousItem}
+    }, {})
 }
