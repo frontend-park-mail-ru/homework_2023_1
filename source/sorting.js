@@ -11,21 +11,15 @@
  */
 function sorting (arr, params) {
     arr.sort((a, b) => {
-        let comparator = 0;
-        for (let p = 0; p < params.length; ++p) {
-            if (a[params[p]] < b[params[p]]) {
-                comparator = -1;
-                return comparator;
+        for (let p of params) {
+            if (a[p] < b[p]) {
+                return -1;
             }
-            if (a[params[p]] === b[params[p]]) {
-                comparator = 0;
-            }
-            if (a[params[p]] > b[params[p]]) {
-                comparator = 1;
-                return comparator;
+            if (a[p] > b[p]) {
+                return 1;
             }
         };
-        return comparator;
+        return 0;
     });
     return arr;
 }
