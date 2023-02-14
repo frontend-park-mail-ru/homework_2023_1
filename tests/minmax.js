@@ -11,6 +11,11 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.throws( function () { minmax(null); } );
 	});
 
+	QUnit.test('minmax работает правильно при других типах', function (assert) {
+		assert.throws( function () { minmax(123); } );
+		assert.throws( function () { minmax(false); } );
+	});
+
 	QUnit.test('minmax работает правильно при null и undefined в строке', function (assert) {
 		assert.deepEqual(minmax('undefined'), [ undefined, undefined ]);
 		assert.deepEqual(minmax('null'), [ undefined, undefined ]);
