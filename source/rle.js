@@ -1,22 +1,3 @@
-//First version
-//
-// 'use strict';
-// const rle = function (str) {
-//     if (str === '') return '';
-//     let res = '';
-//     let count = 1;
-//     for (let i = 1; i < str.length; ++i) {
-//         (str[i] === str[i-1]) ?
-//             count++ :
-//             ((count !== 1) ?
-//                 res += str[i-1] + count :
-//                 res += str[i-1],
-//                 count = 1)
-//     }
-//     return (count !== 1) ? res + str.at(-1) + count : res + str.at(-1)
-// }
-
-// Last version
 'use strict';
 
 /**
@@ -26,5 +7,13 @@
  * @returns {string} - compressed string
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
-const rle = str => str.replace(/(.)\1*/g,
-    function (substr, sym) { return sym + (substr.length > 1 ? substr.length : ''); });
+const rle = (s) => {
+    if (s === null || s === undefined || Object.getPrototypeOf(s) !== String.prototype) {
+        throw new Error('Type Error')
+    }
+    let cnt = 1, tmp = 1
+    const cntToString = cnt => cnt !== 1 ? cnt : ''
+    const func = (res, next) =>
+        next === res[res.length - 1] ? (++cnt, res) : (tmp = cnt, cnt = 1, res + cntToString(tmp) + next)
+    return s.split('').reduce(func, '') + cntToString(cnt)
+}
