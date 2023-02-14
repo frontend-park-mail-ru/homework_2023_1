@@ -15,16 +15,16 @@ function deleteSingleWord(groups) {
  * // returns [[ 'барокко', 'коробка' ], [ 'кот', 'ток' ], [ 'липа', 'пила' ], [ 'пост', 'стоп' ]]
  * anagram([ 'кот', 'пила', 'барокко', 'стоп', 'ток', 'кошка', 'липа', 'коробка', 'пост' ]) 
  */
-const anagram = words => {
+const anagram = (words) => {
     if (!Array.isArray(words)) {
         throw new TypeError('Expected array as argument');
     }
 
-    words.forEach(word => {
+    words.forEach((word) => {
         if (typeof word !== 'string') {
             throw new TypeError('Expected string as element of array');
         }
-    })
+    });
 
     words.sort((a, b) => a.localeCompare(b, 'ru', {sensitivity: 'base'}));
 
