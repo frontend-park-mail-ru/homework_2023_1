@@ -2,11 +2,11 @@
 
 QUnit.module('Тестируем функцию rle', function () {
 	QUnit.test('Функция работает с невалидными данными и выбрасывает ошибку', function (assert) {
-		assert.throws(()=>rle(null), Error('Type Error'))
-		assert.throws(()=>rle(undefined), Error('Type Error'))
-		assert.throws(()=>rle(5), Error('Type Error'))
-		assert.throws(()=>rle({'12':456}), Error('Type Error'))
-		assert.throws(()=>rle(['12', '456']), Error('Type Error'))
+		assert.throws(()=>rle(null), TypeError('Error'));
+		assert.throws(()=>rle(undefined), TypeError('Error'));
+		assert.throws(()=>rle(5), TypeError('Error'));
+		assert.throws(()=>rle({'12':456}), TypeError('Error'));
+		assert.throws(()=>rle(['12', '456']), TypeError('Error'));
 	});
 	QUnit.test('Функция работает с пустой строкой', function (assert) {
 		assert.strictEqual(rle(''), '', "rle('') === ''");

@@ -7,13 +7,20 @@
  * @returns {string} - compressed string
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
-const rle = (s) => {
-    if (s === null || s === undefined || Object.getPrototypeOf(s) !== String.prototype) {
-        throw new Error('Type Error')
+const rle = (str) => {
+    if (typeof str !== "string") {
+        throw new TypeError('Error');
     }
-    let cnt = 1, tmp = 1
-    const cntToString = cnt => cnt !== 1 ? cnt : ''
-    const func = (res, next) =>
-        next === res[res.length - 1] ? (++cnt, res) : (tmp = cnt, cnt = 1, res + cntToString(tmp) + next)
-    return s.split('').reduce(func, '') + cntToString(cnt)
+    let count = 1, tmp = 1;
+    const countToString = (count) => count !== 1 ? count : '';
+    return str.split('').reduce((result, next) => {
+        if (next === result[result.length - 1]) {
+            count++;
+            return result;
+        } else {
+            tmp = count;
+            count = 1;
+            return result + countToString(tmp) + next;
+        }
+    }, '') + countToString(count);
 }
