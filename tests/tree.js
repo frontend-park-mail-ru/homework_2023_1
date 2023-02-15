@@ -53,4 +53,22 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree(8), expected);
 		assert.strictEqual(tree('8'), expected);
 	});
+
+	QUnit.test('Отрицательной высоты не бывает', function (assert) {
+		assert.strictEqual(tree(-4), null);
+		assert.strictEqual(tree('-4'), null);
+	});
+
+	QUnit.test('Высота может быть только числом', function (assert) {
+		assert.throws(() => tree('высота'), TypeError('Странная высота'));
+	});
+
+	QUnit.test('Высота должна быть целой', function (assert) {
+		assert.throws(() => tree(3.14), TypeError('Странная высота'));
+	})
+
+	QUnit.test('Высота не может быть пустой', function (assert) {
+		assert.throws(() => tree(null), TypeError('Странная высота'));
+		assert.throws(() => tree(NaN), TypeError('Странная высота'));
+	});
 });

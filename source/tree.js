@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * function creating ascii tree
  * @returns {String | null}
@@ -14,7 +15,9 @@
 
 /** This function is returning a symbol. */
 function* print_symbol(count, symbol) {
-    for (let i = 0; i < count; ++i) yield symbol;
+    for (let i = 0; i < count; ++i) {
+        yield symbol;
+    }
 }
 
 /** This function is generating a symbol. */
@@ -30,8 +33,7 @@ function* row(height, cur_height, symbol) {
 
 /** This function is generating a tree. */
 function* create_tree(height) {
-    for (let i = 1; i < height; i++)
-        yield* row(height, i, '*');
+    for (let i = 1; i < height; i++) yield* row(height, i, '*');
 
     yield* row(height, 1, '|');
 }
@@ -39,15 +41,26 @@ function* create_tree(height) {
 
 const tree = (n) => {
     const height = Number(n);
-    if ((isNaN(height)) || n === null || (!Number.isInteger(height)) || (!isFinite(height))) {
+    if (n === null) {
         throw new TypeError('такой высоты не бываает');
     }
 
-    if (height < 3) {
+    else if (isNaN(height)) {
+        throw new TypeError('такой высоты не бываает');
+    }
+
+    else if (!Number.isInteger(height)) {
+        throw new TypeError('такой высоты не бываает');
+    }
+
+    else if (!isFinite(height)) {
+        throw new TypeError('такой высоты не бываает');
+    }
+
+    else if (height < 3) {
         return null;
     }
 
     return [...create_tree(height)].join('');
-
 
 }
