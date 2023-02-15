@@ -84,6 +84,3 @@ const anagramMap = (strings) => {
             return a[0].localeCompare(b[0]);
         })
 }
-
-
-console.log(anagramMap([new String('Aaa'), new String('aaA'), new String('Kk'), new String('Hello'), new String('KK'),]))
