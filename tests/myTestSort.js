@@ -17,6 +17,14 @@ QUnit.module('Тестируем функцию sort', function () {
         assert.throws(function() {
             sort(['a', 'bc', 'def']);
         }, TypeError, 'OK');
+
+        assert.throws(function() {
+           sort(null);
+        }, TypeError, 'OK');
+
+        assert.throws(function() {
+            sort();
+        }, TypeError, 'OK');
     });
 });
 

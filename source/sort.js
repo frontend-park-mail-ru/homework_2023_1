@@ -21,19 +21,20 @@ const sort = str => {
     }
 
     // split the string into separate words
-    let words = str.split(' ');
+    const words = str.split(' ');
 
     // add an object for string comparison
-    let collator = new Intl.Collator();
-    for (let i = 0; i < words.length; i++) {
+    const collator = new Intl.Collator();
+
+    words.forEach((word, index) =>{
 
         // split the word into separate letters, lowercase and sort letters
-        let letters = words[i].toLowerCase().split('').sort((a, b) => {
+        const letters = word.toLowerCase().split('').sort((a, b) => {
             return collator.compare(a, b);
         });
         letters[0] = letters[0].toUpperCase();
-        words[i] = letters.join('');
-    }
+        words[index] = letters.join('');
+    });
 
     return words.sort((a, b) => collator.compare(a, b)).join(' ');
 }
