@@ -78,14 +78,16 @@ QUnit.module('Тестируем функцию get', function () {
 			true
 		];
 
-		for (let invalidAttr of invalidAttrs) {
-			assert.throws(
-				function() {
-					get(object, invalidAttr);
-				},
-				new TypeError('attrs should be string')
-			);
-		}
+		invalidAttrs.forEach(
+			invalidAttr => {
+				assert.throws(
+					function() {
+						get(object, invalidAttr);
+					},
+					new TypeError('attrs should be string')
+				);
+			}
+		);
 	});
 
 	QUnit.test('get вызывает иключение для невалидного типа object', function (assert) {
@@ -94,16 +96,20 @@ QUnit.module('Тестируем функцию get', function () {
 			undefined,
 			null,
 			true,
-			"helloworld"
+			"helloworld",
+			new Boolean(),
+			new String()
 		];
 
-		for (let invalidObject of invalidObjects) {
-			assert.throws(
-				function() {
-					get(invalidObject, '.attribute');
-				},
-				new TypeError('typeof object (param) should be "object"')
-			);
-		}
+		invalidObjects.forEach(
+			invalidObject => {
+				assert.throws(
+					function() {
+						get(invalidObject, '.attribute');
+					},
+					new TypeError('typeof object (param) should be "object"')
+				);
+			}
+		);
 	});
 });
