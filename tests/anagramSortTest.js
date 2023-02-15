@@ -30,6 +30,17 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagramSort(input), output);
 	});
 
+	QUnit.test('Тест anagramSort: функция работает правильно с объектами строк', function (assert) {
+		const input = [new String('Aaa'), new String('aaA'), new String('Kk'), new String('Hello'), new String('KK'),];
+
+		const output = [
+			[ new String('aaA'), new String('Aaa') ],
+			[ new String('Kk'), new String('KK')],   
+		];
+
+		assert.deepEqual(anagramSort(input), output);
+	});
+
 	QUnit.test('Тест anagramSort: функция работает правильно при отсутствие анаграмм', function (assert) {
 		const inputNoAnagrams = ['hello', 'world', 'what', 'is', 'your', 'name'];
 		const outputNoAnagrams = []

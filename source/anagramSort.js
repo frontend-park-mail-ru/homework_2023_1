@@ -2,22 +2,22 @@
 
 /**
  * Функция для добавления строки в массив групп анаграмм
- * @param {Array} groups массив групп анаграмм
+ * @param {Object} groups массив групп анаграмм
  * @param {string} newString строка для включения в масив групп анаграмм 
- * @returns {Array} массив групп анаграмм с включенной строкой
+ * @returns {Object} массив групп анаграмм с включенной строкой
  */
 
 const addAnagram = (groups, newString) => {
-    const groupsCopy = groups.slice()
-    const foundGroup = groupsCopy.find(group => group[0].toLowerCase().split('').sort().toString() 
-            === newString.toLowerCase().split('').sort().toString())
+    const groupsCopy = Object.assign({}, groups); 
+    const sortedNewString = newString.toLowerCase().split('').sort().join('');
+    const foundGroup = Object.keys(groupsCopy).find(key => key === sortedNewString);
     if (foundGroup) {
-        foundGroup.push(newString)
+        groupsCopy[sortedNewString].push(newString);
     }
     else {
-        groupsCopy.push([newString])
+        groupsCopy[sortedNewString] = [newString];
     }
-    return groupsCopy
+    return groupsCopy;
 }
 
 
@@ -27,23 +27,24 @@ const addAnagram = (groups, newString) => {
  * Поиск основан на сортировке и осуществляется соглавсно следующему правилу: 
  * 2 строки анаграммы, если при лексикографическом сравнении строк,
  * отсортированных по буквам, получается равенство
- * @param {Array} strings массив строк 
- * @returns {Array} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
+ * @param {Array.<string>} массив строк 
+ * @returns {Array.<Array.<string>>} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
 const anagramSort = (strings) => {
     if (!Array.isArray(strings) || (!strings.every((elem) => {
-        return typeof elem === 'string'
+        return typeof elem === 'string' || elem instanceof String;
     }))) {
         throw new TypeError('Expected Array of strings');
     }
-    return strings.reduce((acc, string) => {
-            return addAnagram(acc, string)
-        }, [])
+    const groups = strings.reduce((acc, string) => {
+            return addAnagram(acc, string);
+        }, {})
+    return Object.values(groups)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => {
-            return a.localeCompare(b)
+            return a.localeCompare(b);
         }))
         .sort((a, b) => {
-            return a[0].localeCompare(b[0])
+            return a[0].localeCompare(b[0]);
         })
 }

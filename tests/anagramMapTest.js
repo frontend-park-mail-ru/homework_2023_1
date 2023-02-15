@@ -25,14 +25,25 @@ QUnit.module('Тестируем функцию anagram', function () {
 			[ 'aaa', 'Aaa' ],
 			[ 'abc', 'acb', 'bac', 'bca', 'cba' ],
 			[ 'TKO', 'TOK' ]   
-		]
+		];
+
+		assert.deepEqual(anagramMap(input), output);
+	});
+
+	QUnit.test('Тест anagramMap: функция работает правильно с объектами строк', function (assert) {
+		const input = [new String('Aaa'), new String('aaA'), new String('Kk'), new String('Hello'), new String('KK'),];
+
+		const output = [
+			[ new String('aaA'), new String('Aaa') ],
+			[ new String('Kk'), new String('KK')],   
+		];
 
 		assert.deepEqual(anagramMap(input), output);
 	});
 
 	QUnit.test('Тест anagramMap: функция работает правильно при отсутствие анаграмм', function (assert) {
 		const inputNoAnagrams = ['hello', 'world', 'what', 'is', 'your', 'name'];
-		const outputNoAnagrams = []
+		const outputNoAnagrams = [];
 		assert.deepEqual(anagramMap(inputNoAnagrams), outputNoAnagrams);
 	});
 
@@ -40,7 +51,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		const inputAllAnagrams = ['Hello', 'Elloh', 'Llohe', 'Lohel', 'Ohell'];
 		const outputAllAnagrams = [
 			['Elloh', 'Hello', 'Llohe', 'Lohel', 'Ohell']
-		]
+		];
 		assert.deepEqual(anagramMap(inputAllAnagrams), outputAllAnagrams);
 	});
 
@@ -50,7 +61,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.throws(
 			() => anagramMap(input), 
 			TypeError('Expected Array of strings')
-		)
+		);
 	});
 
 	QUnit.test('Тест anagramMap: функция работает правильно при неверном аргументе (передан массив не строк)', function (assert) {
