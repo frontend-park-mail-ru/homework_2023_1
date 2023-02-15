@@ -12,9 +12,8 @@ const isEqual = (obj1, obj2) => {
     if (keys1.length !== keys2.length) {
         return false;
     }
-    return keys1.every(key => {
-        return obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] === obj2[key];
-    })
+    return keys1.every(key =>
+        obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] === obj2[key])
 }
 
 /*
@@ -70,17 +69,13 @@ const grouping = (strings) => {
  * @returns {Array.<Array.<string>>} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
 const anagramMap = (strings) => {
-    if (!Array.isArray(strings) || !strings.every((elem) => {
-        return typeof elem === 'string' || elem instanceof String;
-    })) {
+    if (!Array.isArray(strings) || !strings.every((elem) => 
+        typeof elem === 'string' || elem instanceof String
+    )) {
         throw new TypeError('Expected Array of strings');
     }
     return grouping(strings)
         .filter(group => group.length >= 2)
-        .map(group => group.sort((a, b) => {
-            return a.localeCompare(b);
-        }))
-        .sort((a, b) => {
-            return a[0].localeCompare(b[0]);
-        })
+        .map(group => group.sort((a, b) => a.localeCompare(b)))
+        .sort((a, b) => a[0].localeCompare(b[0]))
 }
