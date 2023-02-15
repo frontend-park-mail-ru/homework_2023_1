@@ -1,22 +1,21 @@
 'use strict';
 
+/**
+ * Функция, которая рисует ASCII-шахматрую доску размером 
+ * N*N символов из звёздочек (в левом верхнем углу всегда стоит звёздочка)
+ * @function
+ * @param {number | string} n - размерность шахматной доски.
+ * @returns {string | null} строка, представляющая собой шахматную доску 
+ * (ряды доски разделяются в строке с помощью '\n').
+ */
 const chess = function (n) {
-    if (n <= 1) {
-    	return null;
+    let num = Number(n);
+    if (isNaN(num) || num <= 1) {
+        return null;
     }
-
-    let cur_color = '*';
-    let result = "";
-    let is_even = n % 2;             
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-	        result += cur_color;
-	        cur_color = cur_color === '*' ? ' ' : '*';
-	    }
-        if (!is_even) {
-            cur_color = cur_color === '*' ? ' ' : '*';
-        }
-        result += '\n';
-    }
+    const blackRow = "".padStart(num, "* ") + "\n";
+    const whiteRow = "".padStart(num, " *") + "\n";
+    const doubleRow =  blackRow + whiteRow;
+    const result = "".padStart(num * num + num, doubleRow);
     return result;
 };

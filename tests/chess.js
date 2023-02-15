@@ -1,6 +1,10 @@
 'use strict';
 
 QUnit.module('Тестируем функцию chess', function () {
+	QUnit.test('Размер доски - строка, непреобразуемая в число', function (assert) {
+		assert.strictEqual(chess('error'), null);
+	});
+
 	QUnit.test('Шахматной доски -1 на -1 не бывает', function (assert) {
 		assert.strictEqual(chess(-1), null);
 		assert.strictEqual(chess('-1'), null);
