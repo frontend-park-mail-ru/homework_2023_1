@@ -13,8 +13,8 @@ const isEqual = (obj1, obj2) => {
         return false;
     }
     return keys1.every(key =>
-        obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] === obj2[key])
-}
+        obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] === obj2[key]);
+};
 
 /*
     Описание алгоритма.
@@ -60,7 +60,7 @@ const grouping = (strings) => {
         } 
     });
     return result;
-}
+};
 
 /**
  * Функция для поиска анаграмм.
@@ -78,4 +78,4 @@ const anagramMap = (strings) => {
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => a.localeCompare(b)))
         .sort((a, b) => a[0].localeCompare(b[0]));
-}
+};

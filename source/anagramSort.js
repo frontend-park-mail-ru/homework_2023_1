@@ -10,10 +10,10 @@
 const addAnagram = (groups, newString) => {
     const groupsCopy = Object.assign({}, groups); 
     const sortedNewString = newString.toLowerCase().split('').sort().join('');
-    groupsCopy[sortedNewString] ??= []
+    groupsCopy[sortedNewString] ??= [];
     groupsCopy[sortedNewString].push(newString);
     return groupsCopy;
-}
+};
 
 /**
  * Функция для поиска анаграмм.
@@ -36,4 +36,4 @@ const anagramSort = (strings) => {
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => a.localeCompare(b)))
         .sort((a, b) => a[0].localeCompare(b[0]));
-}
+};
