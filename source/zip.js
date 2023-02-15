@@ -8,7 +8,7 @@
  * @returns {boolean} – Результат сравнения типов.
  */
 const isObject = (value) => {
-    return value && typeof value === 'object';
+    return value && typeof value === 'object' && value.toString() === '[object Object]';
 }
 
 /**
