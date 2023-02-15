@@ -13,8 +13,8 @@ const chess = function (n) {
     if (isNaN(num) || num <= 1) {
         return null;
     }
-    const blackRow = "".padStart(num, "* ") + "\n";
-    const whiteRow = "".padStart(num, " *") + "\n";
+    const blackRow = "\n".padStart(num + 1, "* ");
+    const whiteRow = "\n".padStart(num + 1, " *");
     const doubleRow =  blackRow + whiteRow;
     const result = "".padStart(num * num + num, doubleRow);
     return result;
