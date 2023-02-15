@@ -9,7 +9,7 @@
  * @return {string} Отсортированная строка.
  */
 
-function sort(str) {
+const sort = str => {
     if (typeof str !== 'string') {
         return 'invalid input';
     } 
