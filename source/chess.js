@@ -4,13 +4,13 @@
  * Функция, которая рисует ASCII-шахматрую доску размером 
  * N*N символов из звёздочек (в левом верхнем углу всегда стоит звёздочка)
  * @function
- * @param {number | string} n - размерность шахматной доски.
+ * @param {number | string} n - целое число, размерность шахматной доски.
  * @returns {string | null} строка, представляющая собой шахматную доску 
  * (ряды доски разделяются в строке с помощью '\n').
  */
 const chess = function (n) {
     const num = Number(n);
-    if (isNaN(num) || num <= 1) {
+    if (!Number.isInteger(num) || num <= 1) {
         return null;
     }
     const blackRow = "\n".padStart(num + 1, "* ");

@@ -1,6 +1,30 @@
 'use strict';
 
 QUnit.module('Тестируем функцию chess', function () {
+	QUnit.test('Размер доски - object', function (assert) {
+		assert.strictEqual(chess({"n": 10}), null);
+	});
+
+	QUnit.test('Размер доски - NaN', function (assert) {
+		assert.strictEqual(chess(NaN), null);
+	});
+
+	QUnit.test('Размер доски - null', function (assert) {
+		assert.strictEqual(chess(null), null);
+	});
+
+	QUnit.test('Размер доски - undefined', function (assert) {
+		assert.strictEqual(chess(undefined), null);
+	});
+
+	QUnit.test('Размер доски - Infinity', function (assert) {
+		assert.strictEqual(chess(Infinity), null);
+	});
+
+	QUnit.test('Размер доски - вещественное число', function (assert) {
+		assert.strictEqual(chess(5.7), null);
+	});
+
 	QUnit.test('Размер доски - строка, непреобразуемая в число', function (assert) {
 		assert.strictEqual(chess('error'), null);
 	});
