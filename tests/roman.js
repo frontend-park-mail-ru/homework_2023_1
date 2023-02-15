@@ -43,6 +43,8 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.ok(Number.isNaN(roman(4000)));
 		assert.ok(Number.isNaN(roman('BMVII')));
 		assert.ok(Number.isNaN(roman('CMTXL')));
+		assert.ok(Number.isNaN(roman(Infinity)));
+		assert.ok(Number.isNaN(roman(-Infinity)));
 	});
 
 	QUnit.test('roman возвращает NaN при некорректных типах входных данных', function (assert) {
@@ -51,5 +53,6 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.ok(Number.isNaN(roman(undefined)));
 		assert.ok(Number.isNaN(roman(NaN)));
 		assert.ok(Number.isNaN(roman({})));
+		assert.ok(Number.isNaN(roman(true)));
 	});
 });

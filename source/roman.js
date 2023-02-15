@@ -13,7 +13,8 @@ const ROMAN_FIVE_MULTIPLES = {
 
 const ARABIC = {
     I: 1, V: 5, X: 10,
-    L: 50, C: 100, D: 500, M: 1000
+    L: 50, C: 100,
+    D: 500, M: 1000
 };
 
 /**
@@ -22,8 +23,7 @@ const ARABIC = {
  * @returns {(string|number|NaN)} - Результат преобразования (число, если арабская запись, строка - если римская)
  */
 const roman = (input) => {
-    if (Number.isNaN(input) || input === null ||
-        input === undefined || typeof input === 'object') {
+    if (typeof input !== 'string' && !Number.isFinite(input)) {
         return NaN;
     }
 
