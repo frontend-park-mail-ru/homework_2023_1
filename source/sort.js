@@ -10,6 +10,10 @@
  */
 
 function sort(str) {
+    if (typeof str !== 'string') {
+        return 'invalid input';
+    } 
+
     if (str.length === 0) {
         return str;
     }

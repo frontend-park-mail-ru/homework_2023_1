@@ -56,4 +56,10 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('  Я учусь в технопарке  '), 'Аеекнопртх В Суучь Я');
 		assert.strictEqual(sort(' Frontend   iS   a coOl     subject  '), 'A Bcejstu Cloo Defnnort Is');
 	});
+
+	QUnit.test('Функция правильно обрабатывает слова, убирая избыточные пробелы', function (assert) {
+		assert.strictEqual(sort(NaN), 'invalid input');
+		assert.strictEqual(sort(10), 'invalid input');
+		assert.strictEqual(sort(undefined), 'invalid input');
+	});
 });
