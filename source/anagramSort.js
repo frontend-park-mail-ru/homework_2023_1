@@ -31,9 +31,9 @@ const addAnagram = (groups, newString) => {
  * @returns {Array.<Array.<string>>} отсортированный и отфильтрованный массив групп анаграмм, каждая из которых также представляет собой массив
  */
 const anagramSort = (strings) => {
-    if (!Array.isArray(strings) || (!strings.every((elem) => {
+    if (!Array.isArray(strings) || !strings.every((elem) => {
         return typeof elem === 'string' || elem instanceof String;
-    }))) {
+    })) {
         throw new TypeError('Expected Array of strings');
     }
     const groups = strings.reduce((acc, string) => {
