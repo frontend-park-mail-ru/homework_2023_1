@@ -26,7 +26,7 @@ const sort = str => {
     // add an object for string comparison
     const collator = new Intl.Collator();
 
-    words.forEach((word, index) =>{
+    words.forEach((word, index) => {
 
         // split the word into separate letters, lowercase and sort letters
         const letters = word.toLowerCase().split('').sort((a, b) => {
