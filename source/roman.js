@@ -18,12 +18,30 @@ const ARABIC = {
 };
 
 /**
+ * Проверяет, является ли входное значение конечным числом
+ * @param {any} obj
+ * @returns {bool}
+ */
+const isFiniteNumber = (obj) => {
+    return (obj instanceof Number || typeof obj === 'number') && isFinite(obj)
+};
+
+/**
+ * Проверяет, является ли входное значение строкой
+ * @param {any} obj
+ * @returns {bool}
+ */
+const isString = (obj) => {
+    return obj instanceof String || typeof obj === 'string'
+};
+
+/**
  * Перевод чисел из римской записи в арабскую и обратно
  * @param {(string|number)} input - Число/строка с арабской записью числа или строка, содержащая римскую запись числа
  * @returns {(string|number|NaN)} - Результат преобразования (число, если арабская запись, строка - если римская)
  */
 const roman = (input) => {
-    if (!input || !(input['constructor'] === String || (input['constructor'] === Number && isFinite(input)))) {
+    if (!isString(input) && !isFiniteNumber(input)) {
         return NaN;
     }
 
