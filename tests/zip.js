@@ -16,7 +16,6 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.deepEqual(zip({}, {}), {});
 		assert.deepEqual(zip({answer: 42}, {}), {answer: 42});
 		assert.deepEqual(zip({}, {answer: 42}), {answer: 42});
-		assert.deepEqual(zip({}, {answer: 42}), {answer: 42});
 		assert.deepEqual(zip({}, {}, {}, {name: 'Georg'}), {name: 'Georg'});
 
 		const obj = {
@@ -84,7 +83,7 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.deepEqual(zip({'😄': 0}, {cost: '😄'}), obj);
 	});
 
-	QUnit.test('Функция не принимает неправомерные входные данные', function (assert) {	
+	QUnit.test('Функция не принимает неправильные входные данные', function (assert) {	
 		assert.throws(
 			() => {
 				zip(null);
@@ -105,6 +104,20 @@ QUnit.module('Тестируем функцию zip', function () {
 				zip(function(){});
 			}, TypeError
 		);
+		assert.throws(
+			() => {
+				zip(undefined);
+			}, TypeError
+		);
+		assert.throws(
+			() => {
+				zip(NaN);
+			}, TypeError
+		);
+		assert.throws(
+			() => {
+				zip();
+			}, RangeError
+		);
 	});
 });
-//Хотел уточнить, а что делать с тестом на неправильные входные данные, так как задача с входным массивом объектов, то получается он выйдет плюс минус таким же с использованием assert.throws?

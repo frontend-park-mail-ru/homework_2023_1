@@ -3,26 +3,29 @@
 /**
  * @function zip - принимает на вход несколько объектов (любое количество), и возвращает единственный объект, содержащий все поля из всех объектов.
  * @param {Object} objects - объекты которые следует обьединить.
- * @returns {Object} uni_object возращает обьединенный объект
+ * @returns {Object}
  */
 
 const zip = (...objects) => {
-    const uni_object = {};
+    if (objects.length === 0) {
+        throw new RangeError('Не было переданно обьектов для объединения');
+    }
+
+    const UniObject = {};
 
     objects.forEach((object) => {
         if (
             object !== Object(object) ||
             Object.getPrototypeOf(object) !== Object.getPrototypeOf({})
         ) {
-            throw new TypeError('Не объект или null', 'planify.js');
+            throw new TypeError('Не объект или null');
         }
-        const obj_field = Object.entries(object);
-        obj_field.forEach(([key,value]) => {
-            if (!(key in uni_object)) {
-                uni_object[key] = value;
+        const ObjField = Object.entries(object);
+        ObjField.forEach(([key,value]) => {
+            if (!(key in UniObject)) {
+                UniObject[key] = value;
             }
-        })
-    }
-    )
-    return uni_object;
-}
+        });
+    });
+    return UniObject;
+};
