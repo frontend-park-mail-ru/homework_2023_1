@@ -6,16 +6,13 @@
  * @returns {null|number} - Результат вычисления (натуральное число, если входные параметры корректны, иначе null)
  */
 const euclid = function(...nums) {
-    if (nums.length === 0) {
+    if (nums.length === 0 || nums.some(number => !Number.isInteger(number) || number <= 0)) {
         return null;
     }
-    if (nums.some(number => !Number.isInteger(number) || number <= 0)) {
-        return null;
-    }
-    return nums.reduce((pair_GCD, currentValue) => {
-        let largest = Math.max(pair_GCD, currentValue);
-        let lowest = Math.min(pair_GCD, currentValue);
-        while (lowest !== 0) {
+    return nums.reduce((resultValue, currentValue) => {
+        let largest = Math.max(resultValue, currentValue);
+        let lowest = Math.min(resultValue, currentValue);
+        while (lowest) {
             const temp = lowest;
             lowest = largest % lowest;
             largest = temp;
