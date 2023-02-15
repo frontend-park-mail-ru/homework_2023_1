@@ -5,7 +5,7 @@
  * @param  nums {number} - Массив натуральных чисел
  * @returns {null|number} - Результат вычисления (натуральное число, если входные параметры корректны, иначе null)
  */
-const euclid = function(...nums) {
+const euclid = (...nums) => {
     if (nums.length === 0 || nums.some(number => !Number.isInteger(number) || number <= 0)) {
         return null;
     }
