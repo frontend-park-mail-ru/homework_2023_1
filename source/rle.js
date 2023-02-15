@@ -8,10 +8,7 @@
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
 const rle = (str) => {
-    if (str instanceof Object) {
-        str = str.valueOf();
-    }
-    if (typeof str !== "string") {
+    if (typeof str !== "string" && !(str instanceof String)) {
         throw new TypeError('Error');
     }
     if (!str.split('').every((sym) => isNaN(sym))) {
