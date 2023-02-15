@@ -20,20 +20,16 @@ const ARABIC = {
 /**
  * Проверяет, является ли входное значение конечным числом
  * @param {any} obj
- * @returns {bool}
+ * @returns {boolean}
  */
-const isFiniteNumber = (obj) => {
-    return (obj instanceof Number || typeof obj === 'number') && isFinite(obj)
-};
+const isFiniteNumber = (obj) => (obj instanceof Number || typeof obj === 'number') && isFinite(obj);
 
 /**
  * Проверяет, является ли входное значение строкой
  * @param {any} obj
- * @returns {bool}
+ * @returns {boolean}
  */
-const isString = (obj) => {
-    return obj instanceof String || typeof obj === 'string'
-};
+const isString = (obj) => obj instanceof String || typeof obj === 'string';
 
 /**
  * Перевод чисел из римской записи в арабскую и обратно
