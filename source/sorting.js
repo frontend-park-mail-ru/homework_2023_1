@@ -2,14 +2,14 @@
 
 /**
  * Sorting an array of objects
- * @param {Array<Object.<string, any>} arr - Array of objects you want to sort
- * @param {Array<string>} params - array of parameters as strings you will sort on
+ * @param {Array.<Object.<string, *>>} arr - Array of objects you want to sort
+ * @param {Array.<string>} params - array of parameters as strings you will sort on
  * 
- * @return {Array<Object.<string, any>>} Array of objects that have been sorted
+ * @return {Array.<Object.<string, *>>} Array of objects that have been sorted
  * 
  * @author Ivan Stuaklov <sid21u699@student.bmstu.ru>
  */
-function sorting (arr, params) {
+function sorting(arr, params) {
     arr.sort((a, b) => {
         for (let p of params) {
             if (a[p] < b[p]) {
