@@ -23,7 +23,7 @@ const ARABIC = {
  * @returns {(string|number|NaN)} - Результат преобразования (число, если арабская запись, строка - если римская)
  */
 const roman = (input) => {
-    if (typeof input !== 'string' && !Number.isFinite(input)) {
+    if (!input || !(input['constructor'] === String || (input['constructor'] === Number && isFinite(input)))) {
         return NaN;
     }
 
