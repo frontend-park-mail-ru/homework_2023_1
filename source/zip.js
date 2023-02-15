@@ -23,7 +23,7 @@ const isObject = (value) => {
  * @throws {TypeError} – Если не все аргументы функции являются объектами.
  */
 const zip = (...objects) => {
-    if (!objects.length) {
+    if (!Array.isArray(objects) || !objects.length) {
         throw new Error('Function was called without arguments');
     }
 
