@@ -8,7 +8,7 @@ QUnit.module('Тестируем функцию rle', function () {
 		assert.throws(()=>rle({'12':456}), TypeError('Error'));
 		assert.throws(()=>rle(['12', '456']), TypeError('Error'));
 		assert.throws(()=>rle(new Number(123)), TypeError('Error'));
-		assert.throws(()=>rle('1111AAA###'), TypeError('Error'));
+		assert.throws(()=>rle('1111AAA###'), Error('string contains numbers'));
 	});
 	QUnit.test('Функция работает с пустой строкой', function (assert) {
 		assert.strictEqual(rle(''), '', "rle('') === ''");

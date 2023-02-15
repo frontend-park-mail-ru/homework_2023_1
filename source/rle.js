@@ -8,11 +8,14 @@
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
 const rle = (str) => {
-    if (typeof str == "object" && str !== null) {
+    if (str instanceof Object) {
         str = str.valueOf();
     }
-    if (typeof str !== "string" || !str.split('').every((sym) => isNaN(sym))) {
+    if (typeof str !== "string") {
         throw new TypeError('Error');
+    }
+    if (!str.split('').every((sym) => isNaN(sym))) {
+        throw new Error('string contains numbers');
     }
     let count = 1, tmp = 1;
     const countToString = (count) => count !== 1 ? count : '';
