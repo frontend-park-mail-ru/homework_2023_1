@@ -8,7 +8,10 @@
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
 const rle = (str) => {
-    if (typeof str !== "string") {
+    if (typeof str == "object" && str !== null) {
+        str = str.valueOf();
+    }
+    if (typeof str !== "string" || !str.split('').every((sym) => isNaN(sym))) {
         throw new TypeError('Error');
     }
     let count = 1, tmp = 1;
@@ -23,4 +26,4 @@ const rle = (str) => {
             return result + countToString(tmp) + next;
         }
     }, '') + countToString(count);
-}
+};

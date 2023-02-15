@@ -7,6 +7,8 @@ QUnit.module('Тестируем функцию rle', function () {
 		assert.throws(()=>rle(5), TypeError('Error'));
 		assert.throws(()=>rle({'12':456}), TypeError('Error'));
 		assert.throws(()=>rle(['12', '456']), TypeError('Error'));
+		assert.throws(()=>rle(new Number(123)), TypeError('Error'));
+		assert.throws(()=>rle('1111AAA###'), TypeError('Error'));
 	});
 	QUnit.test('Функция работает с пустой строкой', function (assert) {
 		assert.strictEqual(rle(''), '', "rle('') === ''");
@@ -29,5 +31,9 @@ QUnit.module('Тестируем функцию rle', function () {
 	QUnit.test('Функция работает с длинной строкой', function (assert) {
 		assert.strictEqual(rle('AVVVBBBVVXDHJFFFFDDDDDDHAAAAJJJDDSLSSSDDDD'), 'AV3B3V2XDHJF4D6HA4J3D2SLS3D4',
 			"rle('AVVVBBBVVXDHJFFFFDDDDDDHAAAAJJJDDSLSSSDDDD') === 'AV3B3V2XDHJF4D6HA4J3D2SLS3D4'");
+	});
+	QUnit.test('Функция работает с new String', function (assert) {
+		assert.strictEqual(rle(new String('AAABBBCCC')), 'A3B3C3', "rle(new String('AAABBBCCC')) === 'A3B3C3'");
+		assert.strictEqual(rle(new String()), '', "rle(new String(new String())) === ''");
 	});
 });
