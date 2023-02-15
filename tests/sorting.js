@@ -1,7 +1,7 @@
 'use strict';
 
 QUnit.module('Тестируем функцию sorting', function () {
-	QUnit.test('sorting не меняет пустой массив', function (assert) {
+	QUnit.test('sorting: не меняет пустой массив', function (assert) {
 		const initial = [];
 		const actual = sorting(initial, []);
 
@@ -10,7 +10,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting не изменяет массив, если не передано никаких полей для сортировки', function (assert) {
+	QUnit.test('sorting: не изменяет массив, если не передано никаких полей для сортировки', function (assert) {
 		const initial = [
 			{prop1: 1},
 			{prop1: 2},
@@ -29,7 +29,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует массив по численному свойству', function (assert) {
+	QUnit.test('sorting: сортирует массив по численному свойству', function (assert) {
 		const initial = [
 			{prop1: 30},
 			{prop1: 1000},
@@ -48,7 +48,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует массив по строковому свойству', function (assert) {
+	QUnit.test('sorting: сортирует массив по строковому свойству', function (assert) {
 		const initial = [
 			{prop1: '30'},
 			{prop1: '1000'},
@@ -67,7 +67,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting реализует устойчивую сортировку', function (assert) {
+	QUnit.test('sorting: реализует устойчивую сортировку', function (assert) {
 		const initial = [
 			{prop1: 3, id: 1},
 			{prop1: 3, id: 2},
@@ -95,7 +95,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует по нескольким полям', function (assert) {
+	QUnit.test('sorting: сортирует по нескольким полям', function (assert) {
 		const initial = [
 			{prop1: 3, id: '1'},
 			{prop1: 3, id: '2'},
@@ -122,7 +122,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует по булевским значениям', function (assert) {
+	QUnit.test('sorting: сортирует по булевским значениям', function (assert) {
 		const initial = [
 			{prop1: true, id: '1'},
 			{prop1: true, id: '2'},
@@ -149,7 +149,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует по трем полям', function (assert) {
+	QUnit.test('sorting: сортирует по трем полям', function (assert) {
 		const initial = [
 			{prop1: 2, id: '1', prop2: true},
 			{prop1: 2, id: '2', prop2: true},
@@ -176,7 +176,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('не изменяет массив, если передан несуществующий параметр', function (assert) {
+	QUnit.test('sorting: не изменяет массив, если передан несуществующий параметр', function (assert) {
 		const initial = [
 			{prop1: 2, id: '1', prop2: true},
 			{prop1: 2, id: '2', prop2: true},
@@ -201,5 +201,45 @@ QUnit.module('Тестируем функцию sorting', function () {
 		];
 
 		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting: ошибка, если передан не массив', function (assert) {
+		assert.throws(() => sorting(5, []), TypeError('Not an array'));
+		assert.throws(() => sorting(true, ['someProp']), TypeError('Not an array'));
+		assert.throws(() => sorting(new Number(5), []), TypeError('Not an array'));
+		assert.throws(() => sorting(null, []), TypeError('Not an array'));
+		assert.throws(() => sorting(undefined, []), TypeError('Not an array'));
+	});
+
+	QUnit.test('sorting: нет ошибки, если передан new Array', function (assert) {
+		const actual = sorting(new Array(
+			{prop1: '30'},
+			{prop1: '1000'},
+			{prop1: '4'},
+			{prop1: '200'}
+		), [ 'prop1' ]);
+
+		const expected = [
+			{prop1: '1000'},
+			{prop1: '200'},
+			{prop1: '30'},
+			{prop1: '4'}
+		];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting: не сортирует разные типы', function (assert) {
+		const initial = [
+			{prop1: '30'},
+			{prop1: 1000},
+			{prop1: '4'},
+			{prop1: -200},
+			{prop1: true},
+			{prop1: false},
+			{prop1: 300}
+		]
+
+		assert.throws(() => sorting(initial, [ 'prop1' ]), TypeError('Different types'));
 	});
 });
