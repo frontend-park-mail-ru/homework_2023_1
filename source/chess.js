@@ -9,7 +9,7 @@
  * (ряды доски разделяются в строке с помощью '\n').
  */
 const chess = function (n) {
-    let num = Number(n);
+    const num = Number(n);
     if (isNaN(num) || num <= 1) {
         return null;
     }
