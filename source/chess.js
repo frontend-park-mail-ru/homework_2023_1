@@ -8,7 +8,7 @@
  * @returns {string | null} строка, представляющая собой шахматную доску 
  * (ряды доски разделяются в строке с помощью '\n').
  */
-const chess = function (n) {
+const chess = (n) => {
     const num = Number(n);
     if (!Number.isInteger(num) || num <= 1) {
         return null;
