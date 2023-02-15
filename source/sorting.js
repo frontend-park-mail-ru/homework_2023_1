@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Sorting an array of objects
