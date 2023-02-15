@@ -31,11 +31,11 @@ QUnit.module('Тестируем функцию anagram', function () {
 	});
 
 	QUnit.test('Тест anagramMap: функция работает правильно с объектами строк', function (assert) {
-		const input = [new String('Aaa'), new String('aaA'), new String('Kk'), new String('Hello'), new String('KK'),];
+		const input = [new String('Aaa'), new String('aaA'), new String('Kk'), new String('Hello'), new String('KK')];
 
 		const output = [
 			[ new String('aaA'), new String('Aaa') ],
-			[ new String('Kk'), new String('KK')],   
+			[ new String('Kk'), new String('KK') ]
 		];
 
 		assert.deepEqual(anagramMap(input), output);
@@ -70,7 +70,7 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.throws(
 			() => anagramMap(input), 
 			TypeError('Expected Array of strings')
-		)
+		);
 	});
 	
 });

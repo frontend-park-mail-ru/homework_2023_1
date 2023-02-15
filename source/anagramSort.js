@@ -10,17 +10,10 @@
 const addAnagram = (groups, newString) => {
     const groupsCopy = Object.assign({}, groups); 
     const sortedNewString = newString.toLowerCase().split('').sort().join('');
-    const foundGroup = Object.keys(groupsCopy).find(key => key === sortedNewString);
-    if (foundGroup) {
-        groupsCopy[sortedNewString].push(newString);
-    }
-    else {
-        groupsCopy[sortedNewString] = [newString];
-    }
+    groupsCopy[sortedNewString] ??= []
+    groupsCopy[sortedNewString].push(newString);
     return groupsCopy;
 }
-
-
 
 /**
  * Функция для поиска анаграмм.
@@ -38,9 +31,9 @@ const anagramSort = (strings) => {
     }
     const groups = strings.reduce((acc, string) => {
             return addAnagram(acc, string);
-        }, {})
+        }, {});
     return Object.values(groups)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => a.localeCompare(b)))
-        .sort((a, b) => a[0].localeCompare(b[0]))
+        .sort((a, b) => a[0].localeCompare(b[0]));
 }

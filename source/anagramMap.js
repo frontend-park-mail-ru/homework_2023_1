@@ -77,5 +77,5 @@ const anagramMap = (strings) => {
     return grouping(strings)
         .filter(group => group.length >= 2)
         .map(group => group.sort((a, b) => a.localeCompare(b)))
-        .sort((a, b) => a[0].localeCompare(b[0]))
+        .sort((a, b) => a[0].localeCompare(b[0]));
 }
