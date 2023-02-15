@@ -8,8 +8,8 @@
  * @author Nigmatullin Alik <NigAlik020503@yandex.ru>
  */
 const rle = (str) => {
-    if (typeof str !== "string" && !(str instanceof String)) {
-        throw new TypeError('Error');
+    if (typeof str !== 'string' && !(str instanceof String)) {
+        throw new TypeError('TypeError');
     }
     if (!str.split('').every((sym) => isNaN(sym))) {
         throw new Error('string contains numbers');
