@@ -94,5 +94,15 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.throws(() => zip([1, 2, 3]), new TypeError('Each argument of this function must be instance of Object'), "ok");
 		assert.throws(() => zip('Arguments', 'as', 'strings'), new TypeError('Each argument of this function must be instance of Object'), "ok");
 		assert.throws(() => zip(1, 'as', 'strings', {ok: 'ok'}), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(new Boolean()), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(new Array()), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(new String()), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(new Number()), new TypeError('Each argument of this function must be instance of Object'), "ok");
+	});
+
+	QUnit.test('Тесты на некорректный ввод - undefined, NaN, null', function (assert) {
+		assert.throws(() => zip(undefined), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(NaN), new TypeError('Each argument of this function must be instance of Object'), "ok");
+		assert.throws(() => zip(null), new TypeError('Each argument of this function must be instance of Object'), "ok");
 	});
 });
