@@ -1,13 +1,31 @@
 'use strict';
 
-/** This function is returning a symbol. */
+/**
+ * function creating ascii tree
+ * @returns {String | null}
+ * @example
+ * print_symbol(1,'*') return
+ *
+ * '*'
+ * @params count - count of symbols, symbol - symbol need to print
+ *
+ */
 function* print_symbol(count, symbol) {
     for (let i = 0; i < count; ++i) {
         yield symbol;
     }
 }
-
-/** This function is generating a symbol. */
+/**
+ * function creating ascii tree line
+ * @returns {String | null}
+ * @example
+ * row(3,2,'*') return
+ *
+ * ' *** \n'
+ * @params height - tree height, cur_height - current line,
+ * symbol - symbol need to print
+ *
+ */
 function* row(height, cur_height, symbol) {
     /** spaces before tree. */
     yield* print_symbol(height - 1 - cur_height, ' ')
@@ -18,8 +36,18 @@ function* row(height, cur_height, symbol) {
 
     yield "\n";
 }
-
-/** This function is generating a tree. */
+/**
+ * function creating ascii tree
+ * @returns {String | null}
+ * @example
+ * create_tree(3) return
+ *
+ * '  *  \n'
+ * ' *** \n'
+ * '*****\n'
+ * '  |  \n'
+ * @param height - height
+ */
 function* create_tree(height) {
     for (let i = 1; i < height; i++) yield* row(height, i, '*');
 
@@ -27,7 +55,7 @@ function* create_tree(height) {
 }
 
 /**
- * function creating ascii tree
+ * function checking argument and call function to create ascii tree
  * @returns {String | null}
  * @example
  * tree(3) return
