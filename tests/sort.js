@@ -58,17 +58,9 @@ QUnit.module('Тестируем функцию sort', function () {
 	});
 
 	QUnit.test('Функция правильно обрабатывает некорректные данные', function (assert) {
-		assert.strictEqual(sort(new String('dadda adadD af')), 'Aaddd Aaddd Af');
-		const checkSortThrows =  inputObj => {
-			try {
-				sort(inputObj);
-			} catch(er) {
-				assert.equal(er.message, 'invalid input');	
-			}
-		}
-
-		checkSortThrows(NaN);
-		checkSortThrows(undefined);
-		checkSortThrows(10);	
+		assert.throws(() => sort(NaN), /invalid input/);
+		assert.throws(() => sort(undefined), /invalid input/);
+		assert.throws(() => sort(10), /invalid input/);
+		assert.strictEqual(sort(new String('dadda adadD af')), 'Aaddd Aaddd Af');	
 	});
 });
