@@ -17,10 +17,7 @@ const extra = {
  * @author Popov Stepan
  */
 const filter = (input, tags) => {
-    let output = '';
-    input.split('').forEach((symb) => {
-        output += extra[symb] || symb
-    });
+    let output = input.split('').reduce((accum_str, symb) => accum_str += extra[symb] || symb, '');
     
     if (!tags) {
         return output;
@@ -43,8 +40,8 @@ const filter = (input, tags) => {
             const gt_sym_pos = output.indexOf(gt_sym, pos);
             output = (output[pos - 1] === '/')
                 ? `${output.slice(0, pos - lt_sym_len - 1)}</${tag}>${output.slice(gt_sym_pos + gt_sym_len)}`
-                : `${output.slice(0, pos - lt_sym_len)}<${tag}${output.slice(pos + tag_len, gt_sym_pos)}>${output.slice(gt_sym_pos + gt_sym_len)}`
+                : `${output.slice(0, pos - lt_sym_len)}<${tag}${output.slice(pos + tag_len, gt_sym_pos)}>${output.slice(gt_sym_pos + gt_sym_len)}`;
         }
     });
-    return output
+    return output;
 };
