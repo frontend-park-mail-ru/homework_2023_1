@@ -43,14 +43,15 @@ const solve = (expression, argument) => {
         num_stack.push(ops[op_stack.pop()].exec(first_argument, second_argument));
     };
 
-    let op_stack = [];
-    let num_stack = [];
+    const op_stack = [];
+    const num_stack = [];
 
     let parentheses_balance = 0;
 
-    for (const symbol of expression) {
-        if (symbol === ' ')
-            continue;
+    [...expression].forEach(symbol => {
+        if (symbol === ' ') {
+            return;
+        }
 
         const num = parseInt(symbol);
 
@@ -78,7 +79,7 @@ const solve = (expression, argument) => {
         } else {
             throw Error(`invalid symbol in expression: ${symbol}`);
         }
-    }
+    });
 
     if (parentheses_balance !== 0)
         throw Error('parantheses not closed');
