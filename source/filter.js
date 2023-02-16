@@ -17,6 +17,13 @@ const extra = {
  * @author Popov Stepan
  */
 const filter = (input, tags) => {
+    if (!(input instanceof String || typeof input === 'string')) {
+        throw new TypeError('input is not a string')
+    } 
+    if (!Array.isArray(tags) && tags !== undefined) {
+        throw new TypeError('tags is not an array')
+    }
+
     let output = input.split('').reduce((accum_str, symb) => accum_str += extra[symb] || symb, '');
     
     if (!tags) {
@@ -28,6 +35,10 @@ const filter = (input, tags) => {
     const gt_sym_len = gt_sym.length;
     const lt_sym_len = lt_sym.length;
     tags.forEach(tag => {
+        if (!(tag instanceof String || typeof tag === 'string')) {
+            throw new TypeError('tags contains an element that is not a string')
+        }
+
         const tag_len = tag.length; 
         
         let pos = -1; 
