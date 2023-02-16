@@ -9,14 +9,14 @@
  *
  * @author Ivan Stuaklov <sid21u699@student.bmstu.ru>
  */
-function sorting(arr, params) {
+const sorting = (arr, params) => {
 	if (!Array.isArray(arr)) {
 		throw new TypeError('Not an array');
 	}
 
 	arr.sort((a, b) => {
 		for (let p of params) {
-			if (typeof(a[p]) != typeof(b[p])){
+			if (typeof(a[p]) !== typeof(b[p])){
 				throw new TypeError('Different types');
 			}
 
