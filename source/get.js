@@ -10,7 +10,7 @@ const get = (object, attrs) => {
     if (!(object instanceof Object && [Array, Object].includes(object.constructor))) {
         throw new TypeError('typeof object (param) should be "object"');
     }
-    if (typeof attrs !== 'string') {
+    if (!(typeof attrs == 'string' || (attrs instanceof Object && attrs.constructor === String))) {
         throw new TypeError('attrs should be string');
     }
     if (!attrs.startsWith('.')) {

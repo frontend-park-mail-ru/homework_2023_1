@@ -112,4 +112,11 @@ QUnit.module('Тестируем функцию get', function () {
 			}
 		);
 	});
+
+	QUnit.test('get нормально работает с attrs, равными new String()', function (assert) {
+		const object = {
+			lol: 42
+		};
+		assert.strictEqual(get(object, new String('.lol')), 42);
+	});
 });
