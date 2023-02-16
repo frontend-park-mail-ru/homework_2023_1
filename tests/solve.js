@@ -29,4 +29,13 @@ QUnit.module('Тестируем функцию solve', function () {
 		assert.throws(() => solve('x + + 2', 1)), Error('invalid expession');
 		assert.throws(() => solve('x + 1 # 2', 1)), Error('invalid symbol in expression: #');
 	});
+
+	QUnit.test('solve кидает исключение при некорректном типе входных значений', function (assert) {
+		assert.throws(() => solve(undefined, 1), Error('expression must be a string'));
+		assert.throws(() => solve(null, 1), Error('expression must be a string'));
+
+		assert.throws(() => solve('x + 1', undefined), Error('argument must be a finite number'));
+		assert.throws(() => solve('x + 1', null), Error('argument must be a finite number'));
+		assert.throws(() => solve('x + 1', Infinity), Error('argument must be a finite number'));
+	})
 });

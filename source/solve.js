@@ -1,12 +1,34 @@
 'use strict';
 
 /**
+ * Checks if obj is a string
+ * @param {any} obj
+ * @returns {boolean}
+ */
+const isString = obj => obj instanceof String || typeof obj === 'string';
+
+/**
+ * Checks if obj is a finite number
+ * @param {any} obj
+ * @returns {boolean}
+ */
+const isFiniteNumber = obj => (obj instanceof Number || typeof obj === 'number') && isFinite(obj);
+
+/**
  * Solves a valid mathematical expression with regard to passed argument
  * @param {string} expression consists of x, integers, basic operators and parantheses
  * @param {number} argument value of x in expression
  * @namespace solve
  */
 const solve = (expression, argument) => {
+    if (!isString(expression)) {
+        throw Error('expression must be a string');
+    }
+
+    if (!isFiniteNumber(argument)) {
+        throw Error('argument must be a finite number');
+    }
+
     /**
      * An operator object
      * @param {number} priority priority of operator
@@ -33,8 +55,9 @@ const solve = (expression, argument) => {
      * @param {Array} num_stack 
      */
     const apply = (op_stack, num_stack) => {
-        if (op_stack.length < 1 || num_stack.length < 2)
+        if (op_stack.length < 1 || num_stack.length < 2) {
             throw Error('invalid expession');
+        }
         
         // arguments pulled from the stack are in the reverse order
         const second_argument = num_stack.pop();
