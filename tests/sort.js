@@ -57,7 +57,7 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort(' Frontend   iS   a coOl     subject  '), 'A Bcejstu Cloo Defnnort Is');
 	});
 
-	QUnit.test('Функция правильно обрабатывает слова, убирая избыточные пробелы', function (assert) {
+	QUnit.test('Функция правильно обрабатывает некорректные данные', function (assert) {
 		assert.strictEqual(sort(new String('dadda adadD af')), 'Aaddd Aaddd Af');
 		const checkSortThrows =  inputObj => {
 			try {
