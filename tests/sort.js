@@ -59,22 +59,16 @@ QUnit.module('Тестируем функцию sort', function () {
 
 	QUnit.test('Функция правильно обрабатывает слова, убирая избыточные пробелы', function (assert) {
 		assert.strictEqual(sort(new String('dadda adadD af')), 'Aaddd Aaddd Af');
-		try {
-			sort(NaN);
-		} catch(er) {
-			assert.equal(er.message, 'invalid input');	
+		const checkSortThrows =  inputObj => {
+			try {
+				sort(inputObj);
+			} catch(er) {
+				assert.equal(er.message, 'invalid input');	
+			}
 		}
 
-		try {
-			sort(undefined);
-		} catch(er) {
-			assert.equal(er.message, 'invalid input');	
-		}
-
-		try {
-			sort(10);
-		} catch(er) {
-			assert.equal(er.message, 'invalid input');	
-		}		
+		checkSortThrows(NaN);
+		checkSortThrows(undefined);
+		checkSortThrows(10);	
 	});
 });
