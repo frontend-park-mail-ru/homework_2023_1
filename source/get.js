@@ -7,7 +7,7 @@
  * @returns {*} - object that can be interpreted as obj['attr1']['attr2']['attrN']
  */
 const get = (object, attrs) => {
-    if (!(object instanceof Object && [Array, Object].includes(object.constructor))) {
+    if (!(object instanceof Object && (object.constructor == Object || Array.isArray(object)))) {
         throw new TypeError('typeof object (param) should be "object"');
     }
     if (!(typeof attrs == 'string' || (attrs instanceof Object && attrs.constructor === String))) {
