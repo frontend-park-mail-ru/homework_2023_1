@@ -73,7 +73,7 @@ QUnit.module('Проверка работы функции filter', function () 
 		assert.strictEqual(output2, expected2);
 	});
 
-	QUnit.test('filter: проверка на исключения при неправильных типах аргументов', function (assert){
+	QUnit.test('filter: проверка на исключения при неправильных типах аргументов', function (assert) {
 		assert.throws (()=>filter(undefined), new TypeError('input is not a string'));
 		assert.throws (()=>filter({"a":1, "b":2}),new TypeError('input is not a string'));
 		assert.throws (()=>filter(null),new TypeError('input is not a string'));
@@ -88,6 +88,5 @@ QUnit.module('Проверка работы функции filter', function () 
 		assert.throws (()=>filter("div", [1567, "span", "span"]),new TypeError('tags contains an element that is not a string'));
 		assert.throws (()=>filter("div", ["div", null, "span"]),new TypeError('tags contains an element that is not a string'));
 		assert.throws (()=>filter("div", ["div", undefined, "span"]),new TypeError('tags contains an element that is not a string'));
-
 	});
 });
