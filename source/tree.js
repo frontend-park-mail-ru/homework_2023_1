@@ -68,19 +68,7 @@ function* create_tree(height) {
  */
 const tree = (n) => {
     const height = Number(n);
-    if (n === null) {
-        throw new TypeError('такой высоты не бываает');
-    }
-
-    else if (isNaN(height)) {
-        throw new TypeError('такой высоты не бываает');
-    }
-
-    else if (!Number.isInteger(height)) {
-        throw new TypeError('такой высоты не бываает');
-    }
-
-    else if (!isFinite(height)) {
+    if ((n === null)||(isNaN(height))||(!Number.isInteger(height))||(!isFinite(height))) {
         throw new TypeError('такой высоты не бываает');
     }
 
