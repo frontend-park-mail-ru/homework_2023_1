@@ -5,6 +5,11 @@ QUnit.module('Тестируем функцию sort', function () {
         assert.strictEqual(sort(''), '', 'OK');
     });
 
+    QUnit.test('Проверка оператора new', function (assert) {
+       assert.strictEqual(sort(new String('a')), 'A', 'OK');
+       assert.strictEqual(sort(new String('abcDE FGHI')), 'Abcde Fghi', 'OK');
+    });
+
     QUnit.test('Функция обрабатывает неверные типы', function (assert) {
         assert.throws(function() {
             sort(1);

@@ -14,7 +14,7 @@
 */
 
 const sort = str => {
-    if (typeof str !== 'string') {
+    if (typeof str !== 'string' && !(str instanceof String)) {
         throw new TypeError('The input parameter isn`t a string');
     } else if (str === '') {
         return '';
