@@ -1,18 +1,5 @@
 'use strict';
 
-/**
- * function creating ascii tree
- * @returns {String | null}
- * @example
- * tree(3) return
- *
- * '  *  \n'
- * ' *** \n'
- * '*****\n'
- * '  |  \n'
- * @param n - height
- */
-
 /** This function is returning a symbol. */
 function* print_symbol(count, symbol) {
     for (let i = 0; i < count; ++i) {
@@ -22,10 +9,11 @@ function* print_symbol(count, symbol) {
 
 /** This function is generating a symbol. */
 function* row(height, cur_height, symbol) {
+    /** spaces before tree. */
     yield* print_symbol(height - 1 - cur_height, ' ')
-
+    /** tree by printing *. */
     yield* print_symbol(2 * cur_height - 1, symbol)
-
+    /** spaces after tree. */
     yield* print_symbol(height - 1 - cur_height, ' ')
 
     yield "\n";
@@ -38,7 +26,18 @@ function* create_tree(height) {
     yield* row(height, 1, '|');
 }
 
-
+/**
+ * function creating ascii tree
+ * @returns {String | null}
+ * @example
+ * tree(3) return
+ *
+ * '  *  \n'
+ * ' *** \n'
+ * '*****\n'
+ * '  |  \n'
+ * @param n - height
+ */
 const tree = (n) => {
     const height = Number(n);
     if (n === null) {
