@@ -8,7 +8,7 @@
 
 const zip = (...objects) => {
     if (objects.length === 0) {
-        throw new RangeError('Не было переданно обьектов для объединения');
+        throw new TypeError('Не было переданно обьектов для объединения');
     }
 
     const UniObject = {};

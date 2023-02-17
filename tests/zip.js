@@ -117,7 +117,7 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.throws(
 			() => {
 				zip();
-			}, RangeError
+			}, TypeError
 		);
 	});
 });
