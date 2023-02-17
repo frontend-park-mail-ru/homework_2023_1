@@ -85,37 +85,37 @@ QUnit.module('Тестируем функцию zip', function () {
 
 	QUnit.test('Функция не принимает неправильные входные данные', function (assert) {	
 		assert.throws(
-			() => {
+			function() {
 				zip(null);
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip(1);
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip('a');
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip(function(){});
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip(undefined);
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip(NaN);
 			}, TypeError
 		);
 		assert.throws(
-			() => {
+			function() {
 				zip();
 			}, TypeError
 		);
