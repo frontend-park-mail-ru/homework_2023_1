@@ -51,4 +51,36 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 		assert.strictEqual(format(input, 3), expected3);
 	});
+
+	QUnit.test('format работает с пустым массивом', function (assert) {
+		const input = [];
+
+		const expected = '';
+
+		assert.strictEqual(format(input, 1), expected);
+	});
+
+	QUnit.test('format обрабатывает неверные типы данных', function (assert) {
+		const input1 = ["asdas", "ads", "vsdfsv", "dsac"];
+
+		assert.throws(function() {
+			format(input1, 1);
+		}, TypeError);
+
+		const input2 = [1, 2, 6, "dvsdv", false];
+
+		assert.throws(function() {
+			format(input2, 1);
+		}, TypeError);
+
+		const input3 = [1, 2, 3, 4, 10, 100];
+
+		assert.throws(function() {
+			format(input3, -2);
+		}, TypeError);
+
+		assert.throws(function() {
+			format(input3, "aaa");
+		}, TypeError);
+	});
 });
