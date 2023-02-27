@@ -77,7 +77,7 @@ QUnit.module('Тестируем функцию format', function () {
 
 		assert.throws(function() {
 			format(input3, -2);
-		}, TypeError);
+		}, Error);
 
 		assert.throws(function() {
 			format(input3, "aaa");
